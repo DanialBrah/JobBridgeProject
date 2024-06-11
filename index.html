@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script>
+        function saveJob() {
+            var title = document.getElementById('title').value;
+            var company = document.getElementById('company').value;
+            var location = document.getElementById('location').value;
+            var classification = document.getElementById('classification').value;
+            var salary = document.getElementById('salary').value;
+            var workType = document.getElementById('workType').value;
+            var description = document.getElementById('description').value;
+            var requirements = document.getElementById('requirements').value;
+            var benefits = document.getElementById('benefits').value;
+            var image = document.getElementById('image').files[0];
+
+            var formData = new FormData();
+            formData.append('image', image);
+
+            var job = {
+                title: title,
+                company: company,
+                location: location,
+                classification: classification,
+                salary: salary,
+                workType: workType,
+                description: description,
+                requirements: requirements,
+                benefits: benefits,
+                image: formData
+            };
+
+            var jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.push(job);
+            localStorage.setItem('jobs', JSON.stringify(jobs));
+
+            alert('Job posted successfully!');
+            document.getElementById('jobForm').reset();
+            window.location.href = 'joblist.html'; // Redirect to job listings page
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <img src="logoo.png" alt="Logo">
+          <p>The Webster</p>
+        </div>
+        <div class="header-content">
+          <div class="logo-text">
+            <h1>Post a Job</h1>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="joblist.html">Job Listings</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+    <main>
+        <form id="jobForm">
+            <div class="form-group">
+                <label for="title">Job Title:</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="company">Company:</label>
+                <input type="text" id="company" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" required>
+            </div>
+            <div class="form-group">
+                <label for="classification">Classification:</label>
+                <input type="text" id="classification" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" required>
+            </div>
+            <div class="form-group">
+                <label for="workType">Work Type:</label>
+                <input type="text" id="workType" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="requirements">Requirements:</label>
+                <textarea id="requirements" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="benefits">Benefits:</label>
+                <textarea id="benefits" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" required>
+            </div>
+            <button type="button" onclick="saveJob()">Post Job</button>
+        </form>
+    </main>
+</body>
+</html>
