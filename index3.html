@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script>
+        function loadJobs() {
+          var jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+          var jobList = document.getElementById('job-listings');
+
+          jobs.forEach(function(job) {
+            var jobElement = document.createElement('article');
+            jobElement.className = 'job';
+
+            jobElement.innerHTML = `
+              <h3>${job.title}</h3>
+              <p><strong>Company:</strong> ${job.company}</p>
+              <p><strong class="location">Location:</strong> ${job.location}</p>
+              <p><strong class="classification">Classification:</strong> ${job.classification}</p>
+              <p><strong class="salary">Salary:</strong> $${job.salary}</p>
+              <p><strong class="workType">Work Type:</strong> ${job.workType}</p>
+              <p><strong>Description:</strong> ${job.description}</p>
+              <p><strong>Requirements:</strong> ${job.requirements}</p>
+              <p><strong>Benefits:</strong> ${job.benefits}</p>
+              <img src="${job.image}" alt="Job Image" class="job-image">
+              <button class="apply-btn">Apply Now</button>
+              <button class="remove-btn">Remove</button>
+            `;
+
+            // Add an event listener to the apply button
+            var applyBtn = jobElement.querySelector('.apply-btn');
+            applyBtn.addEventListener('click', function() {
+              // TO DO: Add functionality to apply for the job
+              alert(`You have applied for the ${job.title} position at ${job.company}`);
+            });
+
+            // Add an event listener to the remove button
+            var removeBtn = jobElement.querySelector('.remove-btn');
+            removeBtn.addEventListener('click', function() {
+              // Remove the job from the jobs array
+              var index = jobs.indexOf(job);
+              if (index > -1) {
+                jobs.splice(index, 1);
+              }
+
+              // Update local storage
+              localStorage.setItem('jobs', JSON.stringify(jobs));
+
+              // Remove the job element from the DOM
+              jobElement.remove();
+            });
+
+            jobList.appendChild(jobElement);
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadJobs);
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <img src="logoo.png" alt="Logo">
+          <p>The Webster</p>
+        </div>
+        <div class="header-content">
+          <div class="logo-text">
+            <h1>Job Listing</h1>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="index2.html">Post a Job</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+    <main>
+        <section id="job-listings" class="decorated-job-listings">
+            <h2>Available Jobs</h2>
+            <!-- Job listings will be loaded here -->
+        </section>
+    </main>
+</body>
+</html>
