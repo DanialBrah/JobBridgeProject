@@ -18,8 +18,80 @@
             var benefits = document.getElementById('benefits').value;
             var image = document.getElementById('image').files[0];
 
+            var errors = [];
+
+            if (title === "") {
+                errors.push("Job title is required");
+                document.getElementById('titleError').innerHTML = "Job title is required";
+            } else {
+                document.getElementById('titleError').innerHTML = "";
+            }
+
+            if (company === "") {
+                errors.push("Company is required");
+                document.getElementById('companyError').innerHTML = "Company is required";
+            } else {
+                document.getElementById('companyError').innerHTML = "";
+            }
+
+            if (location === "") {
+                errors.push("Location is required");
+                document.getElementById('locationError').innerHTML = "Location is required";
+            } else {
+                document.getElementById('locationError').innerHTML = "";
+            }
+
+            if (classification === "") {
+                errors.push("Classification is required");
+                document.getElementById('classificationError').innerHTML = "Classification is required";
+            } else {
+                document.getElementById('classificationError').innerHTML = "";
+            }
+
+            if (salary === "") {
+                errors.push("Salary is required");
+                document.getElementById('salaryError').innerHTML = "Salary is required";
+            } else {
+                document.getElementById('salaryError').innerHTML = "";
+            }
+
+            if (workType === "") {
+                errors.push("Work type is required");
+                document.getElementById('workTypeError').innerHTML = "Work type is required";
+            } else {
+                document.getElementById('workTypeError').innerHTML = "";
+            }
+
+            if (description === "") {
+                errors.push("Description is required");
+                document.getElementById('descriptionError').innerHTML = "Description is required";
+            } else {
+                document.getElementById('descriptionError').innerHTML = "";
+            }
+
+            if (requirements === "") {
+                errors.push("Requirements are required");
+                document.getElementById('requirementsError').innerHTML = "Requirements are required";
+            } else {
+                document.getElementById('requirementsError').innerHTML = "";
+            }
+
+            if (benefits === "") {
+                errors.push("Benefits are required");
+                document.getElementById('benefitsError').innerHTML = "Benefits are required";
+            } else {
+                document.getElementById('benefitsError').innerHTML = "";
+            }
+
+            if (errors.length > 0) {
+                alert("Please fill in all required fields");
+                return;
+            }
+
             var formData = new FormData();
-            formData.append('image', image);
+            if (image) {
+                formData.append('image', image);
+            }
 
             var job = {
                 title: title,
@@ -56,7 +128,7 @@
           </div>
           <nav>
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="Homepage.html">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact</a></li>
               <li><a href="joblist.html">Job Listings</a></li>
@@ -69,46 +141,57 @@
         <form id="jobForm">
             <div class="form-group">
                 <label for="title">Job Title:</label>
-                <input type="text" id="title" required>
+                <input type="text" id="title" required placeholder="Enter job title">
+                <span id="titleError"></span>
             </div>
             <div class="form-group">
-                <label for="company">Company:</label>
-                <input type="text" id="company" required>
-            </div>
-            <div class="form-group">
-                <label for="location">Location:</label>
-                <input type="text" id="location" required>
-            </div>
-            <div class="form-group">
-                <label for="classification">Classification:</label>
-                <input type="text" id="classification" required>
-            </div>
-            <div class="form-group">
-                <label for="salary">Salary:</label>
-                <input type="number" id="salary" required>
-            </div>
-            <div class="form-group">
-                <label for="workType">Work Type:</label>
-                <input type="text" id="workType" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="requirements">Requirements:</label>
-                <textarea id="requirements" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="benefits">Benefits:</label>
-                <textarea id="benefits" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="image">Image:</label>
-                <input type="file" id="image" required>
-            </div>
-            <button type="button" onclick="saveJob()">Post Job</button>
-        </form>
-    </main>
-</body>
-</html>
+                <div class="form-group">
+                    <label for="company">Company:</label>
+                    <input type="text" id="company" required placeholder="Enter company name">
+                    <span id="companyError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" required placeholder="Enter location">
+                    <span id="locationError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="classification">Classification:</label>
+                    <input type="text" id="classification" required placeholder="Enter classification">
+                    <span id="classificationError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary:</label>
+                    <input type="number" id="salary" required placeholder="Enter salary">
+                    <span id="salaryError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="workType">Work Type:</label>
+                    <input type="text" id="workType" required placeholder="Enter work type">
+                    <span id="workTypeError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" required placeholder="Enter job description"></textarea>
+                    <span id="descriptionError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">Requirements:</label>
+                    <textarea id="requirements" required placeholder="Enter job requirements"></textarea>
+                    <span id="requirementsError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="benefits">Benefits:</label>
+                    <textarea id="benefits" required placeholder="Enter job benefits"></textarea>
+                    <span id="benefitsError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image">
+                    <span id="imageError"></span>
+                </div>
+                <button type="submit" onclick="saveJob()">Post Job</button>
+            </form>
+        </main>
+    </body>
+    </html>

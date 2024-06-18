@@ -15,6 +15,7 @@
             jobElement.className = 'job';
 
             jobElement.innerHTML = `
+              <img src="${job.image}" alt="Job Image" class="job-image">
               <h3>${job.title}</h3>
               <p><strong>Company:</strong> ${job.company}</p>
               <p><strong class="location">Location:</strong> ${job.location}</p>
@@ -24,8 +25,7 @@
               <p><strong>Description:</strong> ${job.description}</p>
               <p><strong>Requirements:</strong> ${job.requirements}</p>
               <p><strong>Benefits:</strong> ${job.benefits}</p>
-              <img src="${job.image}" alt="Job Image" class="job-image">
-              <button class="apply-btn">Apply Now</button>
+              <a href="jobdetail.html"><button class="apply-btn">Apply Now</button></a>
               <button class="remove-btn">Remove</button>
             `;
 
@@ -71,7 +71,7 @@
           </div>
           <nav>
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="Homepage.html">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact</a></li>
               <li><a href="index.html">Post a Job</a></li>
