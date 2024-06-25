@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/employer.css">
+	<link rel="stylesheet" href="./js/bootstrap.bundle.min.js">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title>JobBridge Fill Information | JobBridge</title>
+</head>	
+<body>
+	<div class="col-12 col-lg-12">
+		<div class="container-xl shadow p-5 bg-light bg-gradient rounded">
+			<div class="mb-4 text-center">
+				<p class="fw-bold fs-1 ">
+					Welcome To <span class="text-primary">JobBridge</span>
+				</p>
+				<p class="fs-5">Please fill in your company details.</p>
+			</div>
+			<form class="mt-5 text-start needs-validation" action="thank.html" novalidate>
+				<!-- Company Information -->
+				<div class="mb-4">
+					<div class="mb-4">
+						<h3>1. Company Information</h3>
+					</div>
+					<label for="companyName" class="form-label">Company Name</label>
+					<div class="input-group has-validation">
+						<input type="text" id="companyName" class="form-control" placeholder="Enter your company name" autocomplete="on" required>
+						<div class="invalid-feedback">Company name must be more than 5 characters.</div>
+						<span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="company_address" class="form-label">Company Address</label>
+					<div class="input-group has-validation">
+						<input type="text" id="company_address" class="form-control" placeholder="Enter your company address" autocomplete="on" required>
+						<div class="invalid-feedback">Company address must be more than 5 characters.</div>
+						<span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col-md-6 mb-4">
+						<label class="form-label" for="city">City</label>
+						<input type="text" class="form-control" id="city" placeholder="City" required>
+						<div class="invalid-feedback">City must be more than 5 characters.</div>
+					</div>
+					<div class="col-md-3 mb-4">
+						<label class="form-label" for="state">State</label>
+						<input type="text" class="form-control" id="state" placeholder="State" required>
+						<div class="invalid-feedback">State must be more than 5 characters.</div>
+					</div>
+					<div class="col-md-3 mb-4">
+						<label class="form-label" for="zip">Zip Code</label>
+						<input type="text" class="form-control" id="zip" placeholder="Zip" required>
+						<div class="invalid-feedback">Please provide a valid zip code (numbers only).</div>
+					</div>
+				</div>
+				<!-- Contact Information -->
+				<div class="mb-4 mt-1">
+					<div class="mb-4">
+						<hr>
+						<h3>2. Contact Information</h3>
+					</div>
+					<label for="contactName" class="form-label">Contact Person Name</label>
+					<div class="input-group has-validation">
+						<input type="text" id="contactName" class="form-control" placeholder="Enter your personal name" autocomplete="on" required>
+						<div class="invalid-feedback">Contact person name must be more than 5 characters.</div>
+						<span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="contactPosition" class="form-label">Contact Person Position</label>
+					<div class="input-group has-validation">
+						<input type="text" id="contactPosition" class="form-control" placeholder="Enter your current position" autocomplete="on" required>
+						<div class="invalid-feedback">Contact person position must be more than 5 characters.</div>
+						<span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col-md-6 mb-4">
+						<label class="form-label" for="phone">Company Phone</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<select class="form-select" aria-label="Country Code Selector" aria-placeholder="" required>
+									<option value="malaysia">MY(+60)</option>
+									<option value="brunei">BN(+673)</option>
+									<option value="cambodia">KH(+855)</option>
+									<option value="indonesia">ID(+62)</option>
+									<option value="laos">LA(+856)</option>
+									<option value="myanmar">MM(+95)</option>
+									<option value="philippines">PH(+63)</option>
+									<option value="singapore">SG(+65)</option>
+								</select>
+							</div>
+							<input id="floatingInputPhone" type="tel" class="form-control d-block" name="phone" placeholder="**-********" required>
+						</div>
+						<div class="valid-feedback-phone d-none text-success">
+							Sounds good!
+						</div>
+						<div class="invalid-feedback-phone d-none text-danger">
+							Please enter a valid phone number!
+						</div>
+					</div>
+					<div class="col-md-6 mb-2">
+						<label for="floatingInput" class="pb-2">Company Email address</label>
+						<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+						<div class="valid-feedback-email d-none text-success">
+							Sounds good!
+						</div>
+						<div class="invalid-feedback-email d-none text-danger">
+							Please enter a valid email account!
+						</div>
+					</div>
+				</div>
+				<!-- Company Description -->
+				<div class="mb-5">
+					<div class="mb-3">
+						<hr>
+						<h3>3. Company Description</h3>
+					</div>
+					<label for="companyOverview" class="form-label">Company Overview</label>
+					<div class="input-group has-validation">
+						<textarea id="companyOverview" class="form-control" placeholder="Enter your company description here:" required></textarea>
+						<div class="invalid-feedback">Company overview must be more than 5 characters.</div>
+						<span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
+					</div>
+				</div>
+				<!-- Additional Information -->
+				<div class="mb-4">
+					<div class="mb-3">
+						<hr>
+						<h3>4. Additional Information</h3>
+					</div>
+					<label for="companyLogo" class="form-label">Company Logo</label>
+					<div class="input-group has-validation">
+						<label for="formFileSm" class="form-label"></label>
+						<input class="form-control form-control-sm" id="formFileSm" type="file" required>
+					</div>
+				</div>
+				<div class="mb-4">
+					<label for="relatedFile" class="form-label">Any Related File (If Possible)</label>
+					<div class="input-group has-validation">
+						<label for="formFileSm" class="form-label"></label>
+						<input class="form-control form-control-sm" id="relatedFile" type="file" multiple>
+					</div>
+				</div>
+				<!-- Submit button -->
+				<div class="pt-3">
+					<button type="submit" class="btn btn-primary fw-bold w-100" >Submit</button>
+				</div>
+				<div class="mt-4">
+					<div class="form-check my-3">
+						<input class="form-check-input" type="checkbox" name="terms-conditions" id="terms-conditions" required>
+						<label class="form-check-label" for="terms-conditions" style="color: black; cursor: pointer;">I agree with <a href="#">Terms and Conditions</a>.</label>
+						<div class="invalid-feedback" style="cursor: pointer;">You must agree before submitting.</div>
+					</div>
+				</div>
+				<div class="d-flex align-items-start">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="privacy-policy" id="privacy-policy" required>
+						<label class="form-check-label" for="privacy-policy" style="color: black; cursor: pointer;">I agree with <a href="#">Privacy Policy</a> Agreement.</label>
+						<div class="invalid-feedback" style="cursor: pointer;">You must agree before submitting.</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer class="footer py-3 d-xxl-block d-none">
+		<div class="container">
+			<div class="d-flex justify-content-between align-items-center">
+				<span class="text-muted">&copy; 2024 JobBridge</span>
+				<ul class="list-inline mb-0">
+					<li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
+					<li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<script src="js/employer.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./js/bootstrap.bundle.min.js">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>JobBridge Login, Sign in | JobBridge</title>
+</head>
+<body>
+  <nav class="navbar navbar-light text-bg-light navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand logo d-flex align-items-center" href="#">
+        <img src="./images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+        <h1 class="pt-3 ps-2">JobBridge</h1>
+      </a>
+    </div>
+  </nav>
+  <div class="form">
+    <form class="signIn p-4 pb-0" id="signInForm">
+      <div class="row mb-3">
+        <h2 class="text-danger">Sign in</h2>
+        <h6 class="mb-4">Stay informed about your professional sphere</h6>
+        
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+          <div class="valid-feedback-email d-none text-success">
+            Sounds good!
+          </div>
+          <div class="invalid-feedback-email d-none text-danger">
+            Please enter a valid email account!
+          </div>
+        </div>
+        <div class="form-floating password-container mb-1">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+          <i class="toggle-password fa fa-eye text-danger" id="togglePassword" onclick="togglePassword()"></i>
+        </div>
+
+        <span class="forgot-pw p-1 ps-0 mb-1"><a href="mailto:limboyuanlby@gmail.com" target="_blank">Forgot password?</a></span>
+
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0 text-decoration-underline">Please select your role:</legend>
+          <div class="col-sm-10 pt-4 g-2 radio-log">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="employee.html" required>
+              <label class="form-check-label" for="gridRadios1">
+                Employee
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer.html">
+              <label class="form-check-label" for="gridRadios2">
+                Employer
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="admin.html" disabled>
+              <label class="form-check-label" for="gridRadios3">
+                Admin
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      <button type="submit" class="btn btn-danger">Sign in</button>
+      <div class="form-check my-3">
+        <input class="form-check-input" type="checkbox" name="terms-conditions" id="terms-conditions" style="cursor: pointer;" required>
+        <label class="form-check-label" for="terms-conditions" style="color: black; cursor: pointer;">By continuing, you agree to <a href="#">Terms and Conditions</a></label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
+      </div>
+      <div class="signUp">New to JobStreet? <a href="#">Join now</a></div>
+    </form>
+  </div>
+
+  <footer class="footer mt-auto py-3 d-xxl-block d-none">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 JobBridge</span>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
