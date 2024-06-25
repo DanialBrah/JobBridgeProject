@@ -8,7 +8,6 @@ $phone = $_POST['phone'];
 $expected_salary = $_POST['expected_salary'];
 $job_title = $_POST['job_title'];
 $job_city = $_POST['job_city'];
-$summary = $_POST['summary'];
 $has_resume = 0;
 
 // Check if a file is uploaded
@@ -37,12 +36,12 @@ if (!empty($_FILES['resume']['name'])) {
   }
 }
 
-$sql = "INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, summary, has_resume)
-VALUES ('$full_name', '$home_address', '$email', '$phone', '$expected_salary', '$job_title', '$job_city', $summary, $has_resume)";
+$sql = "INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, has_resume)
+VALUES ('$full_name', '$home_address', '$email', '$phone', '$expected_salary', '$job_title', '$job_city', $has_resume)";
 
 if ($conn->query($sql) === TRUE) {
   // Redirect to thank.html on successful insert
-  header("Location: thank.html");
+  header("Location: ../thank.html");
   exit();
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;

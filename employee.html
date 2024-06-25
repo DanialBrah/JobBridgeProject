@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/employee.css">
+  <link rel="stylesheet" href="./Frontend/css/common.css">
+  <link rel="stylesheet" href="./Frontend/css/employee.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>JobBridge Fill Information | JobBridge</title>
 </head>
@@ -14,7 +14,7 @@
   <nav class="navbar navbar-light text-bg-light navigation">
     <div class="container-fluid shadow-sm">
       <a class="navbar-brand logo d-flex align-items-center" href="#">
-        <img src="logo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+        <img src="./Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
         <h1 class="pt-3 ps-2">JobBridge</h1>
       </a>
       <a class="btn btn-outline-primary" href="index.html">Login Now</a>
@@ -141,12 +141,6 @@
 
           <!-- Description and State-->
           <div class="mb-4">
-            <div class="mb-4">
-              <label for="country" class="form-label">Description</label>
-              <textarea id="country" class="form-control" name="summary" rows="5"  placeholder="Tell us about yourself...." autocomplete="off"></textarea>
-              <div class="invalid-feedback">Please enter the description about yourself</div>
-            </div>
-
             <div>
               <label for="cityState" class="form-label">What state do you want to work in?</label>
               <input type="text" id="cityState" name="job_city" class="form-control" placeholder="Like 'Kedah' or 'Penang'" autocomplete="off" required>
@@ -213,7 +207,7 @@
       </div>
     </div>
   </footer>
-  <script src="js/employee.js"></script>
+  <script src="./Frontend/js/employee.js"></script>
   <script>
     (function () {
     'use strict';
