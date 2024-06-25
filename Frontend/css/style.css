@@ -7,49 +7,48 @@ body {
     color: #333;
 }
 
-header {
-    background-color: #ff0033;
-    padding: 20px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-    display: flex; /* added */
-    flex-direction: row; /* added */
-    align-items: center; /* added */
-    justify-content: center; /* added */
-}
-
-
-.jobbridge-logo {
-    margin-right: 20px; /* added */
-}
-
-
-.jobbridge-logo h1{
-    color: #fff;
+.header {
+    background-color: #e01f3d;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
 }
 
 .logo {
-    display: flex;
-    justify-content: space-between;
-}
-
-.logo img {
-    height: 50px;
-}
-
-.logo p {
-    display: inline;
-    color: white;
     font-size: 24px;
-    margin-left: 10px;
+    font-weight: bold;
+    margin:40px 0px;
 }
 
-.logo-text {
-    flex: 1; /* added */
-    text-align: center; /* added */
-    color: #fff;
+.nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.auth a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.search-bar {
+    background-color: #e01f3d;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 nav ul {
