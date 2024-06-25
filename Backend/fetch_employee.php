@@ -1,17 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "employees";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die(json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]));
-}
+require_once("config.php");
 
 $sql = "SELECT * FROM employee";
 $result = $conn->query($sql);
