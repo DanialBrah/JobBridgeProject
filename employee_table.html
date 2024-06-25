@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details Fetcher</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./js/bootstrap.bundle.min.js">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .employee-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 1s;
+        }
+        .employee-card:hover {
+            background-color: rgba(0,0,0,.075);
+        }
+        .employee-card h5 {
+            margin-bottom: 15px;
+        }
+        .navbar-brand h1 {
+            font-weight: 400;
+            font-family: san-serif;
+            line-height: 2rem;
+            font-size: 1.75rem;
+            white-space: nowrap;
+            margin-bottom: 1rem;
+        }
+        .profile-actions .btn{
+            margin-right: 0.5em !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light text-bg-light navigation">
+        <div class="container-fluid shadow-sm">
+            <a class="navbar-brand logo d-flex align-items-center" href="#">
+                <img src="logo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+                <h1 class="pt-3 ps-2">JobBridge</h1>
+            </a>
+            <a class="btn btn-outline-primary" href="index.html">Login Now</a>
+        </div>
+    </nav>
+
+    <h1 class="my-4 fw-bold fs-1 fs-2-lg m-4 px-3">Candidate List</h1>
+
+    <div class="row m-4">
+        <!-- Candidate List -->
+        <div class="container col-md-5 col-sm-4">
+        
+        <!-- Filter Form -->
+        <div class="mb-4">
+            <form id="filterForm" class="row g-3">
+                <div class="col-md-4">
+                    <select class="form-select" id="cityFilter">
+                        <option value="all">All Cities</option>
+                        <option value="Kuala Lumpur">Kuala Lumpur</option>
+                        <option value="George Town">George Town</option>
+                        <option value="Ipoh">Ipoh</option>
+                        <option value="Johor Bahru">Johor Bahru</option>
+                        <option value="Kota Kinabalu">Kota Kinabalu</option>
+                        <option value="Shah Alam">Shah Alam</option>
+                        <!-- Add more cities as needed -->
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="salaryFilter">
+                        <option value="all">All Salary Ranges</option>
+                        <option value="2000">Below RM 2000</option>
+                        <option value="4000">RM 2000 - RM 4000</option>
+                        <option value="6000">RM 4000 - RM 6000</option>
+                        <option value="8000">RM 6000 - RM 8000</option>
+                        <option value="10000">Above RM 8000</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="jobFilter" placeholder="Search Job Title">
+                </div>
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-primary" onclick="applyFilter()">Filter</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetFilter()">Reset</button>
+                </div>
+            </form>
+        </div>
+    
+        <div class="row" id="employeeDetails"></div>
+    </div>
+    
+    <!-- Candidate Details -->
+    <div class="container  col-md-7 col-sm-8 px-3">
+        <h2>Candidate details</h2>
+        <hr>
+        <!-- Candidate Profile -->
+        <div class="container profile border-top shadow rounded p-4 mx-0" id="candidateProfile">
+            <!-- Profile header -->
+            <div class="profile-header">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/60" alt="Profile Picture" id="profilePicture">
+                    <div class="ms-3">
+                        <h5 class="mb-0" id="candidateName">Alexander Christopher</h5>
+                        <p class="mb-0 text-success" id="candidateStatus">Active</p>
+                        <small id="applicationSource">Applied 5 days ago from LinkedIn</small>
+                    </div>
+                </div>
+                <div class="profile-actions mt-3">
+                    <button class="btn btn-primary">Interview</button>
+                    <button class="btn btn-secondary">Reject</button>
+                    <button class="btn btn-light">Mail</button>
+                </div>
+            </div>
+    
+            <!-- Profile Tabs -->
+            <div class="profile-tabs mt-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="resume-tab" data-bs-toggle="tab" href="#resume" role="tab">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="additional-info-tab" data-bs-toggle="tab" href="#additional-info" role="tab">Additional Info</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Profile Content -->
+            <div class="tab-content profile-content pt-3">
+                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                    <p><strong>Summary:</strong> <span id="candidateSummary">I love solving problems and finding new, creative ways to address challenges. Naturally empathetic and enjoy customer behaviour and finding new ways to reach your target market. Learning new technological trends and staying up to date. Certified UX designer who is passionate about creating aesthetic usable products by addressing the needs.</span></p>
+                    <p><strong>Email Address:</strong> <span id="candidateEmail">batman@gmail.com</span></p>
+                    <p><strong>Phone Number:</strong> <span id="candidatePhone">+91 12345678</span></p>
+                    <p><strong>Highest Qualification:</strong> <span id="candidateQualification">B.TECH</span></p>
+                    <p><strong>Current Company:</strong> <span id="candidateCompany">Accenture</span></p>
+                    <p><strong>Total Experience:</strong> <span id="candidateExperience">5 Years</span></p>
+                    <p><strong>Current Salary:</strong> <span id="candidateSalary">RM5000</span></p>
+                    <p><strong>Expected Salary:</strong> <span id="candidateExpectedSalary">RM10000</span></p>
+                </div>
+                <div class="tab-pane fade" id="resume" role="tabpanel" aria-labelledby="resume-tab">
+                    <p id="candidateResume">Resume content goes here...</p>
+                </div>
+                <div class="tab-pane fade" id="additional-info" role="tabpanel" aria-labelledby="additional-info-tab">
+                    <p id="candidateAdditionalInfo">Additional information goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+    <script>
+        let employees = [];
+
+        async function fetchEmployeeDetails() {
+            try {
+                const response = await fetch('fetch_employee.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: ""
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                employees = await response.json();
+                renderEmployeeDetails(employees);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+    function renderEmployeeDetails(employees) {
+        const employeeDetailsDiv = document.getElementById('employeeDetails');
+        if (employees.error) {
+            employeeDetailsDiv.innerHTML = `<div class="alert alert-danger">${employees.error}</div>`;
+        } else {
+            let html = '';
+            employees.reverse().forEach(employee => {
+                html += `
+                    <div class="row">
+                        <div class="employee-card p-4" onclick="showCandidateDetails('${employee.full_name}')">
+                            <h5 class="card-title">${employee.full_name}</h5>
+                            <p class="card-text"><strong>Email:</strong> ${employee.email}</p>
+                            <p class="card-text"><strong>Phone:</strong> +60${employee.phone}</p>
+                            <p class="card-text"><strong>Expected Salary:</strong> RM${employee.expected_salary}</p>
+                            <p class="card-text"><strong>Job Interested:</strong> ${employee.job_title}</p>
+                            <p class="card-text"><strong>Preferred City:</strong> ${employee.job_city}</p>
+                            <button class="btn btn-success mt-2" onclick="showCandidateDetails('${employee.full_name}')">More About Him</button>
+                        </div>
+                    </div>
+                `;
+            });
+            employeeDetailsDiv.innerHTML = html;
+        }
+    }
+
+    function showCandidateDetails(fullName) {
+        const candidate = employees.find(emp => emp.full_name === fullName);
+        if (candidate) {
+            document.getElementById('candidateName').textContent = candidate.full_name;
+            document.getElementById('candidateStatus').textContent = "Active"; // Update as per the actual status
+            document.getElementById('applicationSource').textContent = "Applied 5 days ago from LinkedIn"; // Update as per actual data
+            document.getElementById('candidateSummary').textContent = candidate.summary || "Summary not available.";
+            document.getElementById('candidateEmail').textContent = candidate.email;
+            document.getElementById('candidatePhone').textContent = `+60${candidate.phone}`;
+            document.getElementById('candidateQualification').textContent = candidate.qualification || "Not specified";
+            document.getElementById('candidateCompany').textContent = candidate.current_company || "Not specified";
+            document.getElementById('candidateExperience').textContent = `${candidate.experience} Years` || "Not specified";
+            document.getElementById('candidateSalary').textContent = `RM${candidate.current_salary}` || "Not specified";
+            document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
+            document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
+            document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
+        }
+    }
+
+        function applyFilter() {
+            const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+            const salaryFilter = document.getElementById('salaryFilter').value;
+            const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
+
+            const filteredEmployees = employees.filter(employee => {
+                const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
+                const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
+                    (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
+                    (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
+                    (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
+                    (salaryFilter === "10000" && employee.expected_salary >= 8000);
+                const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
+                return matchesCity && matchesSalary && matchesJob;
+            });
+
+            renderEmployeeDetails(filteredEmployees);
+        }
+
+        function resetFilter() {
+            document.getElementById('filterForm').reset();
+            renderEmployeeDetails(employees);
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
+    </script>
+</body>
+</html>

@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+(function () {
   'use strict';
-
-  var form = document.getElementById('jobForm');
 
   // Validation function for inputs with minimum character requirement
   function validateMinLength(input, minLength) {
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Validation function for phone number
   function validatePhone(input) {
-    var phonePattern = /^[0-9]{10,15}$/;
+    var phonePattern = /^[0-7]{8,15}$/;
     if (phonePattern.test(input.value)) {
       input.classList.remove('is-invalid');
       input.classList.add('is-valid');
@@ -40,21 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Validation function for resume upload
-  function validateResume() {
-    let resumeInput = document.getElementById('upload-file');
-    let resumeContainer = resumeInput.closest('.dropzone-container');
-    let fileNameDisplay = document.querySelector('.file-name');
-    if (resumeInput.files.length > 0) {
-      resumeContainer.classList.remove('is-invalid');
-      resumeContainer.classList.add('is-valid');
-      fileNameDisplay.textContent = `Uploaded file: ${resumeInput.files[0].name}`;
-    } else {
-      resumeContainer.classList.remove('is-valid');
-      resumeContainer.classList.add('is-invalid');
-      fileNameDisplay.textContent = '';
-    }
-  }
 
   // Validation function for checkboxes
   function validateCheckbox(input) {
@@ -69,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  document.getElementById('upload-file').addEventListener('change', validateResume);
+  // document.getElementById('upload-file').addEventListener('change', validateResume);
 
   // Input event listeners
   document.getElementById('fullName').addEventListener('input', function () {
@@ -79,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('email').addEventListener('input', function () {
     validateEmail(this);
   });
-
+-
   document.getElementById('phone').addEventListener('input', function () {
     validatePhone(this);
   });
@@ -117,20 +100,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    validateResume();
-
     validateCheckbox(document.getElementById('readyForWork'));
     validateCheckbox(document.getElementById('whatsappNotification'));
 
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false) { 
       event.preventDefault();
       event.stopPropagation();
     }
     form.classList.add('was-validated');
   }, false);
 
-  // Make dropzone area clickable and trigger file input
-  document.querySelector('.dropzone-container').addEventListener('click', function() {
-    document.getElementById('upload-file').click();
-  });
-});
+})();
