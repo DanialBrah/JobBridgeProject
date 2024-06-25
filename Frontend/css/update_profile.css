@@ -1,0 +1,59 @@
+body {
+    position: relative;
+    height: 100vh;
+  }
+  
+  nav {
+    z-index: 1;
+    max-height: 22rem;
+    border-bottom: 2px soild black;
+  }
+  
+  form {
+    position: relative;
+  }
+  
+  .navbar-brand h1 {
+    font-weight: 400;
+    font-family: san-serif;
+    line-height: 2rem;
+    font-size: 1.75rem;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+  }
+  
+  legend.col-form-label {
+    white-space: nowrap;
+  }
+  
+  input.form-control:focus,
+  input.form-control.is-valid,
+  textarea.form-control:focus,
+  textarea.form-control.is-valid {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  }
+  
+  input.form-control.is-invalid,
+  textarea.form-control.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+  
+  .form-check-input:checked,
+  .form-select:checked,
+  .form-check-input.is-valid,
+  .form-select.is-valid {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .form-check-input.is-invalid,
+  .form-select.is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .file-name {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
