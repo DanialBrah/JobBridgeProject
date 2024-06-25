@@ -3,6 +3,25 @@ body {
   height: 100vh;
 }
 
+nav {
+  z-index: 1;
+  max-height: 22rem;
+  border-bottom: 2px soild black;
+}
+
+form {
+  position: relative;
+}
+
+.navbar-brand h1 {
+  font-weight: 400;
+  font-family: san-serif;
+  line-height: 2rem;
+  font-size: 1.75rem;
+  white-space: nowrap;
+  margin-bottom: 1rem;
+}
+
 legend.col-form-label {
   white-space: nowrap;
 }

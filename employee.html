@@ -1,28 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="Frontend/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="Frontend/css/common.css">
-  <link rel="stylesheet" href="Frontend/css/employee.css">
-  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./Frontend/css/common.css">
+  <link rel="stylesheet" href="./Frontend/css/employee.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>JobBridge Fill Information | JobBridge</title>
 </head>
 <body>
   <nav class="navbar navbar-light text-bg-light navigation">
     <div class="container-fluid shadow-sm">
       <a class="navbar-brand logo d-flex align-items-center" href="#">
-        <img src="Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+        <img src="./Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
         <h1 class="pt-3 ps-2">JobBridge</h1>
       </a>
-      <a class="navbar-brand logo d-flex align-items-left" href="index.html">
-        <button class="border">
-          Login
-        </button>
-      </a>
+      <a class="btn btn-outline-primary" href="index.html">Login Now</a>
     </div>
   </nav>
 
@@ -43,16 +38,16 @@
         <div class="mb-4 text-center">
           <h1 class="fw-bold fs-1">Job Seeker Profile</h1>
           <p class="fs-5">Please tell us about yourself and upload your latest resume.</p>
-        </div>
+        </div>  
 
         <!-- Profile Form -->
-        <form id="jobForm" class="mt-4 text-start needs-validation" action="thank.html" novalidate>
+        <form id="jobForm" class="mt-4 text-start needs-validation" action="./Backend/employee.php" method="post" enctype="multipart/form-data" novalidate>
 
           <!-- Full Name -->
           <div class="mb-4">
             <label for="fullName" class="form-label">Full Name</label>
             <div class="input-group has-validation">
-              <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" autocomplete="on" required>
+              <input type="text" id="fullName" class="form-control" name="full_name" placeholder="Enter your full name" autocomplete="on" required>
               <div class="invalid-feedback">Full name must be more than 5 characters.</div>
             </div>
           </div>
@@ -61,7 +56,7 @@
           <div class="mb-4">
             <label for="home_address" class="form-label">Home Address</label>
             <div class="input-group has-validation">
-              <input type="text" id="home_address" class="form-control" placeholder="Enter your home address" autocomplete="on" required>
+              <input type="text" id="home_address" name="home_address" class="form-control" placeholder="Enter your home address" autocomplete="on" required>
               <div class="invalid-feedback">Home address must be more than 5 characters.</div>
               <span class="input-group-text text-danger d-none"><i class="fas fa-exclamation-circle"></i></span>
             </div>
@@ -71,17 +66,17 @@
           <div class="row g-3">
             <div class="col-md-5 mb-4">
               <label class="form-label" for="city">City</label>
-              <input type="text" class="form-control" id="city" placeholder="City" required>
+              <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
               <div class="invalid-feedback">City must be more than 5 characters.</div>
             </div>
             <div class="col-md-4 mb-4">
               <label class="form-label" for="state">State</label>
-              <input type="text" class="form-control" id="state" placeholder="State" required>
+              <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
               <div class="invalid-feedback">State must be more than 5 characters.</div>
             </div>
             <div class="col-md-3 mb-4">
               <label class="form-label" for="postcode">Postal Code</label>
-              <input type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+              <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postcode" required>
               <div class="invalid-feedback">Please provide a valid postal code.</div>
             </div>
           </div>
@@ -90,7 +85,7 @@
           <div class="mb-4">
             <label for="email" class="form-label">Email</label>
             <div class="input-group has-validation">
-              <input type="email" id="email" class="form-control" placeholder="Enter your email address" autocomplete="on" required>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" autocomplete="on" required>
               <div class="invalid-feedback">Please enter a valid email account!</div>
             </div>
           </div>
@@ -100,18 +95,18 @@
             <label for="phone" class="form-label">Contact No</label>
             <div class="input-group has-validation">
               <div class="input-group-prepend">
-                <select class="form-select" required>
-                  <option value="malaysia">MY(+60)</option>
-									<option value="brunei">BN(+673)</option>
-									<option value="cambodia">KH(+855)</option>
-									<option value="indonesia">ID(+62)</option>
-									<option value="laos">LA(+856)</option>
-									<option value="myanmar">MM(+95)</option>
-									<option value="philippines">PH(+63)</option>
-									<option value="singapore">SG(+65)</option>
+                <select class="form-select" id="phone_code" name="phone_code" required>
+                  <option value="MY">MY(+60)</option>
+                  <option value="BN">BN(+673)</option>
+                  <option value="KH">KH(+855)</option>
+                  <option value="ID">ID(+62)</option>
+                  <option value="LA">LA(+856)</option>
+                  <option value="MM">MM(+95)</option>
+                  <option value="PH">PH(+63)</option>
+                  <option value="SG">SG(+65)</option>
                 </select>
               </div>
-              <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
               <div class="invalid-feedback">Please enter a valid phone number!</div>
             </div>
           </div>
@@ -120,17 +115,17 @@
           <div class="mb-4">
             <label for="salary" class="form-label">Expected Salary</label>
             <div class="input-group">
-              <select class="form-select">
-                <option value="malaysia">Malaysian Ringgit (MYR)</option>
-                <option value="brunei">Brunei Dollar (BND)</option>
-                <option value="cambodia">Cambodian Riel (KHR)</option>
-                <option value="indonesia">Indonesian Rupiah (IDR)</option>
-                <option value="laos">Lao Kip (LAK)</option>
-                <option value="myanmar">Burmese Kyat (MMK)</option>
-                <option value="philippines">Philippine Peso (PHP)</option>
-                <option value="singapore">Singapore Dollar (SGD)</option>
+              <select class="form-select" id="salary_currency" name="salary_currency">
+                <option value="MYR">Malaysian Ringgit (MYR)</option>
+                <option value="BND">Brunei Dollar (BND)</option>
+                <option value="KHR">Cambodian Riel (KHR)</option>
+                <option value="IDR">Indonesian Rupiah (IDR)</option>
+                <option value="LAK">Lao Kip (LAK)</option>
+                <option value="MMK">Burmese Kyat (MMK)</option>
+                <option value="PHP">Philippine Peso (PHP)</option>
+                <option value="SGD">Singapore Dollar (SGD)</option>
               </select>
-              <input type="number" id="salary" class="form-control" placeholder="Enter your expected salary" autocomplete="on" required>
+              <input type="number" id="salary" name="expected_salary" class="form-control" placeholder="Enter your expected salary" autocomplete="on" required>
               <div class="invalid-feedback">Please enter your expected salary.</div>
             </div>
           </div>
@@ -139,22 +134,16 @@
           <div class="mb-4">
             <label for="jobTitle" class="form-label">What job are you looking for?</label>
             <div class="input-group has-validation">
-              <input type="text" id="jobTitle" class="form-control" placeholder="Like 'Admin' or 'Barista'" autocomplete="off" required>
+              <input type="text" id="jobTitle" name="job_title" class="form-control" placeholder="Like 'Admin' or 'Barista'" autocomplete="off" required>
               <div class="invalid-feedback">Job title must be more than 5 characters.</div>
             </div>
           </div>
 
-          <!-- Job Country and State-->
+          <!-- Description and State-->
           <div class="mb-4">
-            <div class="mb-4">
-              <label for="country" class="form-label">Which Country do you want to work in?</label>
-              <input type="text" id="country" class="form-control" placeholder="Like 'Malaysia' or 'Singapore'" autocomplete="off" required>
-              <div class="invalid-feedback">Please enter the country you want to work in.</div>
-            </div>
-
             <div>
-              <label for="cityState" class="form-label">What City and State do you want?</label>
-              <input type="text" id="cityState" class="form-control" placeholder="Like 'Kuala Lumpur' or 'Ipoh'" autocomplete="off" required>
+              <label for="cityState" class="form-label">What state do you want to work in?</label>
+              <input type="text" id="cityState" name="job_city" class="form-control" placeholder="Like 'Kedah' or 'Penang'" autocomplete="off" required>
               <div class="invalid-feedback">Please enter the city and state you want to work in.</div>
             </div>
           </div>
@@ -162,10 +151,10 @@
           <!-- Resume (if Possible) -->
           <div class="mt-4">
             <label for="relatedFile" class="form-label">Your Resume (if possible)</label>
-					<div class="input-group has-validation">
-						<label for="formFileSm" class="form-label"></label>
-						<input class="form-control form-control-sm" id="relatedFile" type="file" multiple>
-					</div>
+            <div class="input-group has-validation">
+              <label for="formFileSm" class="form-label"></label>
+              <input class="form-control form-control-sm" id="relatedFile" type="file" name="resume" multiple>
+            </div>
             <div class="invalid-feedback invalid-feedback-resume d-none">Please upload your resume.</div>
             <p class="mt-2 mb-4 text-center ">* Only allows .PDF, .DOC, .DOCX — and max 5MB file size</p>
           </div>
@@ -195,7 +184,7 @@
 
           <!-- Submit button -->
           <div class="mt-4 p-3">
-            <a href="homepage.html"><button type="submit" class="btn btn-primary fw-bold w-100">Submit Profile</button></a>
+            <button type="submit" class="btn btn-primary fw-bold w-100">Submit Profile</button>
           </div>
         </form>
       </div>
@@ -218,24 +207,38 @@
       </div>
     </div>
   </footer>
-  <script src="Frontend/js/employee.js"></script>
+  <script src="./Frontend/js/employee.js"></script>
   <script>
     (function () {
-      'use strict';
-  var forms = document.querySelectorAll('.needs-validation')
+    'use strict';
+    var forms = document.querySelectorAll('.needs-validation');
 
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          } else {
+            // Prevent form submission to handle data storage
+            saveFormData();
+          }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
+          form.classList.add('was-validated');
+        }, false);
+      });
+  })();
+
+  function saveFormData() {
+    const formData = {
+      full_name: document.getElementById('fullName').value,
+      home_address: document.getElementById('home_address').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+    };
+
+    sessionStorage.setItem('employeeData', JSON.stringify(formData));
+  }
   </script>
 </body>
 </html>
