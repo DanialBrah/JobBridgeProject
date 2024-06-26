@@ -16,7 +16,7 @@
                 <li><a href="postjob.html">Post A Job</a></li>
                 <li><a href="index.html">Register</a></li>
             </ul>
-            <a href="#" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image">User</a>
+            <a href="employee_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
         </nav>
     </header>
     <main>
@@ -90,7 +90,7 @@
         const userProfile = JSON.parse(sessionStorage.getItem('employeeData'));
 
         if (userProfile) {
-          document.getElementById('myName').innerHTML = `<img src="image1 (1).png" alt="Small image" class="small-image">${userProfile.full_name}`;
+          document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
         }
     });
       </script>

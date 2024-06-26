@@ -16,14 +16,12 @@
         <img src="./Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
         <h1 class="pt-3 ps-2">JobBridge</h1>
       </a>
-      <a class="btn btn-outline-primary" href="index.html">Login Now</a>
     </div>
   </nav>
   
   <div class="container pt-3">
     <h2>Manage Account</h2>
   </div>
-
 
   <div class="container mt-4">
     <div class="row flex-lg-nowrap">
@@ -37,7 +35,8 @@
                     <div class="col-12 col-sm-auto mb-3">
                       <div class="mx-auto" style="width: 140px;">
                         <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
-                          <span class="text-muted">140x140</span>
+                          <img id="profile_image" src="" alt="Profile Photo" class="img-thumbnail d-none" style="width: 100%; height: 100%; object-fit: cover;">
+                          <span class="text-muted" id="default_text">140x140</span>
                         </div>
                       </div>
                     </div>
@@ -47,10 +46,11 @@
                         <p class="mb-1 text-start" id="user_id"></p>
                         <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
                         <div class="mt-2">
-                          <button class="btn btn-primary" type="button">
+                          <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
                             <i class="fa fa-fw fa-camera"></i>
                             <span>Upload Photo</span>
                           </button>
+                          <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)">
                         </div>
                       </div>
                       <div class="text-center text-sm-right">
@@ -74,7 +74,7 @@
 
                         <!-- Company Address -->
                         <div class="mb-3">
-                          <label for="companyAddress" class="form-label">Commpany Address</label>
+                          <label for="companyAddress" class="form-label">Company Address</label>
                           <input type="text" class="form-control" id="companyAddress" name="company_address" required>
                           <div class="invalid-feedback">Home address must be more than 5 characters.</div>
                         </div>
@@ -102,7 +102,7 @@
                                 <option value="SG">SG(+65)</option>
                               </select>
                             </div>
-                            <input type="tel" id="phone" name="phone" class="form-control"required>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
                             <div class="invalid-feedback">Please enter a valid phone number!</div>
                           </div>
                         </div>
@@ -112,7 +112,6 @@
                           <button type="submit" class="btn btn-primary">Update Profile</button>
                         </div>
                       </form>
-
                     </div>
                   </div>
                 </div>
@@ -130,18 +129,18 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
   <script>
-    //test storage (to test a session storage)
+    // Test storage (to test a session storage)
     const formData = {
       full_name: "MrEmployer",
       company_address: "123,Taman Banana",
-      company_email: "abc@hotmail.com",
+      company_email: "employer@hotmail.com",
       company_phone: 1128291811,
+      profile_image: ""
     };
     sessionStorage.setItem('employerData', JSON.stringify(formData));
 
@@ -156,7 +155,12 @@
         document.getElementById('email').value = userProfile.company_email;
         document.getElementById('phone').value = userProfile.company_phone;
         document.getElementById('profile_name').innerHTML = userProfile.full_name;
-        document.getElementById('user_id').innerHTML = `@${userProfile.full_name}03`
+        document.getElementById('user_id').innerHTML = `@${userProfile.full_name}03`;
+        if (userProfile.profile_image) {
+          document.getElementById('profile_image').src = userProfile.profile_image;
+          document.getElementById('profile_image').classList.remove('d-none');
+          document.getElementById('default_text').classList.add('d-none');
+        }
       }
     });
 
@@ -229,14 +233,34 @@
 
       // Save updated data to session storage
       const updatedProfile = {
-        fullName: document.getElementById('fullName').value,
-        homeAddress: document.getElementById('companyAddress').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
+        full_name: document.getElementById('fullName').value,
+        company_address: document.getElementById('companyAddress').value,
+        company_email: document.getElementById('email').value,
+        company_phone: document.getElementById('phone').value,
+        profile_image: document.getElementById('profile_image').src
       };
       
-      sessionStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+      sessionStorage.setItem('employerData', JSON.stringify(updatedProfile));
+      alert('Your change has been successfully made, click "Ok" to redirect to home ');
+      window.location.href=''
+
+      // Update the displayed values on the page
+      document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
+      document.getElementById('user_id').innerHTML = `@${updatedProfile.full_name}03`;
     }, false);
+
+    function loadFile(event) {
+      const image = document.getElementById('profile_image');
+      const defaultText = document.getElementById('default_text');
+      image.src = URL.createObjectURL(event.target.files[0]);
+      image.classList.remove('d-none');
+      defaultText.classList.add('d-none');
+
+      // Update session storage
+      const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+      userProfile.profile_image = image.src;
+      sessionStorage.setItem('employerData', JSON.stringify(userProfile));
+    }
   </script>
 </body>
 </html>
