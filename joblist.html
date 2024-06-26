@@ -5,59 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
     <link rel="stylesheet" href="Frontend/css/joblist.css">
-    <!-- <script>
-        function loadJobs() {
-          var jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-          var jobList = document.getElementById('job-listings');
-
-          jobs.forEach(function(job) {
-            var jobElement = document.createElement('article');
-            jobElement.className = 'job';
-
-            jobElement.innerHTML = `
-              <img src="${job.image}" alt="Job Image" class="job-image">
-              <h3>${job.title}</h3>
-              <p><strong>Company:</strong> ${job.company}</p>
-              <p><strong class="location">Location:</strong> ${job.location}</p>
-              <p><strong class="classification">Classification:</strong> ${job.classification}</p>
-              <p><strong class="salary">Salary:</strong> $${job.salary}</p>
-              <p><strong class="workType">Work Type:</strong> ${job.workType}</p>
-              <p><strong>Description:</strong> ${job.description}</p>
-              <p><strong>Requirements:</strong> ${job.requirements}</p>
-              <p><strong>Benefits:</strong> ${job.benefits}</p>
-              <a href="ApplyJob.html"><button class="apply-btn">Apply Now</button></a>
-              <button class="remove-btn">Remove</button>
-            `;
-
-            // Add an event listener to the apply button
-            var applyBtn = jobElement.querySelector('.apply-btn');
-            applyBtn.addEventListener('click', function() {
-              // TO DO: Add functionality to apply for the job
-              alert(`You have applied for the ${job.title} position at ${job.company}`);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const saveButtons = document.querySelectorAll('.save-btn');
+            saveButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.classList.toggle('saved');
+                    if (button.classList.contains('saved')) {
+                        button.textContent = 'Saved';
+                    } else {
+                        button.textContent = 'Save';
+                    }
+                });
             });
-
-            // Add an event listener to the remove button
-            var removeBtn = jobElement.querySelector('.remove-btn');
-            removeBtn.addEventListener('click', function() {
-              // Remove the job from the jobs array
-              var index = jobs.indexOf(job);
-              if (index > -1) {
-                jobs.splice(index, 1);
-              }
-
-              // Update local storage
-              localStorage.setItem('jobs', JSON.stringify(jobs));
-
-              // Remove the job element from the DOM
-              jobElement.remove();
-            });
-
-            jobList.appendChild(jobElement);
-          });
-        }
-
-        document.addEventListener('DOMContentLoaded', loadJobs);
-    </script> -->
+        });
+    </script>
 </head>
 <body>
   <header>
@@ -72,7 +34,7 @@
             <li><a href="#">Register</a></li>
         </ul>
         
-        <a href="#" class="btn-get-started"><img src="image1 (1).png" alt="Small image" class="small-image">User</a>
+        <a href="#" class="btn-get-started"><img src="./Frontend/images/profilepic.jpg" alt="Small image" class="small-image">User</a>
     </nav>
 </header>
     <main>
@@ -97,70 +59,113 @@
                   <span>Part-time</span>
                   <span>Senior level</span>
               </div>
-              <p>$120/hr</p>
+              <p>RM 30/hour</p>
               <p>San Francisco, CA</p>
               <button class="apply-btn">Apply now</button>
           </div>
           <div class="job-card">
             <div class="job-header">
                 <div class="job-logo">
-                    <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+                    <img src="./Frontend/images/petronas.png" alt="Amazon">
                 </div>
                 <div class="job-info">
-                    <h3>Amazon</h3>
-                    <span>5 days ago</span>
+                    <h3>Petronas</h3>
+                    <span>10 days ago</span>
                 </div>
                 <button class="save-btn">Save</button>
             </div>
-            <h2>Senior UI/UX Designer</h2>
+            <h2>Junior Software Engineer</h2>
             <div class="job-tags">
                 <span>Part-time</span>
-                <span>Senior level</span>
+                <span>Full-time</span>
+                <span>Junior level</span>
             </div>
-            <p>$120/hr</p>
-            <p>San Francisco, CA</p>
+            <p>RM25/hour</p>
+            <p>Kuala Lumpur, Malaysia</p>
             <button class="apply-btn">Apply now</button>
-        </div>
-        <div class="job-card">
-          <div class="job-header">
-              <div class="job-logo">
-                  <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+          </div>
+          <div class="job-card">
+            <div class="job-header">
+                <div class="job-logo">
+                    <img src="./Frontend/images/maybank.png" alt="Amazon">
               </div>
               <div class="job-info">
-                  <h3>Amazon</h3>
-                  <span>5 days ago</span>
+                  <h3>Maybank</h3>
+                  <span>1 hour ago</span>
               </div>
               <button class="save-btn">Save</button>
           </div>
-          <h2>Senior UI/UX Designer</h2>
+          <h2>Data Analyst</h2>
           <div class="job-tags">
-              <span>Part-time</span>
-              <span>Senior level</span>
+              <span>Full-time</span>
+              <span>Mid-level</span>
           </div>
-          <p>$120/hr</p>
-          <p>San Francisco, CA</p>
+          <p>RM 30/hour</p>
+          <p>Kuala Lumpur, Malaysia</p>
           <button class="apply-btn">Apply now</button>
-      </div>
-      <div class="job-card">
+          </div>
+          <div class="job-card">
               <div class="job-header">
                   <div class="job-logo">
-                      <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+                      <img src="./Frontend/images/airasia.png" alt="Amazon">
                   </div>
                   <div class="job-info">
-                      <h3>Amazon</h3>
-                      <span>5 days ago</span>
+                      <h3>AirAsia</h3>
+                      <span>1 days ago</span>
                   </div>
                   <button class="save-btn">Save</button>
               </div>
-              <h2>Senior UI/UX Designer</h2>
+              <h2>Product Manager</h2>
               <div class="job-tags">
-                  <span>Part-time</span>
+                  <span>Full-time</span>
                   <span>Senior level</span>
               </div>
-              <p>$120/hr</p>
-              <p>San Francisco, CA</p>
+              <p>RM 35/hour</p>
+              <p>Sepang, Malaysia</p>
               <button class="apply-btn">Apply now</button>
           </div>
+          <div class="job-card">
+            <div class="job-header">
+                <div class="job-logo">
+                    <img src="./Frontend/images/microsoft.png" alt="Amazon">
+                </div>
+                <div class="job-info">
+                    <h3>Microsoft</h3>
+                    <span>2 days ago</span>
+                </div>
+                <button class="save-btn">Save</button>
+            </div>
+            <h2>DevOps Engineer</h2>
+            <div class="job-tags">
+                <span>Full-time</span>
+                <span>Mid-level</span>
+            </div>
+            <p>RM 28/hour</p>
+            <p>Redmond, WA</p>
+            <button class="apply-btn">Apply now</button>
+          </div>
+          <div class="job-card">
+            <div class="job-header">
+                <div class="job-logo">
+                    <img src="./Frontend/images/netflix.png" alt="Amazon">
+                </div>
+                <div class="job-info">
+                    <h3>Netflix</h3>
+                    <span>5 hours ago</span>
+                </div>
+                <button class="save-btn">Save</button>
+            </div>
+            <h2>Backend Developer</h2>
+            <div class="job-tags">
+                <span>Part-time</span>
+                <span>Full-time</span>
+                <span>Junior level</span>
+            </div>
+            <p>RM 22/hour</p>
+            <p>Los Gatos, CA</p>
+            <button class="apply-btn">Apply now</button>
+          </div>
+          <!-- add here to add more card for more job listings. -->
         </div>
     </main>
 </body>
