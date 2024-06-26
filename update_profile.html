@@ -153,7 +153,9 @@
 
     sessionStorage.setItem('employeeData', JSON.stringify(formData));
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', render) 
+    
+    function render () {
       // Retrieve user profile data from session storage
       const userProfile = JSON.parse(sessionStorage.getItem('employeeData'));
 
@@ -170,7 +172,7 @@
         //   document.getElementById('resume').innerText = 'Resume Uploaded';
         // }
       }
-    });
+    };
 
     function validateMinLength(input, minLength) {
       if (input.value.length >= minLength) {
@@ -249,7 +251,7 @@
         resume: document.getElementById('resume').files[0] ? URL.createObjectURL(document.getElementById('resume').files[0]) : userProfile.resume // Update resume only if a new file is uploaded
       };
       
-      sessionStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+      sessionStorage.setItem('employeeData', JSON.stringify(updatedProfile));
     }, false);
   </script>
 </body>
