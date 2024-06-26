@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Employee Details Fetcher</title>
     <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
     <style>
         body {
@@ -16,10 +16,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: all 1s;
+            transition: all .5s;
+            width: 98%;
         }
         .employee-card:hover {
             background-color: rgba(0,0,0,.075);
+            width: 100%;
+            cursor: pointer !important;
         }
         .employee-card h5 {
             margin-bottom: 15px;
@@ -61,11 +64,13 @@
                     <select class="form-select" id="cityFilter">
                         <option value="all">All Cities</option>
                         <option value="Kuala Lumpur">Kuala Lumpur</option>
-                        <option value="George Town">George Town</option>
-                        <option value="Ipoh">Ipoh</option>
-                        <option value="Johor Bahru">Johor Bahru</option>
-                        <option value="Kota Kinabalu">Kota Kinabalu</option>
-                        <option value="Shah Alam">Shah Alam</option>
+                        <option value="Penang">Penang</option>
+                        <option value="Perak">Perak</option>
+                        <option value="Kedah">Kedah</option>
+                        <option value="Sarawak">Sarawak</option>
+                        <option value="Johor">Johor</option>
+                        <option value="Sabah">Sabah</option>
+                        <option value="Perlis">Perlis</option>
                         <!-- Add more cities as needed -->
                     </select>
                 </div>
@@ -80,7 +85,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" id="jobFilter" placeholder="Search Job Title">
+                    <input type="text" class="form-control" id="jobFilter" placeholder="Keyword">
                 </div>
                 <div class="col-sm-12">
                     <button type="button" class="btn btn-primary" onclick="applyFilter()">Filter</button>
@@ -93,7 +98,7 @@
     </div>
     
     <!-- Candidate Details -->
-    <div class="container  col-md-7 col-sm-8 px-3">
+    <div class="container  col-md-7 col-sm-8 px-3 ml-3">
         <h2>Candidate details</h2>
         <hr>
         <!-- Candidate Profile -->
@@ -109,9 +114,8 @@
                     </div>
                 </div>
                 <div class="profile-actions mt-3">
-                    <button class="btn btn-primary">Interview</button>
-                    <button class="btn btn-secondary">Reject</button>
-                    <button class="btn btn-light">Mail</button>
+                    <button class="btn btn-success">Interview</button>
+                    <button class="btn btn-danger" id="rejectButton">Reject</button>
                 </div>
             </div>
     
@@ -133,9 +137,13 @@
             <!-- Profile Content -->
             <div class="tab-content profile-content pt-3">
                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                    <p><strong>Summary:</strong> <span id="candidateSummary">I love solving problems and finding new, creative ways to address challenges. Naturally empathetic and enjoy customer behaviour and finding new ways to reach your target market. Learning new technological trends and staying up to date. Certified UX designer who is passionate about creating aesthetic usable products by addressing the needs.</span></p>
+                    <h3 class="mb-3">Summary</h3>
+                    <p><span id="candidateSummary">I love solving problems and finding new, creative ways to address challenges. Naturally empathetic and enjoy customer behaviour and finding new ways to reach your target market. Learning new technological trends and staying up to date. Certified UX designer who is passionate about creating aesthetic usable products by addressing the needs.</span></p>
+                    <hr><h3 class="mb-3">Contact Details</h3>
                     <p><strong>Email Address:</strong> <span id="candidateEmail">batman@gmail.com</span></p>
                     <p><strong>Phone Number:</strong> <span id="candidatePhone">+91 12345678</span></p>
+                    <p><strong>Home Address:</strong> <span id="candidateAddress">+91 12345678</span></p>
+                    <hr><h3 class="mb-3">Job Details</h3>
                     <p><strong>Highest Qualification:</strong> <span id="candidateQualification">B.TECH</span></p>
                     <p><strong>Current Company:</strong> <span id="candidateCompany">Accenture</span></p>
                     <p><strong>Total Experience:</strong> <span id="candidateExperience">5 Years</span></p>
@@ -171,6 +179,9 @@
                 }
                 employees = await response.json();
                 renderEmployeeDetails(employees);
+                if (employees.length > 0) {
+                    showCandidateDetails(employees[0].full_name);
+                }
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -187,8 +198,6 @@
                     <div class="row">
                         <div class="employee-card p-4" onclick="showCandidateDetails('${employee.full_name}')">
                             <h5 class="card-title">${employee.full_name}</h5>
-                            <p class="card-text"><strong>Email:</strong> ${employee.email}</p>
-                            <p class="card-text"><strong>Phone:</strong> +60${employee.phone}</p>
                             <p class="card-text"><strong>Expected Salary:</strong> RM${employee.expected_salary}</p>
                             <p class="card-text"><strong>Job Interested:</strong> ${employee.job_title}</p>
                             <p class="card-text"><strong>Preferred City:</strong> ${employee.job_city}</p>
@@ -198,6 +207,8 @@
                 `;
             });
             employeeDetailsDiv.innerHTML = html;
+            // <p class="card-text"><strong>Email:</strong> ${employee.email}</p>
+            // <p class="card-text"><strong>Phone:</strong> +60${employee.phone}</p>
         }
     }
 
@@ -205,11 +216,12 @@
         const candidate = employees.find(emp => emp.full_name === fullName);
         if (candidate) {
             document.getElementById('candidateName').textContent = candidate.full_name;
-            document.getElementById('candidateStatus').textContent = "Active"; // Update as per the actual status
+            document.getElementById('candidateStatus').textContent = candidate.job_title; // Update as per the actual status
             document.getElementById('applicationSource').textContent = "Applied 5 days ago from LinkedIn"; // Update as per actual data
             document.getElementById('candidateSummary').textContent = candidate.summary || "Summary not available.";
             document.getElementById('candidateEmail').textContent = candidate.email;
             document.getElementById('candidatePhone').textContent = `+60${candidate.phone}`;
+            document.getElementById('candidateAddress').textContent = candidate.home_address;
             document.getElementById('candidateQualification').textContent = candidate.qualification || "Not specified";
             document.getElementById('candidateCompany').textContent = candidate.current_company || "Not specified";
             document.getElementById('candidateExperience').textContent = `${candidate.experience} Years` || "Not specified";
@@ -217,34 +229,62 @@
             document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
             document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
             document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
+
+            document.getElementById('rejectButton').onclick = () => rejectCandidate(candidate.full_name);
         }
     }
 
-        function applyFilter() {
-            const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
-            const salaryFilter = document.getElementById('salaryFilter').value;
-            const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
+    function applyFilter() {
+        const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+        const salaryFilter = document.getElementById('salaryFilter').value;
+        const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
 
-            const filteredEmployees = employees.filter(employee => {
-                const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
-                const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
-                    (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
-                    (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
-                    (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
-                    (salaryFilter === "10000" && employee.expected_salary >= 8000);
-                const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
-                return matchesCity && matchesSalary && matchesJob;
-            });
+        const filteredEmployees = employees.filter(employee => {
+            const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
+            const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
+                (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
+                (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
+                (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
+                (salaryFilter === "10000" && employee.expected_salary >= 8000);
+            const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
+            return matchesCity && matchesSalary && matchesJob;
+        });
 
-            renderEmployeeDetails(filteredEmployees);
+        renderEmployeeDetails(filteredEmployees);
+    }
+
+    function resetFilter() {
+        document.getElementById('filterForm').reset();
+        renderEmployeeDetails(employees);
+    }
+
+    function rejectCandidate(fullName) {
+        employees = employees.filter(emp => emp.full_name !== fullName);
+        renderEmployeeDetails(employees);
+        if (employees.length > 0) {
+            showCandidateDetails(employees[0].full_name);
+        } else {
+            clearCandidateDetails();
         }
+    }
 
-        function resetFilter() {
-            document.getElementById('filterForm').reset();
-            renderEmployeeDetails(employees);
-        }
+    function clearCandidateDetails() {
+        document.getElementById('candidateName').textContent = '';
+        document.getElementById('candidateStatus').textContent = '';
+        document.getElementById('applicationSource').textContent = '';
+        document.getElementById('candidateSummary').textContent = '';
+        document.getElementById('candidateEmail').textContent = '';
+        document.getElementById('candidatePhone').textContent = '';
+        document.getElementById('candidateQualification').textContent = '';
+        document.getElementById('candidateCompany').textContent = '';
+        document.getElementById('candidateExperience').textContent = '';
+        document.getElementById('candidateSalary').textContent = '';
+        document.getElementById('candidateExpectedSalary').textContent = '';
+        document.getElementById('candidateResume').textContent = '';
+        document.getElementById('candidateAdditionalInfo').textContent = '';
+    }
 
-        document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
+    document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
     </script>
 </body>
 </html>
