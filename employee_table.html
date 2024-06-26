@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Employee Details Fetcher</title>
     <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
     <style>
         body {
@@ -109,9 +109,8 @@
                     </div>
                 </div>
                 <div class="profile-actions mt-3">
-                    <button class="btn btn-primary">Interview</button>
-                    <button class="btn btn-secondary">Reject</button>
-                    <button class="btn btn-light">Mail</button>
+                    <button class="btn btn-success">Interview</button>
+                    <button class="btn btn-danger" id="rejectButton">Reject</button>
                 </div>
             </div>
     
@@ -171,6 +170,9 @@
                 }
                 employees = await response.json();
                 renderEmployeeDetails(employees);
+                if (employees.length > 0) {
+                    showCandidateDetails(employees[0].full_name);
+                }
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -217,34 +219,62 @@
             document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
             document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
             document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
+
+            document.getElementById('rejectButton').onclick = () => rejectCandidate(candidate.full_name);
         }
     }
 
-        function applyFilter() {
-            const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
-            const salaryFilter = document.getElementById('salaryFilter').value;
-            const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
+    function applyFilter() {
+        const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
+        const salaryFilter = document.getElementById('salaryFilter').value;
+        const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
 
-            const filteredEmployees = employees.filter(employee => {
-                const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
-                const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
-                    (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
-                    (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
-                    (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
-                    (salaryFilter === "10000" && employee.expected_salary >= 8000);
-                const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
-                return matchesCity && matchesSalary && matchesJob;
-            });
+        const filteredEmployees = employees.filter(employee => {
+            const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
+            const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
+                (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
+                (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
+                (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
+                (salaryFilter === "10000" && employee.expected_salary >= 8000);
+            const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
+            return matchesCity && matchesSalary && matchesJob;
+        });
 
-            renderEmployeeDetails(filteredEmployees);
+        renderEmployeeDetails(filteredEmployees);
+    }
+
+    function resetFilter() {
+        document.getElementById('filterForm').reset();
+        renderEmployeeDetails(employees);
+    }
+
+    function rejectCandidate(fullName) {
+        employees = employees.filter(emp => emp.full_name !== fullName);
+        renderEmployeeDetails(employees);
+        if (employees.length > 0) {
+            showCandidateDetails(employees[0].full_name);
+        } else {
+            clearCandidateDetails();
         }
+    }
 
-        function resetFilter() {
-            document.getElementById('filterForm').reset();
-            renderEmployeeDetails(employees);
-        }
+    function clearCandidateDetails() {
+        document.getElementById('candidateName').textContent = '';
+        document.getElementById('candidateStatus').textContent = '';
+        document.getElementById('applicationSource').textContent = '';
+        document.getElementById('candidateSummary').textContent = '';
+        document.getElementById('candidateEmail').textContent = '';
+        document.getElementById('candidatePhone').textContent = '';
+        document.getElementById('candidateQualification').textContent = '';
+        document.getElementById('candidateCompany').textContent = '';
+        document.getElementById('candidateExperience').textContent = '';
+        document.getElementById('candidateSalary').textContent = '';
+        document.getElementById('candidateExpectedSalary').textContent = '';
+        document.getElementById('candidateResume').textContent = '';
+        document.getElementById('candidateAdditionalInfo').textContent = '';
+    }
 
-        document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
+    document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
     </script>
 </body>
 </html>
