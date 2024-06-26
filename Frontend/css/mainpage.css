@@ -12,6 +12,13 @@ header {
     color: white;
 }
 
+.small-image {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius:100%;
+}
+
 header::before {
     content: "";
     display: block;
