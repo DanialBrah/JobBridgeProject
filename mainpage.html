@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
-    <link rel="stylesheet" href="Frontend/css/style3.css">
+    <link rel="stylesheet" href="Frontend/css/mainpage.css">
 </head>
 <body>
-    <header class="header">
-        <div class="logo">Job Bridge</div>
-        <nav class="nav">
-            <a href="joblist.html">Job Listings</a>
-            <a href="#">Company Profile</a>
-            <a href="postjob.html">Post A Job (For Employer)</a>
+    <header>
+        <nav>
+            <div class="logo">Job-Bridge</div>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="joblist.html">Job Listings</a></li>
+                <li><a href="postjob.html">Post A Job</a></li>
+                <li><a href="index.html">Register</a></li>
+            </ul>
+            
+            <a href="#" class="btn-get-started"><img src="Frontend/images/profilepic.jpg" alt="Small image" class="small-image">User</a>
         </nav>
-        <div class="auth">
-            <a href="index.html">Login</a>
-            <a href="index.html">Register</a>
-        </div>
     </header>
 
     <div class="search-bar">
         <input type="text" placeholder="Search Job Title or Company">
     </div>
 
-    <div class="main-content">
+    <div class="">
         <section class="featured-companies">
+            <h2>Explore</h2>
             <h2>Recommended Company</h2>
-            <h2>Job-Bridge</h2>
 
+            <section class="top-companies">
             <div class="company-cards">
                 <div class="company-card">
                     <img src="Frontend/images/elite.png" alt="Elite United Marketing">
@@ -55,31 +57,49 @@
                         <p>Opportunity to be hired as a permanent employee</p>
                     </div>
                 </div>
+                <div class="company-card">
+                  <img src="Frontend/images/embun.jpg" alt="Embun Lighting & Decoration">
+                  <div class="company-info">
+                      <h3>Embun Lighting & Decoration Sdn Bhd</h3>
+                      <p>Working hours are from 9:30 AM to 6 PM</p>
+                      <p>Opportunity to be hired as a permanent employee</p>
+                  </div>
+              </div>
+              <div class="company-card">
+                <img src="Frontend/images/embun.jpg" alt="Embun Lighting & Decoration">
+                <div class="company-info">
+                    <h3>Embun Lighting & Decoration Sdn Bhd</h3>
+                    <p>Working hours are from 9:30 AM to 6 PM</p>
+                    <p>Opportunity to be hired as a permanent employee</p>
+                </div>
             </div>
+            </div>
+          </section>
         </section>
-
         <aside class="sidebar">
-            <div class="ad">
-                <h2>We Are Hiring</h2>
-                <p>Account Manager</p>
-                <p>Walk-In Interview</p>
-                <ul>
-                    <li>Attractive salary up to RM4,000++</li>
-                    <li>5 Working Days in a Week</li>
-                    <li>Attendance Allowance</li>
-                    <li>Friendly Work Environment</li>
-                    <li>Nearby Public Transport & Mall</li>
-                    <li>Strategic Location (KL City)</li>
-                </ul>
-                <button>Apply Now</button>
-            </div>
-            <div class="video">
-                <h3>#SembangJob Graduate of a Different Major, Different Job</h3>
-                <iframe src="Frontend/images/kerjaLain.jpg" frameborder="0" allowfullscreen></iframe>
-                <p>Graduate of a Different Major, Different Job</p>
-            </div>
-        </aside>
+          <div class="ad">
+              <h2>We Are Hiring</h2>
+              <p>Account Manager</p>
+              <p>Walk-In Interview</p>
+              <ul>
+                  <li>Attractive salary up to RM4,000++</li>
+                  <li>5 Working Days in a Week</li>
+                  <li>Attendance Allowance</li>
+                  <li>Friendly Work Environment</li>
+                  <li>Nearby Public Transport & Mall</li>
+                  <li>Strategic Location (KL City)</li>
+              </ul>
+              <button>Apply Now</button>
+          </div>
+          <div class="video">
+              <h3>#SembangJob Graduate of a Different Major, Different Job</h3>
+              <iframe src="Frontend/images/kerjaLain.jpg" frameborder="0" allowfullscreen></iframe>
+              <p>Graduate of a Different Major, Different Job</p>
+          </div>
+      </aside>
+        
     </div>
+    
 
     <section class="top-companies">
         <h2>Top Company</h2>
