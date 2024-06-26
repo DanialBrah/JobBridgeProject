@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Frontend/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="Frontend/css/common.css">
+  <link rel="stylesheet" href="Frontend/css/register.css">
+  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
+  <title>JobBridge Register | JobBridge</title>
+</head>
+<body>
+  <nav class="navbar navbar-light text-bg-light navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand logo d-flex align-items-center" href="#">
+        <img src="Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+        <h1 class="pt-3 ps-2">JobBridge</h1>
+      </a>
+    </div>
+  </nav>
+  <div class="form">
+    <form class="register p-4 pb-0" id="registerForm" method="post" action="register.php">
+      <div class="row mb-3">
+        <h2 class="text-danger">Register</h2>
+        <h6 class="mb-4">Join JobBridge and start managing your tasks efficiently</h6>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="Username" required>
+          <label for="floatingUsername">Username</label>
+          <div class="valid-feedback-username d-none text-success">
+            Looks good!
+          </div>
+          <div class="invalid-feedback-username d-none text-danger">
+            Username should have at least 5 characters.
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="name@example.com" required>
+          <label for="floatingEmail">Email address</label>
+          <div class="valid-feedback-email d-none text-success">
+            Sounds good!
+          </div>
+          <div class="invalid-feedback-email d-none text-danger">
+            Please enter a valid email address!
+          </div>
+        </div>
+
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0">Role:</legend>
+          <div class="col-sm-10 g-2">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="role" id="gridRadios1" value="employee" required>
+              <label class="form-check-label" for="gridRadios1">
+                Employee
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="role" id="gridRadios2" value="employer">
+              <label class="form-check-label" for="gridRadios2">
+                Employer
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="role" id="gridRadios3" value="admin">
+              <label class="form-check-label" for="gridRadios3">
+                Admin
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-floating password-container mb-3">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+          <i class="toggle-password fa fa-eye text-danger" id="togglePassword" onclick="togglePassword()"></i>
+          <div class="invalid-feedback-password d-none text-danger">
+            Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+          </div>
+        </div>
+
+        <div class="form-floating password-container mb-3">
+          <input type="password" class="form-control" id="floatingConfirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+          <label for="floatingConfirmPassword">Confirm Password</label>
+          <i class="toggle-password fa fa-eye text-danger" id="toggleConfirmPassword" onclick="togglePassword('floatingConfirmPassword')"></i>
+          <div class="invalid-feedback-confirm-password d-none text-danger">
+            Passwords do not match.
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingAdminKey" name="admin_key" placeholder="Admin Key">
+          <label for="floatingAdminKey">Admin Key (optional)</label>
+          <div class="invalid-feedback-admin-key d-none text-danger">
+            Invalid Admin Key.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-danger" id="submitBtn" disabled>Register</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer mt-auto py-3 d-xxl-block d-none">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 JobBridge</span>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
+          <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="Frontend/js/register.js"></script>
+</body>
+</html>
