@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="./Frontend/css/update_profile.css">
+  <title>Profile Page</title>
+</head>
+<body>
+  <nav class="navbar navbar-light text-bg-light navigation">
+    <div class="container-fluid shadow-sm">
+      <a class="navbar-brand logo d-flex align-items-center" href="#">
+        <img src="./Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
+        <h1 class="pt-3 ps-2">JobBridge</h1>
+      </a>
+      <a class="btn btn-outline-primary" href="index.html">Login Now</a>
+    </div>
+  </nav>
+  
+  <div class="container pt-3">
+    <h2>Manage Account</h2>
+  </div>
+
+
+  <div class="container mt-4">
+    <div class="row flex-lg-nowrap">
+      <div class="col">
+        <div class="row">
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body m-3">
+                <div class="e-profile">
+                  <div class="row">
+                    <div class="col-12 col-sm-auto mb-3">
+                      <div class="mx-auto" style="width: 140px;">
+                        <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
+                          <span class="text-muted">140x140</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                      <div class="text-center text-sm-left mb-2 mb-sm-0">
+                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
+                        <p class="mb-1 text-start" id="user_id"></p>
+                        <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
+                        <div class="mt-2">
+                          <button class="btn btn-primary" type="button">
+                            <i class="fa fa-fw fa-camera"></i>
+                            <span>Upload Photo</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="text-center text-sm-right">
+                        <span class="badge bg-secondary">Employer</span>
+                        <div class="text-muted"><small>Joined 08 June 2024</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="nav nav-tabs mt-3">
+                    <li class="nav-item"><a href="" class="active nav-link">Edit Profile</a></li>
+                  </ul>
+                  <div class="tab-content pt-3">
+                    <div class="tab-pane active">
+                      <form id="updateProfileForm" class="needs-validation" novalidate>
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                          <label for="fullName" class="form-label">Full Name</label>
+                          <input type="text" class="form-control" id="fullName" name="full_name" required>
+                          <div class="invalid-feedback">Full name must be more than 5 characters.</div>
+                        </div>
+
+                        <!-- Company Address -->
+                        <div class="mb-3">
+                          <label for="companyAddress" class="form-label">Commpany Address</label>
+                          <input type="text" class="form-control" id="companyAddress" name="company_address" required>
+                          <div class="invalid-feedback">Home address must be more than 5 characters.</div>
+                        </div>
+
+                        <!-- Company Email -->
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Company Email Address</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                          <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+
+                        <!-- Company Phone -->
+                        <div class="mb-3">
+                          <label for="phone" class="form-label">Company Contact No</label>
+                          <div class="input-group has-validation">
+                            <div class="input-group-prepend">
+                              <select class="form-select" id="phone_code" name="phone_code" required>
+                                <option value="MY">MY(+60)</option>
+                                <option value="BN">BN(+673)</option>
+                                <option value="KH">KH(+855)</option>
+                                <option value="ID">ID(+62)</option>
+                                <option value="LA">LA(+856)</option>
+                                <option value="MM">MM(+95)</option>
+                                <option value="PH">PH(+63)</option>
+                                <option value="SG">SG(+65)</option>
+                              </select>
+                            </div>
+                            <input type="tel" id="phone" name="phone" class="form-control"required>
+                            <div class="invalid-feedback">Please enter a valid phone number!</div>
+                          </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+                          <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-3 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title font-weight-bold">Support</h6>
+                <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                <button type="button" class="btn btn-primary">Contact Us</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //test storage (to test a session storage)
+    const formData = {
+      full_name: "MrEmployer",
+      company_address: "123,Taman Banana",
+      company_email: "abc@hotmail.com",
+      company_phone: 1128291811,
+    };
+    sessionStorage.setItem('employerData', JSON.stringify(formData));
+
+    // Actual start from here
+    document.addEventListener('DOMContentLoaded', function() {
+      // Retrieve user profile data from session storage
+      const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+
+      if (userProfile) {
+        document.getElementById('fullName').value = userProfile.full_name;
+        document.getElementById('companyAddress').value = userProfile.company_address;
+        document.getElementById('email').value = userProfile.company_email;
+        document.getElementById('phone').value = userProfile.company_phone;
+        document.getElementById('profile_name').innerHTML = userProfile.full_name;
+        document.getElementById('user_id').innerHTML = `@${userProfile.full_name}03`
+      }
+    });
+
+    function validateMinLength(input, minLength) {
+      if (input.value.length >= minLength) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      } else {
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+      }
+    }
+
+    function validateEmail(input) {
+      var emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+      if (emailPattern.test(input.value)) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      } else {
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+      }
+    }
+
+    function validatePhone(input) {
+      var phonePattern = /^[0-9]{10}$/;
+      if (phonePattern.test(input.value)) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      } else {
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+      }
+    }
+
+    // Add event listeners
+    document.getElementById('fullName').addEventListener('input', function() {
+      validateMinLength(this, 5);
+    });
+
+    document.getElementById('companyAddress').addEventListener('input', function() {
+      validateMinLength(this, 5);
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+      validateEmail(this);
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+      validatePhone(this);
+    });
+
+    var form = document.getElementById('updateProfileForm');
+    form.addEventListener('submit', function(event) {
+      var inputs = form.querySelectorAll('input[required], select[required]');
+      inputs.forEach(function(input) {
+        if (input.value === '' || input.classList.contains('is-invalid')) {
+          input.classList.add('is-invalid');
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      });
+
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add('was-validated');
+
+      // Save updated data to session storage
+      const updatedProfile = {
+        fullName: document.getElementById('fullName').value,
+        homeAddress: document.getElementById('companyAddress').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+      };
+      
+      sessionStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+    }, false);
+  </script>
+</body>
+</html>

@@ -16,8 +16,7 @@
                 <li><a href="#">Post A Job</a></li>
                 <li><a href="#">Register</a></li>
             </ul>
-            
-            <a href="#" class="btn-get-started"><img src="image1 (1).png" alt="Small image" class="small-image">User</a>
+            <a href="#" class="btn-get-started text-end" id="myName"><img src="image1 (1).png" alt="Small image" class="small-image">User</a>
         </nav>
     </header>
     <main>
@@ -84,5 +83,16 @@
           </li>
         </ul>
       </section>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve user profile data from session storage
+        const userProfile = JSON.parse(sessionStorage.getItem('employeeData'));
+
+        if (userProfile) {
+          document.getElementById('myName').innerHTML = `<img src="image1 (1).png" alt="Small image" class="small-image">${userProfile.full_name}`;
+        }
+    });
+      </script>
 </body>
 </html>
