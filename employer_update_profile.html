@@ -135,14 +135,14 @@
 
   <script>
     // Test storage (to test a session storage)
-    const formData = {
-      full_name: "MrEmployer",
-      company_address: "123,Taman Banana",
-      company_email: "employer@hotmail.com",
-      company_phone: 1128291811,
-      profile_image: ""
-    };
-    sessionStorage.setItem('employerData', JSON.stringify(formData));
+    // const formData = {
+    //   full_name: "MrEmployer",
+    //   company_address: "123,Taman Banana",
+    //   company_email: "employer@hotmail.com",
+    //   company_phone: 1128291811,
+    //   profile_image: ""
+    // };
+    // sessionStorage.setItem('employerData', JSON.stringify(formData));
 
     // Actual start from here
     document.addEventListener('DOMContentLoaded', function() {
@@ -215,6 +215,7 @@
 
     var form = document.getElementById('updateProfileForm');
     form.addEventListener('submit', function(event) {
+      event.preventDefault();
       var inputs = form.querySelectorAll('input[required], select[required]');
       inputs.forEach(function(input) {
         if (input.value === '' || input.classList.contains('is-invalid')) {
@@ -242,7 +243,7 @@
       
       sessionStorage.setItem('employerData', JSON.stringify(updatedProfile));
       alert('Your change has been successfully made, click "Ok" to redirect to home ');
-      window.location.href=''
+      window.location.href='employer.homepage.html';
 
       // Update the displayed values on the page
       document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
