@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Listings</title>
-    <link rel="stylesheet" href="Frontend/css/styles2.css">
-    <script>
+    <link rel="stylesheet" href="Frontend/css/joblist.css">
+    <!-- <script>
         function loadJobs() {
           var jobs = JSON.parse(localStorage.getItem('jobs')) || [];
           var jobList = document.getElementById('job-listings');
@@ -57,29 +57,111 @@
         }
 
         document.addEventListener('DOMContentLoaded', loadJobs);
-    </script>
+    </script> -->
 </head>
 <body>
-  <header class="header">
-  <div class="headers">
-    <div class="logo">Job-Bridge</div>
-    <nav class="nav">
-        <a href="joblist.html">Job Listings</a>
-        <a href="#">Company Profile</a>
-        <a href="postjob.html">Post A Job (For Employer)</a>
+  <header>
+    <nav>
+        <div class="logo">
+          Job-Bridge
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Job Listings</a></li>
+            <li><a href="#">Post A Job</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+        
+        <a href="#" class="btn-get-started"><img src="image1 (1).png" alt="Small image" class="small-image">User</a>
     </nav>
-    <div class="auth">
-        <a href="index.html">Login</a>
-        <a href="index.html">Register</a>
-    </div>
-  </div>
 </header>
-    
     <main>
         <section id="job-listings" class="decorated-job-listings">
             <h2>Available Jobs</h2>
             <!-- Job listings will be loaded here -->
         </section>
+        <div class="job-listings">
+          <div class="job-card">
+              <div class="job-header">
+                  <div class="job-logo">
+                      <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+                  </div>
+                  <div class="job-info">
+                      <h3>Amazon</h3>
+                      <span>5 days ago</span>
+                  </div>
+                  <button class="save-btn">Save</button>
+              </div>
+              <h2>Senior UI/UX Designer</h2>
+              <div class="job-tags">
+                  <span>Part-time</span>
+                  <span>Senior level</span>
+              </div>
+              <p>$120/hr</p>
+              <p>San Francisco, CA</p>
+              <button class="apply-btn">Apply now</button>
+          </div>
+          <div class="job-card">
+            <div class="job-header">
+                <div class="job-logo">
+                    <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+                </div>
+                <div class="job-info">
+                    <h3>Amazon</h3>
+                    <span>5 days ago</span>
+                </div>
+                <button class="save-btn">Save</button>
+            </div>
+            <h2>Senior UI/UX Designer</h2>
+            <div class="job-tags">
+                <span>Part-time</span>
+                <span>Senior level</span>
+            </div>
+            <p>$120/hr</p>
+            <p>San Francisco, CA</p>
+            <button class="apply-btn">Apply now</button>
+        </div>
+        <div class="job-card">
+          <div class="job-header">
+              <div class="job-logo">
+                  <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+              </div>
+              <div class="job-info">
+                  <h3>Amazon</h3>
+                  <span>5 days ago</span>
+              </div>
+              <button class="save-btn">Save</button>
+          </div>
+          <h2>Senior UI/UX Designer</h2>
+          <div class="job-tags">
+              <span>Part-time</span>
+              <span>Senior level</span>
+          </div>
+          <p>$120/hr</p>
+          <p>San Francisco, CA</p>
+          <button class="apply-btn">Apply now</button>
+      </div>
+      <div class="job-card">
+              <div class="job-header">
+                  <div class="job-logo">
+                      <img src="./Frontend/images/logo-amazon.png" alt="Amazon">
+                  </div>
+                  <div class="job-info">
+                      <h3>Amazon</h3>
+                      <span>5 days ago</span>
+                  </div>
+                  <button class="save-btn">Save</button>
+              </div>
+              <h2>Senior UI/UX Designer</h2>
+              <div class="job-tags">
+                  <span>Part-time</span>
+                  <span>Senior level</span>
+              </div>
+              <p>$120/hr</p>
+              <p>San Francisco, CA</p>
+              <button class="apply-btn">Apply now</button>
+          </div>
+        </div>
     </main>
 </body>
 </html>

@@ -100,8 +100,21 @@ document.addEventListener('DOMContentLoaded', function () {
           if (!form.checkValidity() || !isValid) {
               event.preventDefault();
               event.stopPropagation();
+          }else{
+            saveFormData();
           }
           form.classList.add('was-validated');
       }, false);
   });
 });
+
+function saveFormData(){
+    const employerData = {
+        full_name: document.getElementById('contactName').value,
+        company_address: document.getElementById('company_address').value,
+        company_email: document.getElementById('floatingInput').value,
+        company_phone: document.getElementById('floatingInputPhone').value,
+    };
+
+    sessionStorage.setItem('employerData', JSON.stringify(employerData));
+}
