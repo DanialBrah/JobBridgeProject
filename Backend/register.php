@@ -1,13 +1,14 @@
 <?php
-include 'config.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $username = trim($_POST['username']);
-  $email = trim($_POST['email']);
-  $password = trim($_POST['password']);
-  $confirm_password = trim($_POST['confirm_password']);
-  $role = trim($_POST['role']);
-  $admin_key = trim($_POST['admin_key']);
+require_once("config.php");
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $confirm_password = $_POST['confirm_password'];
+  $role = $_POST['role'];
+  $admin_key = $_POST['admin_key'];
 
   // Validate form data
   if (strlen($username) < 5) {
@@ -38,11 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $sql = "INSERT INTO user (username, email, password, role, admin_key) VALUES ('$username', '$email', '$hashed_password', '$role', '$admin_key')";
 
   if (mysqli_query($conn, $sql)) {
-    echo "Registration successful!";
+    // Redirect to the success page
+    header('Location: ../index.html');
+    exit;
   } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }
 
   mysqli_close($conn);
+} else {
+  echo "Invalid request method.";
 }
 ?>

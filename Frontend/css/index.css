@@ -1,139 +1,140 @@
-nav {
-  z-index: 100;
-  max-height: 22rem;
-}
-
-form {
-  position: relative;
-  min-width: 23rem;
-}
-
-.navbar-brand h1 {
-  font-weight: 400;
-  font-family: san-serif;
-  line-height: 2rem;
-  font-size: 1.75rem;
-  white-space: nowrap;
-  margin-bottom: 1rem;
-}
-
-.signIn {
-  position: absolute;
-  left: 50%;
-  top: 47%;
-  transform: translate(-50%, -42%);
-  width: 20rem;
-  min-height: 25rem;
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.1);
-  padding-bottom: 50rem;
-}
-
-.signIn h6{
-  font-weight: 400;
-  font-size: 0.8rem;
-}
-
-.signIn #floatingInput~label, 
-.signIn #floatingPassword~label {
-  padding-left: 1.8rem;
-  opacity: 0.8;
-}
-
-.signIn input#floatingInput, 
-.signIn input#floatingPassword {
-  padding-left: 0.9rem;
-}
-
-@media (max-width: 992px) {
-  .signIn {
-    border: 0;
-    box-shadow: none;
-    /* width: 100%; */
-    top: 4rem;
-    transform: translate(-50%);
+  nav {
+    z-index: 100;
+    max-height: 22rem;
   }
-}
 
-div#floatingPassword {
-  position: relative;
-}
+  form {
+    position: relative;
+    min-width: 23rem;
+  }
 
-.toggle-password {
-  position: absolute;
-  right: 7%;
-  top: 24%;
-  transform: scale(1.2);
-  cursor: pointer;
-  transition: all 1s;
-  padding: 0.5rem;
-  border-radius: 0.9rem;
-}
+  .navbar-brand h1 {
+    font-weight: 400;
+    font-family: san-serif;
+    line-height: 2rem;
+    font-size: 1.75rem;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+  }
 
-.toggle-password:hover {
-  background-color: rgba(220, 53, 69, 0.3);
-}
+  .signIn {
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    transform: translate(-50%, -42%);
+    width: 20rem;
+    min-height: 25rem;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.1);
+    padding-bottom: 50rem;
+  }
 
-.forgot-pw a {
-  display: inline-block;
-  border-radius: 1.2rem;
-  width: auto;
-  padding: 0.15rem 0.8rem;
-  text-decoration: none;
-  line-height: 2rem;
-  transition: all 0.5s;
-  text-align: center;
-}
+  .signIn h6{
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
 
-.forgot-pw a:hover {
-  /* background-color: rgba(220, 53, 69, 0.3); */
-  box-shadow: 0 0 1rem 1rem rgba(78, 102, 241, 0.1) inset;
-  text-decoration: underline;
-}
+  .signIn #floatingInput~label, 
+  .signIn #floatingPassword~label {
+    padding-left: 1.8rem;
+    opacity: 0.8;
+  }
 
-.form-check,
-.signUp {
-  font-size: 0.8rem;
-}
+  .signIn input#floatingInput, 
+  .signIn input#floatingPassword {
+    padding-left: 0.9rem;
+  }
 
-.signUp {
-  position: absolute;
-  left: 50%;
-  bottom: -7%;
-  transform: translate(-29%);
-}
+  @media (max-width: 992px) {
+    .signIn {
+      border: 0;
+      box-shadow: none;
+      /* width: 100%; */
+      top: 4rem;
+      transform: translate(-50%);
+    }
+  }
 
-.signUp a {
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 1.2rem;
-  width: auto;
-  padding: 0.12rem 0.4rem;
-  text-decoration: none;
-  line-height: 2rem;
-  transition: all 0.5s;
-  text-align: center;
-}
+  div#floatingPassword {
+    position: relative;
+  }
 
-.signUp a:hover {
-  text-decoration: underline;
-  box-shadow: 0 0 1rem 1rem rgba(78, 102, 241, 0.1) inset;
-}
+  .toggle-password {
+    position: absolute;
+    right: 7%;
+    top: 24%;
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: all 1s;
+    padding: 0.5rem;
+    border-radius: 0.9rem;
+  }
 
-footer {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%);
-  width: 100%;
-  font-size: 0.8rem;
-}
+  .toggle-password:hover {
+    background-color: rgba(220, 53, 69, 0.3);
+  }
 
-footer li a{
-  text-decoration: none;
-}
+  .forgot-pw a {
+    display: inline-block;
+    border-radius: 1.2rem;
+    width: auto;
+    padding: 0.15rem 0.8rem;
+    text-decoration: none;
+    line-height: 2rem;
+    transition: all 0.5s;
+    text-align: center;
+  }
 
-footer li a:hover {
-  text-decoration: underline;
-}
+  .forgot-pw a:hover {
+    /* background-color: rgba(220, 53, 69, 0.3); */
+    box-shadow: 0 0 1rem 1rem rgba(78, 102, 241, 0.1) inset;
+    text-decoration: underline;
+  }
+
+  .form-check,
+  .signUp {
+    font-size: 0.8rem;
+  }
+
+  .signUp {
+    position: absolute;
+    left: 50%;
+    bottom: -7%;
+    transform: translate(-29%);
+  }
+
+  .signUp a {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 1.2rem;
+    width: auto;
+    padding: 0.12rem 0.4rem;
+    text-decoration: none;
+    line-height: 2rem;
+    transition: all 0.5s;
+    text-align: center;
+  }
+
+  .signUp a:hover {
+    text-decoration: underline;
+    box-shadow: 0 0 1rem 1rem rgba(78, 102, 241, 0.1) inset;
+  }
+
+  footer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  footer li a{
+    text-decoration: none;
+  }
+
+  footer li a:hover {
+    text-decoration: underline;
+  }
+
