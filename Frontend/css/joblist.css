@@ -92,11 +92,12 @@ nav ul li a {
 }
 
 .job-listings {
-    display: flexbox;
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     width: 90%;
     max-width: 1200px;
+    margin: auto;
 }
 
 .job-card {
@@ -134,7 +135,7 @@ nav ul li a {
 }
 
 .save-btn {
-    background-color: grey;
+    background-color: transparent;
     border: none;
     position: absolute;
     top: 10px;
@@ -160,11 +161,15 @@ p {
 }
 
 .apply-btn {
-    background-color: #000;
+    background-color:red;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.apply-btn :hover{
+    background-color: lightgreen;
 }

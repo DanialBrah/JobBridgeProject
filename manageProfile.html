@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile</title>
+    <link rel="stylesheet" href="./Frontend/css/manageProfile.css">
+</head>
+<body>
+    <div class="container">
+        <div class="edit-profile">
+            <h2>Edit Profile</h2>
+            <form id="manageProfile">
+                
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+                
+                <div class="flex-container">
+                    <div>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="2" required></textarea>
+        
+                <label for="coverLetter">About Me</label>
+                <textarea id="coverLetter" name="coverLetter" rows="2" required></textarea>
+        
+                <label for="education">Education:</label>
+                <textarea id="education" name="education" rows="2"></textarea>
+
+                <label for="interests">Interests:</label>
+                <textarea id="interests" name="interests" rows="2"></textarea>
+
+                <button type="button" id="saveButton">Save & Close</button>
+                
+            </form>
+    </div>
+    <script src="./Frontend/js/manageProfile.js"></script>
+</body>
+</html>
