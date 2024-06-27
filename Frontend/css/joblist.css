@@ -8,6 +8,12 @@ body {
     background-color: #f8f9fa;
 }
 
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+
 header {
     position: relative;
     color: white;
@@ -170,6 +176,7 @@ p {
     margin-top: 10px;
 }
 
+/* 
 .apply-btn :hover{
     background-color: lightgreen;
-}
+} */
