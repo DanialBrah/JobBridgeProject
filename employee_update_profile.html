@@ -20,7 +20,7 @@
   </nav>
   
   <div class="container pt-3">
-    <h2>Manage Account</h2>
+    <h2>Profile Page</h2>
   </div>
 
   <div class="container mt-4">
@@ -253,6 +253,10 @@
       sessionStorage.setItem('employeeData', JSON.stringify(updatedProfile));
       alert('Your change has been successfully made, click OK to redirect to Home');
       window.location.href = 'employee_homepage.html';
+
+      // Update the displayed values on the page
+      document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
+      document.getElementById('user_id').innerHTML = `@${updatedProfile.full_name}03`;
     }, false);
 
     function loadFile(event) {
@@ -263,9 +267,9 @@
       defaultText.classList.add('d-none');
 
       // Update session storage
-      const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+      const userProfile = JSON.parse(sessionStorage.getItem('employeeData'));
       userProfile.profile_image = image.src;
-      sessionStorage.setItem('employerData', JSON.stringify(userProfile));
+      sessionStorage.setItem('employeeData', JSON.stringify(userProfile));
     }
   </script>
 </body>

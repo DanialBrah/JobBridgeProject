@@ -20,7 +20,7 @@
   </nav>
   
   <div class="container pt-3">
-    <h2>Manage Account</h2>
+    <h2>My Profile</h2>
   </div>
 
   <div class="container mt-4">
@@ -243,7 +243,7 @@
       
       sessionStorage.setItem('employerData', JSON.stringify(updatedProfile));
       alert('Your change has been successfully made, click "Ok" to redirect to home ');
-      window.location.href='employer.homepage.html';
+      window.location.href='employer_homepage.html';
 
       // Update the displayed values on the page
       document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
