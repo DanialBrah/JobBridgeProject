@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application</title>
+    <title>Job Application Form</title>
     <link rel="stylesheet" href="Frontend/css/ApplyJobStyle.css">
+    <header>
+        <nav>
+            <div class="logo">
+              Job-Bridge
+            </div>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="joblist.html">Job Listings</a></li>
+                <li><a href="postjob.html">Post A Job</a></li>
+                <li><a href="index.html">Register</a></li>
+            </ul>
+            
+            <a href="#" class="btn-get-started"><img src="./Frontend/images/profilepic.jpg" alt="Small image" class="small-image">User</a>
+        </nav>
+    </header>
     
 </head>
 <body>
-    <h1>JOBBRIDGE APPLICATION FORM</h1>
     <form id="jobApplicationForm">
         <h2>Job Application Form</h2>
         <h4>Please Fill Out The Form Below To Submit Your Job Application</h4>
@@ -45,9 +57,11 @@
         <label for="resume">Upload Resume</label>
         <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
 
-        <button type="button" onclick="submitApplication()">Submit Application</button>
+        <div class="button row gx-5">
+            <button class='col' type="button" onclick="submitApplication()">Submit Application</button>
+            <button  class='col' type="button" onclick="location.href='joblist.html'" style="background-color: grey !important;">Cancel</button>
+        </div>
         
-        <button type="reset" class="reset-btn">Reset</button>
     </form>
 
     <script src = "Frontend/js/ApplyJobScript.js"></script>

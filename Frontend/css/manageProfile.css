@@ -1,0 +1,65 @@
+body {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Ensure padding is included in the total width and height */
+}
+label {
+    display: block;
+    margin-bottom: 6px;   
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.flex-item {
+    width: 48%;
+}
+input, textarea, select{
+    width: calc(100% - 16px); /* Account for padding */
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding is included in the total width and height */
+}
+
+button {
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: green;
+}

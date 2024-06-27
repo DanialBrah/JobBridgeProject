@@ -1,14 +1,92 @@
 body {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: white;
-    background-image: url('y-so-serious-white.png');
-    background-repeat: repeat;
-    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+header {
+    position: relative;
+    color: white;
+}
+
+header::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header {
+    background-color: red;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 20px; /* Adjusted padding to account for the red line */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    color: white;
+}
+
+.btn-get-started {
+    background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.btn-get-started img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.btn-get-started:hover {
+    background-color: #e07b00;
 }
 form {
     max-width: 600px;
     margin: auto;
+    margin-top: 30px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -39,7 +117,7 @@ input[type="file"] {
 }
 button {
     padding: 10px 15px;
-    background-color: rgb(8, 245, 8);
+    background-color: red;
     color: white;
     border: none;
     border-radius: 4px;
@@ -47,13 +125,6 @@ button {
 }
 button:hover {
     background-color: green;
-}
-.reset-btn {
-    background-color: red; /* Red background for reset button */
-}
-.reset-btn:hover {
-    background-color: darkred;
-    color:white;
 }
 h1 {
     background-color: rgb(8, 245, 8); /* Set background color of h1 to red */
