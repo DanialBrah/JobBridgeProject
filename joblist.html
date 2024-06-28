@@ -195,5 +195,64 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        
+        let jobs = [];
+
+        async function fetchJobDetails() {
+            try {
+                const response = await fetch('./Backend/fetch_job.php', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                jobs = await response.json();
+                renderJobDetails(jobs);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        function renderJobDetails(jobs) {
+            const jobListingDiv = document.getElementById('jobList');
+            if (jobs.error) {
+                jobListingDiv.innerHTML = `<div class="alert alert-danger">${jobs.error}</div>`;
+            } else {
+                let html = '';
+                jobs.reverse().forEach(job => {
+                    html += `
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div class="job-logo">
+                                    <img src="data:image/jpeg;base64,${job.image}" alt="${job.company}">
+                                </div>
+                                <div class="job-info">
+                                    <h3>${job.company}</h3>
+                                    <span>5 days ago</span>
+                                </div>
+                            </div>
+                            <h2>${job.job_title}</h2>
+                            <div class="job-tags">
+                                <span>${job.work_type}</span>
+                                <span>${job.requirement}</span>
+                            </div>
+                            <p>RM${job.salary} per month</p>
+                            <p>${job.location}</p>
+                            <a href="ApplyJob.html"><button class="apply-btn">Apply now</button></a>
+                        </div>
+                    `;
+                });
+                jobListingDiv.innerHTML = html;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchJobDetails);
+        
+    </script>
 </body>
 </html>
