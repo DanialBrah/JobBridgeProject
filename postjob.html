@@ -112,8 +112,9 @@
     </nav>
 </header>
     
-    <main>
-        <h2 class="text-center text-light m-4">Welcome, Post Your Job Here!</h2>
+<main>
+    <div class="card">
+        <h2 class="text-center">Welcome, Post Your Job Here!</h2>
         <!-- Post Job Form -->
         <form id="jobForm" action="Backend/postjob.php" method="post" enctype="multipart/form-data"> 
             <!-- Job Title -->
@@ -125,55 +126,55 @@
 
             <div class="form-group">
                 <!-- Company -->
-                <div class="form-group">
-                    <label for="company">Company:</label>
-                    <input type="text" id="company" name="company" required placeholder="Enter company name">
-                    <span id="companyError"></span>
-                </div>
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company" required placeholder="Enter company name">
+                <span id="companyError"></span>
+            </div>
 
-                <!-- Location -->
-                <div class="form-group">
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" required placeholder="Enter location">
-                    <span id="locationError"></span>
-                </div>
+            <!-- Location -->
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required placeholder="Enter location">
+                <span id="locationError"></span>
+            </div>
 
-                <!-- Salary  -->
-                <div class="form-group">
-                    <label for="salary">Salary:</label>
-                    <input type="number" id="salary" name="salary" required placeholder="Enter salary">
-                    <span id="salaryError"></span>
-                </div>
+            <!-- Salary  -->
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" required placeholder="Enter salary">
+                <span id="salaryError"></span>
+            </div>
 
-                <!-- Work type -->
-                <div class="form-group">
-                    <label for="workType">Work Type:</label>
-                    <input type="text" id="workType" name="work_type" required placeholder="Enter work type">
-                    <span id="workTypeError"></span>
-                </div>
+            <!-- Work type -->
+            <div class="form-group">
+                <label for="workType">Work Type:</label>
+                <input type="text" id="workType" name="work_type" required placeholder="Enter work type">
+                <span id="workTypeError"></span>
+            </div>
 
-                <!-- Requirement -->
-                <div class="form-group">
-                    <label for="requirements">Requirements:</label>
-                    <input type="text" id="requirements" name="requirement" required placeholder="Enter job requirements"></input>
-                    <span id="requirementsError"></span>
-                </div>
+            <!-- Requirement -->
+            <div class="form-group">
+                <label for="requirements">Requirements:</label>
+                <input type="text" id="requirements" name="requirement" required placeholder="Enter job requirements">
+                <span id="requirementsError"></span>
+            </div>
 
-                <!-- Company Image -->
-                <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" name="image" required>
-                    <span id="imageError"></span>
-                </div>
-                <!-- <button type="submit" onclick="saveJob()">Post Job</button> -->
-                <button type="submit">Post Job</button>
-            </form>
-        </main>
-        <footer class="footer mt-auto py-3 d-xxl-block d-none">
-          <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="text-muted">&copy; 2024 JobBridge</span>
-              <ul class="list-inline mb-0">
+            <!-- Company Image -->
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+                <span id="imageError"></span>
+            </div>
+            <button type="submit" onclick="saveJob()">Post Job</button>
+        </form>
+    </div>
+</main>
+
+<footer class="footer mt-auto py-3 d-xxl-block d-none">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">&copy; 2024 JobBridge</span>
+            <ul class="list-inline mb-0">
                 <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
                 <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
                 <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
@@ -181,20 +182,20 @@
                 <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
                 <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
                 <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
-              </ul>
-            </div>
-          </div>
-        </footer>
+            </ul>
+        </div>
+    </div>
+</footer>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve user profile data from session storage
-            const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
-    
-            if (userProfile) {
-              document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
-            }
-            });
-        </script>
-    </body>
-    </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve user profile data from session storage
+        const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+
+        if (userProfile) {
+            document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
+        }
+    });
+</script>
+</body>
+</html>

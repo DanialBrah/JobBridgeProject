@@ -39,27 +39,29 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px; /* Adjusted to reduce spacing */
 }
 
-nav .logo {
-    font-size: 24px;
+.logo {
+    font-size: 20px; /* Adjusted font size for smaller header */
     font-weight: bold;
 }
 
 nav ul {
-    list-style: none;
+    list-style-type: none;
     display: flex;
-    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    display: inline;
+    margin-right: 10px; /* Adjusted spacing between menu items */
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 12px; /* Adjusted font size for smaller header */
 }
 
 .btn-get-started {
@@ -89,48 +91,34 @@ nav ul li a {
 
 .card {
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-    margin: 50px auto;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    margin: 40px auto;
 }
 
-.card h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
+label {
+    font-weight: bold;
     margin-bottom: 5px;
-    color: #555;
 }
 
-.form-group input,
-.form-group textarea {
-    width: calc(100% - 20px);
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.form-group textarea {
-    resize: vertical;
-}
-
-.form-group span {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
 
 button[type="submit"] {
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
