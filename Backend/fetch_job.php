@@ -10,6 +10,8 @@ $jobs = [];
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+        // Convert image data to base64
+        $row['image'] = base64_encode($row['image']);
         $jobs[] = $row;
     }
     echo json_encode($jobs);
