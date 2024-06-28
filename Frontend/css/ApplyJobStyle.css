@@ -4,12 +4,18 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: #f8f9fa;
 }
 
 header {
     position: relative;
     color: white;
+    background-color: red;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
 }
 
 header::before {
@@ -21,12 +27,6 @@ header::before {
     position: absolute;
     top: 0;
     left: 0;
-}
-
-header {
-    background-color: red;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 15px 20px; /* Adjusted padding to account for the red line */
 }
 
 nav {
@@ -52,9 +52,8 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
-    font-size: 16px;
     color: white;
+    font-size: 16px;
 }
 
 .btn-get-started {
@@ -83,6 +82,11 @@ nav ul li a {
 .btn-get-started:hover {
     background-color: #e07b00;
 }
+
+main {
+    flex: 1;
+}
+
 form {
     max-width: 600px;
     margin: auto;
@@ -91,30 +95,36 @@ form {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: whitesmoke;
-    box-sizing: border-box; /* Ensure padding is included in the total width and height */
+    box-sizing: border-box;
 }
+
 label {
     display: block;
-    margin-bottom: 6px;   
+    margin-bottom: 6px;
 }
+
 .flex-container {
     display: flex;
     justify-content: space-between;
 }
+
 .flex-item {
     width: 48%;
 }
-input, textarea, select{
-    width: calc(100% - 16px); /* Account for padding */
+
+input, textarea, select {
+    width: calc(100% - 16px);
     padding: 8px;
     margin-bottom: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Ensure padding is included in the total width and height */
+    box-sizing: border-box;
 }
+
 input[type="file"] {
     padding: 10px;
 }
+
 button {
     padding: 10px 15px;
     background-color: red;
@@ -123,23 +133,56 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: green;
 }
+
 h1 {
-    background-color: rgb(8, 245, 8); /* Set background color of h1 to red */
-    color: white; /* Optionally, set the text color to white for better contrast */
-    padding: 50px; /* Optional: add some padding to make it look better */
-    text-align: center; /* Optional: center the text */
+    background-color: rgb(8, 245, 8);
+    color: white;
+    padding: 50px;
+    text-align: center;
 }
-h2{
+
+h2 {
     text-align: center;
     margin-bottom: 0;
 }
-h4{
+
+h4 {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 0;
     font-weight: normal;
 }
 
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e9ecef;
+    position: relative;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #6c757d;
+}
