@@ -121,6 +121,7 @@ nav ul li a {
 }
 
 h2 {
+    text-align: center;
     color: white;
 }
 
@@ -129,24 +130,32 @@ h2 {
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
+    justify-content: center; /* Added to center the cards */
 }
 
 .company-card {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    flex: 1 1 calc(33.33% - 40px); /* Three cards per row, with gap adjustment */
+    padding: 20px;
+    width: calc(100% - 40px); /* Adjust the width of the card */
+    max-width: 400px; /* Set a maximum width for each card */
+    margin: 10px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .company-card img {
-    width: 100%;
+    width: 100px;
+    height: 100px;
     border-radius: 10px;
 }
 
 .company-info {
     padding: 10px 0;
+    text-align: center; /* Center align the text */
 }
 
 .company-info h3 {
@@ -165,7 +174,16 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 10px;
     margin-bottom: 20px; /* Added margin to adjust spacing between ad and video */
+}
+
+.video{
+    width: 40%;
+}
+
+.ad{
+    width: 500px;
 }
 
 .ad h2, .video h3 {
@@ -203,7 +221,7 @@ h2 {
 
 .video iframe {
     width: 100%;
-    height: 200px;
+    height: 400px;
     border-radius: 10px;
 }
 
@@ -214,7 +232,7 @@ h2 {
 
 .top-companies {
     width: 100%;
-    margin: 20px 0; /* Adjusted margin to center top companies section */
+    margin: 10px 0; /* Adjusted margin to center top companies section */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,11 +241,16 @@ h2 {
 .top-companies .company-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Space between company cards */
+    justify-content: space-evenly; /* Center align the cards */
     width: 100%;
 }
 
 .top-companies .company-card {
-    flex: 1 1 calc(33.33% - 40px); /* Three cards per row, with gap adjustment */
+    max-width: 400px; /* Set a maximum width for each card */
+    height: 300px;
+    margin: 0px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
