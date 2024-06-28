@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="Frontend/css/common.css">
     <link rel="stylesheet" href="Frontend/css/index.css">
+    <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
     <script>
         function saveJob() {
             var title = document.getElementById('title').value;
@@ -88,7 +90,7 @@
 
             alert('Job posted successfully!');
             document.getElementById('jobForm').reset();
-            window.location.href = 'joblist.html'; // Redirect to job listings page
+            // window.location.href = 'joblist.html'; // Redirect to job listings page
         }
     </script>
 </head>
@@ -96,58 +98,75 @@
   <header>
     <nav>
         <div class="logo">
-          Job-Bridge
+          JobBridge (Employer)
         </div>
         <ul>
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="joblist.html">Job Listings</a></li>
-            <li><a href="postjob.html">Post A Job</a></li>
+            <li><a href="employer_homepage.html">Home</a></li>
+            <li><a href="postjob.html">Post a Job</a></li>
+            <li><a href="employee_list.html">Candidate List</a></li>
+            
             <li><a href="index.html">Register</a></li>
         </ul>
         
-        <a href="#" class="btn-get-started"><img src="./Frontend/images/profilepic.jpg" alt="Small image" class="small-image">User</a>
+        <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
     </nav>
 </header>
     
     <main>
-        <form id="jobForm">
+        <h2 class="text-center text-light m-4">Welcome, Post Your Job Here!</h2>
+        <!-- Post Job Form -->
+        <form id="jobForm" action="Backend/postjob.php" method="post" enctype="multipart/form-data"> 
+            <!-- Job Title -->
             <div class="form-group">
                 <label for="title">Job Title:</label>
-                <input type="text" id="title" required placeholder="Enter job title">
+                <input type="text" id="title" name="job_title" required placeholder="Enter job title">
                 <span id="titleError"></span>
             </div>
+
             <div class="form-group">
+                <!-- Company -->
                 <div class="form-group">
                     <label for="company">Company:</label>
-                    <input type="text" id="company" required placeholder="Enter company name">
+                    <input type="text" id="company" name="company" required placeholder="Enter company name">
                     <span id="companyError"></span>
                 </div>
+
+                <!-- Location -->
                 <div class="form-group">
                     <label for="location">Location:</label>
-                    <input type="text" id="location" required placeholder="Enter location">
+                    <input type="text" id="location" name="location" required placeholder="Enter location">
                     <span id="locationError"></span>
                 </div>
+
+                <!-- Salary  -->
                 <div class="form-group">
                     <label for="salary">Salary:</label>
-                    <input type="number" id="salary" required placeholder="Enter salary">
+                    <input type="number" id="salary" name="salary" required placeholder="Enter salary">
                     <span id="salaryError"></span>
                 </div>
+
+                <!-- Work type -->
                 <div class="form-group">
                     <label for="workType">Work Type:</label>
-                    <input type="text" id="workType" required placeholder="Enter work type">
+                    <input type="text" id="workType" name="work_type" required placeholder="Enter work type">
                     <span id="workTypeError"></span>
                 </div>
+
+                <!-- Requirement -->
                 <div class="form-group">
                     <label for="requirements">Requirements:</label>
-                    <textarea id="requirements" required placeholder="Enter job requirements"></textarea>
+                    <input type="text" id="requirements" name="requirement" required placeholder="Enter job requirements"></input>
                     <span id="requirementsError"></span>
                 </div>
+
+                <!-- Company Image -->
                 <div class="form-group">
                     <label for="image">Image:</label>
-                    <input type="file" id="image">
+                    <input type="file" id="image" name="image" required>
                     <span id="imageError"></span>
                 </div>
-                <button type="submit" onclick="saveJob()">Post Job</button>
+                <!-- <button type="submit" onclick="saveJob()">Post Job</button> -->
+                <button type="submit">Post Job</button>
             </form>
         </main>
         <footer class="footer mt-auto py-3 d-xxl-block d-none">
@@ -166,5 +185,16 @@
             </div>
           </div>
         </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve user profile data from session storage
+            const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+    
+            if (userProfile) {
+              document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
+            }
+            });
+        </script>
     </body>
     </html>
