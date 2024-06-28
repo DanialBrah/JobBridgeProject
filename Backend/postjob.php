@@ -16,7 +16,7 @@ VALUES ('$job_title', '$company', '$location', '$salary', '$work_type', '$requir
 
 if ($conn->query($sql) === TRUE) {
   // Redirect to thank.html on successful insert
-  header("Location: ../thank.html");
+  header("Location: ../thank2.html");
   exit();
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
