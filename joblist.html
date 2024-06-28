@@ -22,20 +22,17 @@
     </script>
 </head>
 <body>
-  <header>
-    <nav>
-        <div class="logo">
-          JobBridge (JobSeeker)
-        </div>
-        <ul>
-            <li><a href="employee_homepage.html">Home</a></li>
-            <li><a href="joblist.html">Job Listings</a></li>
-            <li><a href="index.html">Register</a></li>
-        </ul>
-        
-        <a href="#" class="btn-get-started"><img src="./Frontend/images/profilepic.jpg" alt="Small image" class="small-image">User</a>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <div class="logo">JobBridge (JobSeeker) </div>
+            <ul>
+                <li><a href="employee_homepage.html">Home</a></li>
+                <li><a href="joblist.html">Job Listings</a></li>
+                <li><a href="index.html">Register</a></li>
+            </ul>
+            <a href="employee_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
+        </nav>
+    </header>
     <main>
         <section id="job-listings" class="decorated-job-listings">
             <h2>Available Jobs</h2>
@@ -252,7 +249,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', fetchJobDetails);
-        
+
     </script>
 </body>
 </html>
