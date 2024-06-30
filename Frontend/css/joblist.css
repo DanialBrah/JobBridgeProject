@@ -176,17 +176,13 @@ p {
     margin-top: 10px;
 }
 
-/* 
-.apply-btn :hover{
-    background-color: lightgreen;
-} */
-
 footer {
     background-color: #f8f9fa;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     border-top: 1px solid #e9ecef;
-    position: relative;
+    position: absolute;
+    width: 100%;
 }
 
 footer .container {
