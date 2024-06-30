@@ -127,7 +127,7 @@ input[type="file"] {
 
 button {
     padding: 10px 15px;
-    background-color: red;
+    background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
     color: white;
     border: none;
     border-radius: 4px;
