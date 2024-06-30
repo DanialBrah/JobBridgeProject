@@ -125,7 +125,7 @@ input[type="file"] {
     padding: 10px;
 }
 
-button {
+button .row{
     padding: 10px 15px;
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
     color: white;
