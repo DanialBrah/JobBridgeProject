@@ -135,7 +135,7 @@ h2 {
 
 .company-card {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: calc(100% - 40px); /* Adjust the width of the card */
@@ -160,12 +160,12 @@ h2 {
 
 .company-info h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .company-info p {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 18px;
     color: #555;
 }
 

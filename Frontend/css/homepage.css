@@ -132,6 +132,7 @@ main {
 .image-container img {
     width: 200px;
     height: auto;
+    border-radius: 5%;
 }
 
 .hero {

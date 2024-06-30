@@ -88,7 +88,7 @@ nav ul li a {
     display: flex;
     max-width: 1200px; /* Example maximum width */
     margin: auto; /* Center align container */
-    padding: 20px;
+    padding: 0px;
 }
 
 .sidebar {
@@ -125,6 +125,7 @@ nav ul li a {
 .profile-content {
     flex: 1; /* Grow to fill remaining space */
     padding: 20px;
+    border-radius: 10px;
 }
 
 .profile-header {
@@ -133,6 +134,15 @@ nav ul li a {
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.profile-one{
+    border-radius: 10px;
+}
+
+.profile-two{
+    border-radius: 10px;
 }
 
 .profile-content section {
