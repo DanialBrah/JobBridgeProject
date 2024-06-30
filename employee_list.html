@@ -6,151 +6,7 @@
     <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f8f9fa;
-        }
-
-        header {
-        position: relative;
-        color: white;
-        }
-
-        header::before {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 5px;
-            background-color: red;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        header {
-            background-color: red;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px 20px; /* Adjusted padding to account for the red line */
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            color: white;
-        }
-
-        .btn-get-started {
-            background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
-            color: #fff;
-            padding: 10px 40px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-        }
-
-        .btn-get-started img {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-        }
-
-        .btn-get-started:hover {
-            background-color: #e07b00;
-        }
-        
-        .employee-card {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: all .5s;
-            width: 98%;
-        }
-        .employee-card:hover {
-            background-color: rgba(0,0,0,.075);
-            width: 100%;
-            cursor: pointer !important;
-        }
-        .employee-card h5 {
-            margin-bottom: 15px;
-        }
-        .navbar-brand h1 {
-            font-weight: 400;
-            font-family: san-serif;
-            line-height: 2rem;
-            font-size: 1.75rem;
-            white-space: nowrap;
-            margin-bottom: 1rem;
-        }
-        .profile-actions .btn{
-            margin-right: 0.5em !important;
-        }
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #e9ecef;
-            position: relative;
-        }
-        
-        footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        
-        footer ul li a {
-            text-decoration: none;
-            color: #6c757d;
-        }
-    </style>
+    <link rel="stylesheet" href="Frontend/css/employee_list.css">
 </head>
 <body>
     <header>
@@ -229,7 +85,7 @@
                     </div>
                 </div>
                 <div class="profile-actions mt-3">
-                    <button class="btn btn-success">Interview</button>
+                    <button class="btn btn-success" onclick="showModal()">Interview</button>
                     <button class="btn btn-danger" id="rejectButton">Reject</button>
                 </div>
             </div>
@@ -291,6 +147,40 @@
             </div>
         </div>
     </footer>
+
+    <!-- Interview Scheduling Modal -->
+    <div id="interviewModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Schedule interview for <span class="text-primary" id="interviewCandidate"></span></h5>
+                <button type="button" class="btn-close" onclick="hideModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                    <label for="interviewDate" class="form-label">Select a date</label>
+                    <input type="date" class="form-control" id="interviewDate" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="interviewTime" class="form-label">Select a time</label>
+                    <select class="form-select" id="interviewTime" required>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="12:00 PM" selected>12:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="9:00 PM">9:00 PM</option>
+                    </select>
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="hideModal()">Cancel</button>
+                <button type="button" class="btn btn-primary">Schedule</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         let employees = [];
@@ -359,6 +249,7 @@
             document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
             document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
             document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
+            document.getElementById('interviewCandidate').innerHTML = candidate.full_name;
 
             document.getElementById('rejectButton').onclick = () => rejectCandidate(candidate.full_name);
         }
@@ -413,6 +304,21 @@
         document.getElementById('candidateResume').textContent = '';
         document.getElementById('candidateAdditionalInfo').textContent = '';
     }
+
+    function showModal() {
+    document.getElementById('interviewModal').style.display = 'block';
+    }
+
+    function hideModal() {
+    document.getElementById('interviewModal').style.display = 'none';
+    }
+
+    // Modify the existing function to show the modal when "Interview" button is clicked
+    document.querySelectorAll('.btn-success').forEach(button => {
+    button.addEventListener('click', function() {
+        showModal();
+    });
+    });
 
     document.addEventListener('DOMContentLoaded', fetchEmployeeDetails);
     </script>

@@ -15,7 +15,7 @@ $sql = "INSERT INTO job (job_title, company, location , salary, work_type, requi
 VALUES ('$job_title', '$company', '$location', '$salary', '$work_type', '$requirement', '$imageContent')";
 
 if ($conn->query($sql) === TRUE) {
-  // Redirect to thank.html on successful insert
+  // Redirect to thank2.html on successful insert
   header("Location: ../thank2.html");
   exit();
 } else {

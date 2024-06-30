@@ -9,19 +9,141 @@
   <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
   <link rel="stylesheet" href="./Frontend/css/update_profile.css">
   <title>Profile Page</title>
+  <style>
+    main {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f8f9fa;
+    }
+
+    header {
+    position: relative;
+    color: white;
+    }
+
+    header::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    header {
+        background-color: red;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 15px 20px; /* Adjusted padding to account for the red line */
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    nav ul li {
+        display: inline;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        color: white;
+    }
+
+    .btn-get-started {
+        background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
+        color: #fff;
+        padding: 10px 40px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    .btn-get-started img {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+    }
+
+    .btn-get-started:hover {
+        background-color: #e07b00;
+    }
+
+    footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            position: relative;
+    }
+    
+    footer .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    footer ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    footer ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+    
+    footer ul li a {
+        text-decoration: none;
+        color: #6c757d;
+    }
+
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-light text-bg-light navigation" style="background-color: white;">
-    <div class="container-fluid shadow-sm">
-      <a class="navbar-brand logo d-flex align-items-center" href="#">
-        <img src="./Frontend/images/logoo.png" alt="" width="50" height="50" class="d-inline-block align-text-top ms-3">
-        <h1 class="pt-3 ps-2">JobBridge</h1>
-      </a>
-    </div>
-  </nav>
+  <header>
+    <nav>
+        <div class="logo">JobBridge (Employer)</div>
+        <ul>
+            <li><a href="employer_homepage.html">Home</a></li>
+            <li><a href="postjob.html">Post a Job</a></li>
+            <li><a href="employee_list.html">Candidate List</a></li>
+            <li><a href="index.html">Register</a></li>
+        </ul>
+        <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
+    </nav>
+</header>
   
   <div class="container pt-3">
-    <h1 style="color: white">My Profile</h1>
+    <h2>My Profile</h2>
   </div>
 
   <div class="container mt-4">
@@ -133,6 +255,8 @@
       </div>
     </div>
   </div>
+</main>
+  
   <footer class="footer mt-auto py-3 d-xxl-block d-none">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
@@ -148,7 +272,7 @@
             </ul>
         </div>
     </div>
-</footer>
+  </footer>
 
   <script>
     // Test storage (to test a session storage)
