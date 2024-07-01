@@ -6,16 +6,18 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    position: relative;
-    color: white;
+main {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
 }
 
-.small-image {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    border-radius: 100%;
+header {
+position: relative;
+color: white;
 }
 
 header::before {
@@ -31,7 +33,7 @@ header::before {
 
 header {
     background-color: red;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 15px 20px; /* Adjusted padding to account for the red line */
 }
 
@@ -39,29 +41,28 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px; /* Adjusted to reduce spacing */
 }
 
-.logo {
-    font-size: 20px; /* Adjusted font size for smaller header */
+nav .logo {
+    font-size: 24px;
     font-weight: bold;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     display: flex;
-    margin: 0;
-    padding: 0;
+    gap: 20px;
 }
 
 nav ul li {
-    margin-right: 10px; /* Adjusted spacing between menu items */
+    display: inline;
 }
 
 nav ul li a {
     text-decoration: none;
+    color: #333;
+    font-size: 16px;
     color: white;
-    font-size: 12px; /* Adjusted font size for smaller header */
 }
 
 .btn-get-started {
@@ -85,8 +86,10 @@ nav ul li a {
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
-    object-fit: cover;
-    border-radius: 100%;
+}
+
+.btn-get-started:hover {
+    background-color: #e07b00;
 }
 
 .card {
