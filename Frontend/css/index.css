@@ -134,18 +134,20 @@ footer {
   position: absolute;
   left: 50%;
   bottom: 0;
+  z-index: 1000;
   transform: translate(-50%);
   width: 100%;
   font-size: 0.8rem;
 }
 
-footer li a{
+footer li a {
   display: block;
-  /* text-decoration: none; */
+  text-decoration: none;
+  color: black;
 }
 
 footer li a:hover {
   text-decoration: underline !important;
   cursor: pointer;
+  color: black;
 }
-
