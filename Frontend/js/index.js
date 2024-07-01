@@ -18,7 +18,6 @@ document.getElementById('floatingInput').addEventListener('input', function () {
   }
 });
 
-
 // Ensure the form is properly validated before submission
 document.querySelector('form').addEventListener('submit', function (event) {
   if (!this.checkValidity()) {
@@ -38,16 +37,3 @@ function togglePassword() {
   togglePassword.classList.toggle('fa-eye');
   togglePassword.classList.toggle('fa-eye-slash');
 }
-
-document.getElementById('signInForm').addEventListener('submit', function (event) {
-event.preventDefault(); // Prevent the default form submission
-
-if (this.checkValidity()) {
-  const selectedOption = document.querySelector('input[name="gridRadios"]:checked').value;
-  window.location.href = selectedOption; // Redirect to the selected option's value
-} else {
-  event.stopPropagation();
-}
-
-this.classList.add('was-validated');
-});

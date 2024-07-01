@@ -22,13 +22,13 @@
     </div>
   </nav>
   <div class="form">
-    <form class="signIn p-4 pb-0" id="signInForm" style="background-color: white;  margin-top: 100px;">
+    <form action="./Backend/index.php" method="post" class="signIn p-4 pb-0" id="signInForm" style="background-color: white;">
       <div class="row mb-3">
         <h2 class="text-danger">Sign in</h2>
         <h6 class="mb-4">Stay informed about your professional sphere</h6>
         
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
           <label for="floatingInput">Email address</label>
           <div class="valid-feedback-email d-none text-success">
             Sounds good!
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="form-floating password-container mb-1">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
           <label for="floatingPassword">Password</label>
           <i class="toggle-password fa fa-eye text-danger" id="togglePassword" onclick="togglePassword()"></i>
         </div>
@@ -49,19 +49,19 @@
           <legend class="col-form-label col-sm-2 pt-0 text-decoration-underline">Please select your role:</legend>
           <div class="col-sm-10 pt-4 g-2 radio-log">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="employee.html" required>
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="employee" required>
               <label class="form-check-label" for="gridRadios1">
                 Employee
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer.html">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer">
               <label class="form-check-label" for="gridRadios2">
                 Employer
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="admin.html" disabled>
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="admin">
               <label class="form-check-label" for="gridRadios3">
                 Admin
               </label>
@@ -96,5 +96,14 @@
   </footer>
 
   <script src="Frontend/js/index.js"></script>
+  <script>
+    // Display success or failure message based on URL parameter
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('message')) {
+        alert(urlParams.get('message'));
+      }
+    }
+  </script>
 </body>
 </html>

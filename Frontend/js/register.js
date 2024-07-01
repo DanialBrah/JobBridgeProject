@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const confirmPasswordInput = document.getElementById('floatingConfirmPassword');
   const adminKeyInput = document.getElementById('floatingAdminKey');
   const submitBtn = document.getElementById('submitBtn');
+  const roleInputs = document.querySelectorAll('input[name="role"]');
 
   const validFeedbackUsername = document.querySelector('.valid-feedback-username');
   const invalidFeedbackUsername = document.querySelector('.invalid-feedback-username');
@@ -14,29 +15,48 @@ document.addEventListener('DOMContentLoaded', function () {
   const invalidFeedbackConfirmPassword = document.querySelector('.invalid-feedback-confirm-password');
   const invalidFeedbackAdminKey = document.querySelector('.invalid-feedback-admin-key');
 
-  const validateUsername = () => {
+  const validateUsername = async () => {
     const username = usernameInput.value;
     if (username.length >= 5) {
-      validFeedbackUsername.classList.remove('d-none');
-      invalidFeedbackUsername.classList.add('d-none');
-      return true;
+      const isUnique = await checkUsernameUnique(username);
+      if (isUnique) {
+        validFeedbackUsername.classList.add('d-block');
+        invalidFeedbackUsername.classList.remove('d-block');
+        return true;
+      } else {
+        invalidFeedbackUsername.textContent = "Username already taken.";
+        invalidFeedbackUsername.classList.add('d-block');
+        validFeedbackUsername.classList.remove('d-block');
+        return false;
+      }
     } else {
-      validFeedbackUsername.classList.add('d-none');
-      invalidFeedbackUsername.classList.remove('d-none');
+      invalidFeedbackUsername.textContent = "Username should have at least 5 characters.";
+      invalidFeedbackUsername.classList.add('d-block');
+      validFeedbackUsername.classList.remove('d-block');
       return false;
     }
   };
 
-  const validateEmail = () => {
+  const validateEmail = async () => {
     const email = emailInput.value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailPattern.test(email)) {
-      validFeedbackEmail.classList.remove('d-none');
-      invalidFeedbackEmail.classList.add('d-none');
-      return true;
+    const emailPattern1 = /^[^\s@]+@(qq\.com|163\.com|gmail\.com|yahoo\.com|hotmail\.com|live\.com|outlook\.com)$/;
+    const emailPattern2 = /^[^\s@]+@graduate\.utm\.my$/;
+    if (emailPattern1.test(email) || emailPattern2.test(email)) {
+      const uniqueEmail = await checkEmailUnique(email);
+      if (uniqueEmail) {
+        validFeedbackEmail.classList.add('d-block');
+        invalidFeedbackEmail.classList.remove('d-block');
+        return true;
+      } else {
+        invalidFeedbackEmail.textContent = "Email already taken.";
+        invalidFeedbackEmail.classList.add('d-block');
+        validFeedbackEmail.classList.remove('d-block');
+        return false;
+      }
     } else {
-      validFeedbackEmail.classList.add('d-none');
-      invalidFeedbackEmail.classList.remove('d-none');
+      invalidFeedbackEmail.textContent = "Please enter a valid email!";
+      invalidFeedbackEmail.classList.add('d-block');
+      validFeedbackEmail.classList.remove('d-block');
       return false;
     }
   };
@@ -45,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = passwordInput.value;
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
     if (passwordPattern.test(password)) {
-      invalidFeedbackPassword.classList.add('d-none');
+      invalidFeedbackPassword.classList.remove('d-block');
       return true;
     } else {
-      invalidFeedbackPassword.classList.remove('d-none');
+      invalidFeedbackPassword.classList.add('d-block');
       return false;
     }
   };
@@ -57,10 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     if (password === confirmPassword) {
-      invalidFeedbackConfirmPassword.classList.add('d-none');
+      invalidFeedbackConfirmPassword.classList.remove('d-block');
       return true;
     } else {
-      invalidFeedbackConfirmPassword.classList.remove('d-none');
+      invalidFeedbackConfirmPassword.classList.add('d-block');
       return false;
     }
   };
@@ -68,26 +88,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const validateAdminKey = () => {
     const adminKey = adminKeyInput.value;
     const validAdminKey = "adm_K3y_2024_$ecur3_Ex4mpl3_9876543210";
-    if (adminKey === "" || adminKey === validAdminKey) {
-      invalidFeedbackAdminKey.classList.add('d-none');
-      return true;
-    } else {
-      invalidFeedbackAdminKey.classList.remove('d-none');
+    if (roleInputs[2].checked && adminKey !== validAdminKey) {
+      invalidFeedbackAdminKey.classList.add('d-block');
       return false;
+    } else {
+      invalidFeedbackAdminKey.classList.remove('d-block');
+      return true;
     }
   };
 
-  const togglePassword = (id = 'floatingPassword') => {
-    const passwordField = document.getElementById(id);
-    const toggleIcon = document.getElementById(id === 'floatingPassword' ? 'togglePassword' : 'toggleConfirmPassword');
-    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordField.setAttribute('type', type);
-    toggleIcon.classList.toggle('fa-eye-slash');
-  };
-
-  const validateForm = () => {
-    const isUsernameValid = validateUsername();
-    const isEmailValid = validateEmail();
+  const validateForm = async () => {
+    const isUsernameValid = await validateUsername();
+    const isEmailValid = await validateEmail();
     const isPasswordValid = validatePassword();
     const isConfirmPasswordValid = validateConfirmPassword();
     const isAdminKeyValid = validateAdminKey();
@@ -110,4 +122,59 @@ document.addEventListener('DOMContentLoaded', function () {
   passwordInput.addEventListener('input', validateForm);
   confirmPasswordInput.addEventListener('input', validateForm);
   adminKeyInput.addEventListener('input', validateForm);
+  roleInputs.forEach(input => input.addEventListener('change', function() {
+    if (this.value === 'admin') {
+      adminKeyInput.removeAttribute('disabled');
+      adminKeyInput.setAttribute('required', 'true');
+    } else {
+      adminKeyInput.setAttribute('disabled', 'true');
+      adminKeyInput.removeAttribute('required');
+    }
+    validateForm();
+  }));
+
+  async function checkUsernameUnique(username) {
+    try {
+      const response = await fetch('./Backend/check_username.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username })
+      });
+      const result = await response.json();
+      return result.available;
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  }
+
+  async function checkEmailUnique(email) {
+    try {
+      const response = await fetch('./Backend/check_email.php' , {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+      const result = await response.json();
+      return result.available;
+    }
+    catch(error) {
+      console.error('Error: ', error);
+      return false;
+    }
+  }
 });
+
+// Toggle password visibility
+function togglePassword(id) {
+  const input = document.getElementById(id);
+  const togglePassword = input.nextElementSibling;
+  const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+  input.setAttribute('type', type);
+  togglePassword.classList.toggle('fa-eye');
+  togglePassword.classList.toggle('fa-eye-slash');
+}
