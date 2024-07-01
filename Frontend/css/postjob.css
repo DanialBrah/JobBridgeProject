@@ -135,7 +135,11 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background: linear-gradient(90deg, #ff00ff 0%, #ff8c00 100%);
+    /* background: linear-gradient(90deg, #ff00ff 0%, #ff8c00 100%); */
+
+    /*above color didn't clearly show the hover event, so I recommend the below one: */
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);
+
 }
 
 footer {
@@ -158,4 +162,8 @@ footer ul li {
 footer ul li a {
     text-decoration: none;
     color: #6c757d;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
 }

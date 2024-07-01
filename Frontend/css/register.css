@@ -1,0 +1,76 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background: 0;
+}
+
+label {
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+.form-container {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8rem !important;
+}
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  line-height: 3rem;
+}
+.logo img {
+  width: 2.5rem;
+}
+.logo h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+.form-container {
+  max-width: 500px; /* Reduced the width */
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.footer {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+.footer .text-muted {
+  font-size: 14px;
+}
+.form-floating label {
+  color: #6c757d;
+}
+.btn {
+  font-size: 16px;
+}
+.invalid-feedback, .valid-feedback {
+  display: none;
+}
+.invalid-feedback.active, .valid-feedback.active {
+  display: block;
+}
+.password-container {
+  position: relative;
+}
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.password-container {
+  position: relative;
+}
+.password-container i {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+}
+input[type="text"], input[type="number"], input[type="file"], textarea {
+  border-radius: 0;
+}
