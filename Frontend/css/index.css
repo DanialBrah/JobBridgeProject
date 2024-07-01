@@ -10,6 +10,7 @@ nav {
 form {
   position: relative;
   min-width: 23rem;
+  z-index: 1001;
 }
 
 label {
@@ -150,4 +151,8 @@ footer li a:hover {
   text-decoration: underline !important;
   cursor: pointer;
   color: black;
+}
+
+input[type="text"], input[type="number"], input[type="file"], textarea {
+  border-radius: 0;
 }

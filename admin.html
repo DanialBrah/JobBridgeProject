@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Frontend/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Frontend/css/common.css">
+  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="Frontend/css/admin.css">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <header class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+      <button class="btn btn-danger" id="logoutButton">Log Out</button>
+    </div>
+  </header>
+  
+  <main class="container mt-5">
+    <h1 class="mb-4">User Management</h1>
+    <button class="btn btn-primary mb-3" id="addUserButton">Add New User</button>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <!-- User data will be loaded here dynamically -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="footer mt-auto py-3 d-none d-xxl-block">
+    <div class="container">
+      <span class="text-muted">&copy; 2024 JobBridge</span>
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item"><a href="#" class="footer-link">User Agreement</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Privacy Policy</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Community Guidelines</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Cookie Policy</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Copyright Policy</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Send Feedback</a></li>
+        <li class="list-inline-item"><a href="#" class="footer-link">Language</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Modal for Add/Edit User -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">Add/Edit User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <input type="hidden" id="userId">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <select class="form-control" id="role" required>
+                <option value="employee">Employee</option>
+                <option value="employer">Employer</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="mb-3" id="adminKeyField" style="display: none;">
+              <label for="adminKey" class="form-label">Admin Key</label>
+              <input type="text" class="form-control" id="adminKey">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript files -->
+  <script src="Frontend/js/bootstrap.bundle.min.js"></script>
+  <script src="Frontend/js/admin.js"></script>
+</body>
+</html>
