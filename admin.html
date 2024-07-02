@@ -5,22 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Frontend/css/bootstrap.min.css">
   <link rel="stylesheet" href="Frontend/css/common.css">
-  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="Frontend/css/admin.css">
+  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
   <title>Admin Dashboard</title>
 </head>
 <body>
   <header class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Admin Dashboard</a>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="Frontend/images/logoo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        <h1 class="p-2 pt-3">Admin Dashboard</h1>
+      </a>
       <button class="btn btn-danger" id="logoutButton">Log Out</button>
     </div>
   </header>
   
   <main class="container mt-5">
-    <h1 class="mb-4">User Management</h1>
-    <button class="btn btn-primary mb-3" id="addUserButton">Add New User</button>
-    <table class="table table-bordered table-striped">
+    <h2 class="mb-4 text-center"><b>User Management</b></h2>
+    <button class="btn btn-primary mb-3 float-end me-4" id="addUserButton">Add New User</button>
+    <table class="table table-bordered table-striped table-hover text-center">
       <thead>
         <tr>
           <th>Username</th>
@@ -35,57 +38,104 @@
     </table>
   </main>
 
-  <footer class="footer mt-auto py-3 d-none d-xxl-block">
+  <footer class="footer mt-auto py-3">
     <div class="container">
-      <span class="text-muted">&copy; 2024 JobBridge</span>
-      <ul class="list-inline mb-0">
-        <li class="list-inline-item"><a href="#" class="footer-link">User Agreement</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Privacy Policy</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Community Guidelines</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Cookie Policy</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Copyright Policy</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Send Feedback</a></li>
-        <li class="list-inline-item"><a href="#" class="footer-link">Language</a></li>
-      </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 JobBridge</span>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">User Agreement</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Privacy Policy</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Community Guidelines</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Cookie Policy</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Copyright Policy</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Send Feedback</a></li>
+          <li class="list-inline-item ps-1"><a href="#" class="footer-link">Language</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <!-- Modal for Add/Edit User -->
-  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <!-- Modal for Add User -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="userModalLabel">Add/Edit User</h5>
+          <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="userForm">
-            <input type="hidden" id="userId">
+          <form id="addUserForm">
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" required>
+              <label for="addUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="addUsername" required>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" required>
+              <label for="addEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="addEmail" required>
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password">
+            <div class="mb-3 position-relative">
+              <label for="addPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="addPassword" required>
+              <i class="fa fa-eye toggle-password position-absolute" style="top: 70%; right: 15px; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('addPassword', this)"></i>
             </div>
-            <div class="mb-3">
-              <label for="role" class="form-label">Role</label>
-              <select class="form-control" id="role" required>
+            <div class="mb-3 position-relative">
+              <label for="addRole" class="form-label">Role</label>
+              <select class="form-control" id="addRole" required>
                 <option value="employee">Employee</option>
                 <option value="employer">Employer</option>
                 <option value="admin">Admin</option>
               </select>
+              <i class="fa fa-chevron-down position-absolute role-arrow" style="top: 70%; right: 15px; transform: translateY(-50%); pointer-events: none;"></i>
             </div>
-            <div class="mb-3" id="adminKeyField" style="display: none;">
-              <label for="adminKey" class="form-label">Admin Key</label>
-              <input type="text" class="form-control" id="adminKey">
+            <div class="mb-3" id="addAdminKeyField" style="display: none;">
+              <label for="addAdminKey" class="form-label">Admin Key</label>
+              <input type="text" class="form-control" id="addAdminKey">
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary w-100">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Edit User -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editUserForm">
+            <input type="hidden" id="editUserId">
+            <div class="mb-3">
+              <label for="editUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="editUsername" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="editEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="editEmail" required>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="editPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="editPassword">
+              <i class="fa fa-eye toggle-password position-absolute" style="top: 70%; right: 15px; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('editPassword', this)"></i>
+            </div>
+            <div class="mb-3 position-relative">
+              <label for="editRole" class="form-label">Role</label>
+              <select class="form-control" id="editRole" required>
+                <option value="employee">Employee</option>
+                <option value="employer">Employer</option>
+                <option value="admin">Admin</option>
+              </select>
+              <i class="fa fa-chevron-down position-absolute role-arrow" style="top: 70%; right: 15px; transform: translateY(-50%); pointer-events: none;"></i>
+            </div>
+            <div class="mb-3" id="editAdminKeyField" style="display: none;">
+              <label for="editAdminKey" class="form-label">Admin Key</label>
+              <input type="text" class="form-control" id="editAdminKey">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save</button>
           </form>
         </div>
       </div>
@@ -93,6 +143,7 @@
   </div>
 
   <!-- JavaScript files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
   <script src="Frontend/js/bootstrap.bundle.min.js"></script>
   <script src="Frontend/js/admin.js"></script>
 </body>
