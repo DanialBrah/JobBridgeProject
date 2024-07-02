@@ -1,5 +1,11 @@
 <?php
+
+session_start();
 require_once("config.php");
+
+// $sql2 = mysqli_query($conn, "SELECT uploadPersonalDetails FROM user WHERE email = $_SESSION['email']");
+$temp_email = $_SESSION['email'];
+$sqlUpdateUploadStatus = "UPDATE user SET uploadPersonalDetails = 1 WHERE email = ?";
 
 $full_name = $_POST['full_name'];
 $home_address = $_POST['home_address'];
@@ -22,7 +28,7 @@ if (!empty($_FILES['resume']['name'])) {
   $allowed_types = array('pdf', 'doc', 'docx');
   if (in_array($file_type, $allowed_types)) {
     // Check file size (5MB limit)
-    if ($_FILES['resume']['size'] <= 5242880) {
+    if ($_FILES['resume']['size'] <= 5242880) { // 5MB is 5242880 bytes, not 524288000
       if (move_uploaded_file($_FILES['resume']['tmp_name'], $target_file)) {
         echo "The file " . htmlspecialchars($file_name) . " has been uploaded.";
       } else {
@@ -36,16 +42,25 @@ if (!empty($_FILES['resume']['name'])) {
   }
 }
 
-$sql = "INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, has_resume)
-VALUES ('$full_name', '$home_address', '$email', '$phone', '$expected_salary', '$job_title', '$job_city', $has_resume)";
+// Use prepared statements to avoid SQL injection
+$stmt = $conn->prepare("INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, has_resume)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssisss", $full_name, $home_address, $email, $phone, $expected_salary, $job_title, $job_city, $has_resume);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
+  // Update uploadPersonalDetails status
+  $stmt_update = $conn->prepare($sqlUpdateUploadStatus);
+  $stmt_update->bind_param("s", $temp_email);
+  $stmt_update->execute();
+  $stmt_update->close();
+
   // Redirect to thank.html on successful insert
   header("Location: ../thank.html");
   exit();
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error: " . $stmt->error;
 }
 
+$stmt->close();
 $conn->close();
 ?>

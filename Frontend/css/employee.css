@@ -71,3 +71,8 @@ footer li a:hover {
   margin-top: 10px;
   font-size: 0.9rem;
 }
+
+#relatedFile {
+  padding-left: 1rem;
+  border-radius: 0;
+}

@@ -28,7 +28,7 @@
 
   // Validation function for phone number
   function validatePhone(input) {
-    var phonePattern = /^[0-7]{8,15}$/;
+    var phonePattern = /^[0-8]{8,15}$/;
     if (phonePattern.test(input.value)) {
       input.classList.remove('is-invalid');
       input.classList.add('is-valid');

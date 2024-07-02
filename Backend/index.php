@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $role = sanitize($_POST['gridRadios']);
 
   // Query to select user information based on the provided email
-  $sql = "SELECT email, password, role FROM user WHERE email = '$email'";
+  $sql = "SELECT username, email, password, role, uploadPersonalDetails FROM user WHERE email = '$email'";
   $result = mysqli_query($conn, $sql);
   $validity = false;
 
@@ -31,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if ($validity) {
+    if($row['uploadPersonalDetails'] != 0) {
+      echo "<script>alert('Login successful!'); window.location.href='../employee_homepage.html';</script>";
+    }
     echo "<script>alert('Login successful!'); window.location.href='../{$role}.html';</script>";
   } else {
     echo "<script>alert('Login failed! Please check your credentials and try again.'); window.location.href='../index.html';</script>";
@@ -40,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   session_start();
 
   //Save the username in the global variable named session
-  $_SESSION['username'] = $username;
+  $_SESSION['username'] = $row['username'];
+  $_SESSION['email'] = $row['email'];
 
   $conn->close();
 }
