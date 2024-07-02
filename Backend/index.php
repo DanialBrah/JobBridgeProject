@@ -2,6 +2,9 @@
 
 require_once('config.php');
 
+//make sure no previous session when back to the log in page
+session_destroy();
+
 // Function to sanitize input
 function sanitize($input) {
   return htmlspecialchars(strip_tags(trim($input)));
@@ -32,6 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
     echo "<script>alert('Login failed! Please check your credentials and try again.'); window.location.href='../index.html';</script>";
   }
+
+  //Start the session;
+  session_start();
+
+  //Save the username in the global variable named session
+  $_SESSION['username'] = $username;
 
   $conn->close();
 }
