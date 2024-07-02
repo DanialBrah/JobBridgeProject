@@ -28,10 +28,7 @@ header::before {
 }
 
 header {
-    /* background: url('../images/bgctest2.jpg') no-repeat right bottom fixed; */
     background: #c43271;
-    /* background: #db90aa; */
-    /* background: #fdafe6; */
 
     background-size: cover;
     display: flex;
