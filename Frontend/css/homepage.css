@@ -88,7 +88,7 @@ nav ul li a {
 }
 
 .btn-get-started:hover {
-    background-color: #e07b00;
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);;
 }
 
 main {
@@ -171,7 +171,7 @@ main {
 }
 
 .hero button:hover {
-    background-color: #cc0029; /* Slightly darker hover effect */
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%); /* Slightly darker hover effect */
 }
 
 .hero ul {
