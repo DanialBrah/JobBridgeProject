@@ -14,157 +14,161 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-        <div class="logo">JobBridge (Employer)</div>
-        <ul>
-            <li><a href="employer_homepage.html">Home</a></li>
-            <li><a href="postjob.html">Post a Job</a></li>
-            <li><a href="employee_list.html">Candidate List</a></li>
-            <li><a href="index.html">Register</a></li>
-        </ul>
-        <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
-    </nav>
-</header>
-  
-  <div class="container pt-3" style="color: white">
-    <h1>Profile Page</h1>
-  </div>
-
-  <div class="container mt-2">
-    <div class="row flex-lg-nowrap">
-      <div class="col">
-        <div class="row">
-          <div class="col mb-3">
-            <div class="card" style="width: auto !important;">
-              <div class="card-body m-3">
-                <div class="e-profile">
-                  <div class="row">
-                    <div class="col-12 col-sm-auto mb-3">
-                      <div class="mx-auto" style="width: 140px;">
-                        <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
-                          <img id="profile_image" src="" alt="Profile Photo" class="img-thumbnail d-none" style="width: 100%; height: 100%; object-fit: cover;">
-                          <span class="text-muted" id="default_text">140x140</span>
+  <div id="page-container">
+    <div id="content-wrap">
+      <header>
+        <nav>
+            <div class="logo">JobBridge (Employer)</div>
+            <ul>
+                <li><a href="employer_homepage.html">Home</a></li>
+                <li><a href="postjob.html">Post a Job</a></li>
+                <li><a href="employee_list.html">Candidate List</a></li>
+                <li><a href="index.html">Register</a></li>
+            </ul>
+            <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
+        </nav>
+    </header>
+      
+      <div class="container pt-3" style="color: white">
+        <h1>Profile Page</h1>
+      </div>
+    
+      <div class="container mt-2">
+        <div class="row flex-lg-nowrap">
+          <div class="col">
+            <div class="row">
+              <div class="col mb-3">
+                <div class="card" style="width: auto !important;">
+                  <div class="card-body m-3">
+                    <div class="e-profile">
+                      <div class="row">
+                        <div class="col-12 col-sm-auto mb-3">
+                          <div class="mx-auto" style="width: 140px;">
+                            <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
+                              <img id="profile_image" src="" alt="Profile Photo" class="img-thumbnail d-none" style="width: 100%; height: 100%; object-fit: cover;">
+                              <span class="text-muted" id="default_text">140x140</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                          <div class="text-center text-sm-left mb-2 mb-sm-0">
+                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
+                            <p class="mb-1 text-start" id="user_id"></p>
+                            <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
+                            <div class="mt-2">
+                              <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
+                                <i class="fa fa-fw fa-camera"></i>
+                                <span>Upload Photo</span>
+                              </button>
+                              <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)">
+                            </div>
+                          </div>
+                          <div class="text-center text-sm-right">
+                            <span class="badge bg-secondary">Job Seeker</span>
+                            <div class="text-muted"><small>Joined 06 June 2024</small></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                      <div class="text-center text-sm-left mb-2 mb-sm-0">
-                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
-                        <p class="mb-1 text-start" id="user_id"></p>
-                        <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
-                        <div class="mt-2">
-                          <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
-                            <i class="fa fa-fw fa-camera"></i>
-                            <span>Upload Photo</span>
-                          </button>
-                          <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)">
+                      <ul class="nav nav-tabs mt-3">
+                        <li class="nav-item"><a href="" class="active nav-link">Edit Profile</a></li>
+                      </ul>
+                      <div class="tab-content pt-3">
+                        <div class="tab-pane active">
+                          <form id="updateProfileForm" class="needs-validation" novalidate>
+                            <!-- Full Name -->
+                            <div class="mb-3">
+                              <label for="fullName" class="form-label">Full Name</label>
+                              <input type="text" class="form-control" id="fullName" name="full_name" required>
+                              <div class="invalid-feedback">Full name must be more than 5 characters.</div>
+                            </div>
+    
+                            <!-- Home Address -->
+                            <div class="mb-3">
+                              <label for="homeAddress" class="form-label">Home Address</label>
+                              <input type="text" class="form-control" id="homeAddress" name="home_address" required>
+                              <div class="invalid-feedback">Home address must be more than 5 characters.</div>
+                            </div>
+    
+                            <!-- Email -->
+                            <div class="mb-3">
+                              <label for="email" class="form-label">Email Address</label>
+                              <input type="email" class="form-control" id="email" name="email" required>
+                              <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+    
+                            <!-- Phone -->
+                            <div class="mb-3">
+                              <label for="phone" class="form-label">Contact No</label>
+                              <div class="input-group has-validation">
+                                <div class="input-group-prepend">
+                                  <select class="form-select" id="phone_code" name="phone_code" required>
+                                    <option value="MY">MY(+60)</option>
+                                    <option value="BN">BN(+673)</option>
+                                    <option value="KH">KH(+855)</option>
+                                    <option value="ID">ID(+62)</option>
+                                    <option value="LA">LA(+856)</option>
+                                    <option value="MM">MM(+95)</option>
+                                    <option value="PH">PH(+63)</option>
+                                    <option value="SG">SG(+65)</option>
+                                  </select>
+                                </div>
+                                <input type="tel" id="phone" name="phone" class="form-control"required>
+                                <div class="invalid-feedback">Please enter a valid phone number!</div>
+                              </div>
+                            </div>
+    
+                            <!-- Upload Resume
+                            <div class="mb-3">
+                              <label for="resume" class="form-label">Resume</label>
+                              <input type="file" class="form-control" id="resume" name="resume">
+                              <div class="invalid-feedback">Please upload a valid resume (PDF, DOC, DOCX).</div>
+                            </div> -->
+    
+                            <!-- Submit Button -->
+                            <div class="text-center mt-4">
+                              <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                          </form>
+    
                         </div>
-                      </div>
-                      <div class="text-center text-sm-right">
-                        <span class="badge bg-secondary">Job Seeker</span>
-                        <div class="text-muted"><small>Joined 06 June 2024</small></div>
                       </div>
                     </div>
                   </div>
-                  <ul class="nav nav-tabs mt-3">
-                    <li class="nav-item"><a href="" class="active nav-link">Edit Profile</a></li>
-                  </ul>
-                  <div class="tab-content pt-3">
-                    <div class="tab-pane active">
-                      <form id="updateProfileForm" class="needs-validation" novalidate>
-                        <!-- Full Name -->
-                        <div class="mb-3">
-                          <label for="fullName" class="form-label">Full Name</label>
-                          <input type="text" class="form-control" id="fullName" name="full_name" required>
-                          <div class="invalid-feedback">Full name must be more than 5 characters.</div>
-                        </div>
-
-                        <!-- Home Address -->
-                        <div class="mb-3">
-                          <label for="homeAddress" class="form-label">Home Address</label>
-                          <input type="text" class="form-control" id="homeAddress" name="home_address" required>
-                          <div class="invalid-feedback">Home address must be more than 5 characters.</div>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email Address</label>
-                          <input type="email" class="form-control" id="email" name="email" required>
-                          <div class="invalid-feedback">Please enter a valid email address.</div>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="mb-3">
-                          <label for="phone" class="form-label">Contact No</label>
-                          <div class="input-group has-validation">
-                            <div class="input-group-prepend">
-                              <select class="form-select" id="phone_code" name="phone_code" required>
-                                <option value="MY">MY(+60)</option>
-                                <option value="BN">BN(+673)</option>
-                                <option value="KH">KH(+855)</option>
-                                <option value="ID">ID(+62)</option>
-                                <option value="LA">LA(+856)</option>
-                                <option value="MM">MM(+95)</option>
-                                <option value="PH">PH(+63)</option>
-                                <option value="SG">SG(+65)</option>
-                              </select>
-                            </div>
-                            <input type="tel" id="phone" name="phone" class="form-control"required>
-                            <div class="invalid-feedback">Please enter a valid phone number!</div>
-                          </div>
-                        </div>
-
-                        <!-- Upload Resume
-                        <div class="mb-3">
-                          <label for="resume" class="form-label">Resume</label>
-                          <input type="file" class="form-control" id="resume" name="resume">
-                          <div class="invalid-feedback">Please upload a valid resume (PDF, DOC, DOCX).</div>
-                        </div> -->
-
-                        <!-- Submit Button -->
-                        <div class="text-center mt-4">
-                          <button type="submit" class="btn btn-primary">Update Profile</button>
-                        </div>
-                      </form>
-
-                    </div>
+                </div>
+              </div>
+    
+              <div class="col-12 col-md-3 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title font-weight-bold">Support</h6>
+                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                    <button type="button" class="btn btn-primary">Contact Us</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="col-12 col-md-3 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title font-weight-bold">Support</h6>
-                <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                <button type="button" class="btn btn-primary">Contact Us</button>
-              </div>
-            </div>
-          </div>
         </div>
-
       </div>
     </div>
-  </div>
-  <footer class="footer mt-auto py-3 d-xxl-block d-none">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <span class="text-muted">&copy; 2024 JobBridge</span>
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
-                    <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
-                </ul>
-            </div>
+    <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 1rem !important; padding-bottom: 1rem !important;">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-muted">&copy; 2024 JobBridge</span>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="#" class="footer-link">User Agreement</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Community Guidelines</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Cookie Policy</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Copyright Policy</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Send Feedback</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Language</a></li>
+          </ul>
         </div>
+      </div>
     </footer>
+  </div>
+  
   <script>
     //test storage (to test a session storage)
     // const formData = {

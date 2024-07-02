@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Job</title>
-    <link rel="stylesheet" href="Frontend/css/postjob.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="Frontend/css/common.css">
     <link rel="stylesheet" href="Frontend/css/index.css">
+    <link rel="stylesheet" href="Frontend/css/postjob.css">
     <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="./Frontend/css/bootstrap.min.css">
     <script>
         function saveJob() {
             var title = document.getElementById('title').value;
@@ -95,99 +95,103 @@
     </script>
 </head>
 <body>
-  <header>
-    <nav>
-        <div class="logo">
-          JobBridge (Employer)
-        </div>
-        <ul>
-            <li><a href="employer_homepage.html">Home</a></li>
-            <li><a href="postjob.html">Post a Job</a></li>
-            <li><a href="employee_list.html">Candidate List</a></li>
+  <div id="page-container">
+    <div id="content-wrap">
+        <header>
+            <nav>
+                <div class="logo">
+                  JobBridge (Employer)
+                </div>
+                <ul>
+                    <li><a href="employer_homepage.html">Home</a></li>
+                    <li><a href="postjob.html">Post a Job</a></li>
+                    <li><a href="employee_list.html">Candidate List</a></li>
+                    
+                    <li><a href="index.html">Register</a></li>
+                </ul>
+                
+                <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
+            </nav>
+        </header>
             
-            <li><a href="index.html">Register</a></li>
-        </ul>
+        <main>
+            <div class="card">
+                <h2 class="text-center">Welcome, Post Your Job Here!</h2>
+                <!-- Post Job Form -->
+                <form id="jobForm" action="Backend/postjob.php" method="post" enctype="multipart/form-data"> 
+                    <!-- Job Title -->
+                    <div class="form-group">
+                        <label for="title">Job Title:</label>
+                        <input type="text" id="title" name="job_title" required placeholder="Enter job title">
+                        <span id="titleError"></span>
+                    </div>
         
-        <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
-    </nav>
-</header>
-    
-<main>
-    <div class="card">
-        <h2 class="text-center">Welcome, Post Your Job Here!</h2>
-        <!-- Post Job Form -->
-        <form id="jobForm" action="Backend/postjob.php" method="post" enctype="multipart/form-data"> 
-            <!-- Job Title -->
-            <div class="form-group">
-                <label for="title">Job Title:</label>
-                <input type="text" id="title" name="job_title" required placeholder="Enter job title">
-                <span id="titleError"></span>
+                    <div class="form-group">
+                        <!-- Company -->
+                        <label for="company">Company:</label>
+                        <input type="text" id="company" name="company" required placeholder="Enter company name">
+                        <span id="companyError"></span>
+                    </div>
+        
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location" required placeholder="Enter location">
+                        <span id="locationError"></span>
+                    </div>
+        
+                    <!-- Salary  -->
+                    <div class="form-group">
+                        <label for="salary">Salary:</label>
+                        <input type="number" id="salary" name="salary" required placeholder="Enter salary">
+                        <span id="salaryError"></span>
+                    </div>
+        
+                    <!-- Work type -->
+                    <div class="form-group">
+                        <label for="workType">Work Type:</label>
+                        <input type="text" id="workType" name="work_type" required placeholder="Enter work type">
+                        <span id="workTypeError"></span>
+                    </div>
+        
+                    <!-- Requirement -->
+                    <div class="form-group">
+                        <label for="requirements">Requirements:</label>
+                        <input type="text" id="requirements" name="requirement" required placeholder="Enter job requirements">
+                        <span id="requirementsError"></span>
+                    </div>
+        
+                    <!-- Company Image -->
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" id="image" name="image" required>
+                        <span id="imageError"></span>
+                    </div>
+                    <!-- Wait i test something -->
+                    <!-- <button type="submit" onclick="saveJob()">Post Job</button> -->
+                    <button type="submit">Post Job</button>
+                </form>
             </div>
-
-            <div class="form-group">
-                <!-- Company -->
-                <label for="company">Company:</label>
-                <input type="text" id="company" name="company" required placeholder="Enter company name">
-                <span id="companyError"></span>
-            </div>
-
-            <!-- Location -->
-            <div class="form-group">
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" required placeholder="Enter location">
-                <span id="locationError"></span>
-            </div>
-
-            <!-- Salary  -->
-            <div class="form-group">
-                <label for="salary">Salary:</label>
-                <input type="number" id="salary" name="salary" required placeholder="Enter salary">
-                <span id="salaryError"></span>
-            </div>
-
-            <!-- Work type -->
-            <div class="form-group">
-                <label for="workType">Work Type:</label>
-                <input type="text" id="workType" name="work_type" required placeholder="Enter work type">
-                <span id="workTypeError"></span>
-            </div>
-
-            <!-- Requirement -->
-            <div class="form-group">
-                <label for="requirements">Requirements:</label>
-                <input type="text" id="requirements" name="requirement" required placeholder="Enter job requirements">
-                <span id="requirementsError"></span>
-            </div>
-
-            <!-- Company Image -->
-            <div class="form-group">
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" required>
-                <span id="imageError"></span>
-            </div>
-            <!-- Wait i test something -->
-            <!-- <button type="submit" onclick="saveJob()">Post Job</button> -->
-            <button type="submit">Post Job</button>
-        </form>
+        </main>
     </div>
-</main>
-
-<footer class="footer mt-auto py-3 d-xxl-block d-none">
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
+    <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 0.6rem !important; padding-bottom: 0.6rem !important;">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center">
             <span class="text-muted">&copy; 2024 JobBridge</span>
             <ul class="list-inline mb-0">
-                <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">User Agreement</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Community Guidelines</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Cookie Policy</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Copyright Policy</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Send Feedback</a></li>
+              <li class="list-inline-item"><a href="#" class="footer-link">Language</a></li>
             </ul>
+          </div>
         </div>
-    </div>
-</footer>
+      </footer>
+  </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
