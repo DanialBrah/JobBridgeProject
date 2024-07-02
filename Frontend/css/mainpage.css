@@ -67,6 +67,10 @@ nav ul li a {
     color: white;
 }
 
+a:hover{
+    color: blue;
+}
+
 .btn-get-started {
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
     color: #fff;
