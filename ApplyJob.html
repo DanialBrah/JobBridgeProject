@@ -18,18 +18,15 @@
     
 </head>
 <body>
-    <form id="jobApplicationForm">
+    <form id="jobApplicationForm" action="./Backend/applyjob.php" method="post">
         <h2>Job Application Form</h2>
         <h4>Please Fill Out The Form Below To Submit Your Job Application</h4>
         
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
+        <label for="exp_salary">Expected Salary</label>
+        <input type="number" min="0" id="exp_salary" name="exp_salary" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required>
+        <label for="yoe">Years of Experience</label>
+        <input type="number" min="0" id="yoe" name="yoe" required>
 
         <div class="flex-container">
             <div class="flex-item">
@@ -43,19 +40,24 @@
                 </select>
             </div>
             <div class="flex-item">
-                <label for="startDate">Start Date</label>
-                <input type="date" id="startDate" name="startDate" required>
+                <label for="education">Highest Education</label>
+                <select id="education" name="education" required>
+                    <option value="">Select your education level</option>
+                    <option value="Secondary School">Secondary School</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Degree">Degree</option>
+                    <option value="Master">Master</option>
+                </select>
             </div>
         </div>
-        <label for="coverLetter">Cover Letter</label>
+        <label for="coverLetter">Summary</label>
         <textarea id="coverLetter" name="coverLetter" rows="6" required></textarea>
 
-        <label for="resume">Upload Resume</label>
-        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+        <input type="hidden" value="" id="jobID" name="jobID"/>
 
         <div class="button row gx-5">
-            <button class='row' type="button" onclick="submitApplication()">Submit Application</button>
-            <button  class='col' type="button" onclick="location.href='joblist.html'">Cancel</button>
+            <button class='row' type="submit">Submit Application</button>
+            <button  class='col' type="button" onclick="location.href='joblist.html'" style="background-color: darkgray;">Cancel</button>
         </div>
         
     </form>
@@ -76,6 +78,17 @@
         </div>
       </footer>
 
-    <script src = "Frontend/js/ApplyJobScript.js"></script>
+    <script>
+        window.onload = function() {
+            const jobID = getJobIdByUrl()
+            document.getElementById('jobID').value = jobID;
+
+        }
+        function getJobIdByUrl(){
+            const url = document.URL;
+            const jobID = parseInt(url.split('=')[1]);
+            return jobID;
+        }
+    </script>
 </body>
 </html>

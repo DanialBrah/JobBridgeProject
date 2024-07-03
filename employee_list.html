@@ -58,11 +58,8 @@
                                 <option value="10000">Above RM 8000</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="jobFilter" placeholder="Keyword">
-                        </div>
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary" onclick="applyFilter()">Filter</button>
+                            <button type="button" class="btn btn-primary" onclick="applyFilter()" id="filter-btn">Filter</button>
                             <button type="button" class="btn btn-secondary" onclick="resetFilter()">Reset</button>
                         </div>
                     </form>
@@ -87,10 +84,10 @@
                                 <small id="applicationSource">Applied 5 days ago from LinkedIn</small>
                             </div>
                         </div>
-                        <div class="profile-actions mt-3">
+                        <!-- <div class="profile-actions mt-3">
                             <button class="btn btn-success" onclick="showModal()">Interview</button>
                             <button class="btn btn-danger" id="rejectButton">Reject</button>
-                        </div>
+                        </div> -->
                     </div>
             
                     <!-- Profile Tabs -->
@@ -99,12 +96,12 @@
                             <li class="nav-item">
                                 <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" id="resume-tab" data-bs-toggle="tab" href="#resume" role="tab">Resume</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="additional-info-tab" data-bs-toggle="tab" href="#additional-info" role="tab">Additional Info</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
             
@@ -116,12 +113,16 @@
                             <hr><h3 class="mb-3">Contact Details</h3>
                             <p><strong>Email Address:</strong> <span id="candidateEmail">batman@gmail.com</span></p>
                             <p><strong>Contact No:</strong> <span id="candidatePhone">+91 12345678</span></p>
+
                             <p><strong>Home Address:</strong> <span id="candidateAddress">+91 12345678</span></p>
-                            <!-- <hr><h3 class="mb-3">Job Details</h3>
+                            <hr><h3 class="mb-3">Job Details</h3>
+
                             <p><strong>Highest Qualification:</strong> <span id="candidateQualification">B.TECH</span></p>
-                            <p><strong>Current Company:</strong> <span id="candidateCompany">Accenture</span></p>
-                            <p><strong>Total Experience:</strong> <span id="candidateExperience">5 Years</span></p>
-                            <p><strong>Current Salary:</strong> <span id="candidateSalary">RM5000</span></p> -->
+
+                            <p><strong>Position Applied:</strong> <span id="positionApplied">Accenture</span></p>
+
+                            <p><strong>Total Experience:</strong> <span id="candidateExperience">5 years</span></p>
+
                             <strong>Expected Salary: </strong><p id="candidateExpectedSalary" style="display: inline-block;"> <span >RM10000</span></p>
                         </div>
                         <div class="tab-pane fade" id="resume" role="tabpanel" aria-labelledby="resume-tab">
@@ -224,7 +225,7 @@
                     <div class="row " id="candidateBox">
                         <div class="employee-card bg-light p-4" onclick="showCandidateDetails('${employee.full_name}')">
                             <h5 class="card-title">${employee.full_name}</h5>
-                            <p class="card-text"><strong>Expected Salary:</strong> RM${employee.expected_salary}</p>
+                            <p class="card-text"><strong>Expected Salary:</strong> RM${employee.exp_salary}</p>
                             <p class="card-text"><strong>Job Interested:</strong> ${employee.job_title}</p>
                             <p class="card-text"><strong>Preferred City:</strong> ${employee.job_city}</p>
                             <button class="btn btn-success mt-2" onclick="showCandidateDetails('${employee.full_name}')">More About Him</button>
@@ -255,30 +256,33 @@
             document.getElementById('candidateEmail').textContent = candidate.email;
             document.getElementById('candidatePhone').textContent = `+60${candidate.phone}`;
             document.getElementById('candidateAddress').textContent = candidate.home_address;
-            // document.getElementById('candidateCompany').textContent = candidate.current_company || "Not specified";
-            // document.getElementById('candidateExperience').textContent = `${candidate.experience} Years` || "Not specified";
-            // document.getElementById('candidateSalary').textContent = `RM${candidate.current_salary}` || "Not specified";
-            document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
+            document.getElementById('candidateQualification').textContent = candidate.education;
+            document.getElementById('positionApplied').textContent = candidate.position || "Not specified";
+            document.getElementById('candidateExperience').textContent = `${candidate.yoe} Years` || "Not specified";
+            document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.exp_salary}` || "Not specified";
             document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
             document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
             document.getElementById('interviewCandidate').innerHTML = candidate.full_name;
+            document.getElementById('profilePicture').src = candidate.profileImage;
 
             document.getElementById('rejectButton').onclick = () => rejectCandidate(candidate.full_name);
         }
     }
 
     function applyFilter() {
+        document.getElementById('candidateList').classList.add('d-none');
+
         const cityFilter = document.getElementById('cityFilter').value.toLowerCase();
         const salaryFilter = document.getElementById('salaryFilter').value;
         const jobFilter = document.getElementById('jobFilter').value.toLowerCase();
 
         const filteredEmployees = employees.filter(employee => {
             const matchesCity = cityFilter === 'all' || employee.job_city.toLowerCase() === cityFilter;
-            const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.expected_salary < 2000) ||
-                (salaryFilter === "4000" && employee.expected_salary >= 2000 && employee.expected_salary < 4000) ||
-                (salaryFilter === "6000" && employee.expected_salary >= 4000 && employee.expected_salary < 6000) ||
-                (salaryFilter === "8000" && employee.expected_salary >= 6000 && employee.expected_salary < 8000) ||
-                (salaryFilter === "10000" && employee.expected_salary >= 8000);
+            const matchesSalary = salaryFilter === 'all' || (salaryFilter === "2000" && employee.exp_salary < 2000) ||
+                (salaryFilter === "4000" && employee.exp_salary >= 2000 && employee.exp_salary < 4000) ||
+                (salaryFilter === "6000" && employee.exp_salary >= 4000 && employee.exp_salary < 6000) ||
+                (salaryFilter === "8000" && employee.exp_salary >= 6000 && employee.exp_salary < 8000) ||
+                (salaryFilter === "10000" && employee.exp_salary >= 8000);
             const matchesJob = !jobFilter || employee.job_title.toLowerCase().includes(jobFilter);
             return matchesCity && matchesSalary && matchesJob;
         });
