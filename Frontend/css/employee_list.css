@@ -59,6 +59,7 @@ nav ul li a {
     color: white;
 }
 
+
 .btn-get-started {
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
     color: #fff;
@@ -83,7 +84,7 @@ nav ul li a {
 }
 
 .btn-get-started:hover {
-    background-color: #e07b00;
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);
 }
 
 .employee-card {

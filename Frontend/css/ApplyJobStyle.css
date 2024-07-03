@@ -55,6 +55,10 @@ nav ul li a {
     font-size: 16px;
 }
 
+a:hover{
+    color: blue;
+}
+
 .btn-get-started {
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
     color: #fff;
@@ -79,7 +83,7 @@ nav ul li a {
 }
 
 .btn-get-started:hover {
-    background-color: #e07b00;
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);
 }
 
 main {
@@ -133,12 +137,24 @@ button {
     cursor: pointer;
 }
 
+button:hover{
+    background: #00ffff;
+}
+
 button.row{
     background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
 }
 
-button:hover {
-    background-color: green;
+button.row:hover{
+    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);
+}
+
+button.col{
+    background: grey;
+}
+
+button.col:hover{
+    background: red;
 }
 
 h1 {
