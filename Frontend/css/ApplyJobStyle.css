@@ -65,6 +65,7 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 8px 15px;
     border-radius: 10px;
+    overflow:hidden;
 }
 
 .btn-get-started {
