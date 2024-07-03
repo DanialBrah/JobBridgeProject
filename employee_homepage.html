@@ -104,7 +104,6 @@
             </ul>
           </div>
         </div>
-        <button onclick="fetchUserDetails()">click</button>
       </footer>
     </div>
 
@@ -139,13 +138,8 @@
               username.innerText = user[0].full_name;
               profileImage.src = user[0].profileImage
             }
-            // if (user.profileImage) {
-            //     userProfile.innerHTML = `<img src="${user.profileImage}" alt="Small image" class="small-image"><span>${user.full_name}</span>`;
-            // } else {
-            //     userProfile.innerHTML = `<img src="default_profile_image.jpg" alt="Small image" class="small-image"><span>${user.full_name}</span>`;
-            // }
         }
-      //  document.addEventListener('DOMContentLoaded', fetchUserDetails())
+       document.addEventListener('DOMContentLoaded', fetchUserDetails())
 
 
       </script>
