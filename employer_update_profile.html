@@ -10,6 +10,34 @@
   <link rel="stylesheet" href="./Frontend/css/update_profile.css">
   <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
   <title>Profile Page</title>
+  <style>
+    .is-invalid {
+      border-color: red !important;
+    }
+    .btn-primary.disabled, .btn-primary:disabled {
+      opacity: 0.1;
+    }
+    .btn-get-started img {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+    }
+    .small-image {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+      border-radius: 100%;
+  }
+  a:hover {
+    color: white;
+  }
+  input {
+    text-indent: 0.5rem;
+  }
+  </style>
 </head>
 <body>
   <header>
@@ -21,173 +49,155 @@
             <li><a href="employee_list.html">Candidate List</a></li>
             <li><a href="index.html"  style="color: gold;"">Log Out</a></li>
         </ul>
-        <a href="employee_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
-    </nav>
+        <a href="employer_homepage.html" class="btn-get-started text-end" id="myName">
+          <img src="./Frontend/images/profilepic.jpg" alt="Small image" class="small-image" id="myImage" />
+          <span id="username">User</span>
+        </a>
+      </nav>
 </header>
   
   <div class="container pt-3">
     <h1 class="text-light">Profile Page</h1>
   </div>
 
-  <div class="container mt-2">
-    <div class="row flex-lg-nowrap">
-      <div class="col">
-        <div class="row">
-          <div class="col mb-3">
-            <div class="card" style="width: auto !important;">
-              <div class="card-body m-3">
-                <div class="e-profile">
-                  <div class="row">
-                    <div class="col-12 col-sm-auto mb-3">
-                      <div class="mx-auto" style="width: 140px;">
-                        <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
-                          <img id="profile_image" src="" alt="Profile Photo" class="img-thumbnail d-none" style="width: 100%; height: 100%; object-fit: cover;">
-                          <span class="text-muted" id="default_text">140x140</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                      <div class="text-center text-sm-left mb-2 mb-sm-0">
-                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
-                        <p class="mb-1 text-start" id="user_id"></p>
-                        <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
-                        <div class="mt-2">
-                          <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
-                            <i class="fa fa-fw fa-camera"></i>
-                            <span>Upload Photo</span>
-                          </button>
-                          <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)">
-                        </div>
-                      </div>
-                      <div class="text-center text-sm-right">
-                        <span class="badge bg-secondary">Employer</span>
-                        <div class="text-muted"><small>Joined 08 June 2024</small></div>
-                      </div>
-                    </div>
-                  </div>
-                  <ul class="nav nav-tabs mt-3">
-                    <li class="nav-item"><a href="" class="active nav-link">Edit Profile</a></li>
-                  </ul>
-                  <div class="tab-content pt-3">
-                    <div class="tab-pane active">
-                      <form id="updateProfileForm" class="needs-validation" novalidate>
-                        <!-- Full Name -->
-                        <div class="mb-3">
-                          <label for="fullName" class="form-label">Full Name</label>
-                          <input type="text" class="form-control" id="fullName" name="full_name" required>
-                          <div class="invalid-feedback">Full name must be more than 5 characters.</div>
-                        </div>
-
-                        <!-- Company Address -->
-                        <div class="mb-3">
-                          <label for="companyAddress" class="form-label">Company Address</label>
-                          <input type="text" class="form-control" id="companyAddress" name="company_address" required>
-                          <div class="invalid-feedback">Home address must be more than 5 characters.</div>
-                        </div>
-
-                        <!-- Company Email -->
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Company Email Address</label>
-                          <input type="email" class="form-control" id="email" name="email" required>
-                          <div class="invalid-feedback">Please enter a valid email address.</div>
-                        </div>
-
-                        <!-- Company Phone -->
-                        <div class="mb-3">
-                          <label for="phone" class="form-label">Company Contact No</label>
-                          <div class="input-group has-validation">
-                            <div class="input-group-prepend">
-                              <select class="form-select" id="phone_code" name="phone_code" required>
-                                <option value="MY">MY(+60)</option>
-                                <option value="BN">BN(+673)</option>
-                                <option value="KH">KH(+855)</option>
-                                <option value="ID">ID(+62)</option>
-                                <option value="LA">LA(+856)</option>
-                                <option value="MM">MM(+95)</option>
-                                <option value="PH">PH(+63)</option>
-                                <option value="SG">SG(+65)</option>
-                              </select>
-                            </div>
-                            <input type="tel" id="phone" name="phone" class="form-control" required>
-                            <div class="invalid-feedback">Please enter a valid phone number!</div>
+  <form id="updateProfileForm" class="needs-validation" action="./Backend/employer_update_profile.php" method="post" enctype="multipart/form-data" novalidate>
+    <div class="container mt-2">
+      <div class="row flex-lg-nowrap">
+        <div class="col">
+          <div class="row">
+            <div class="col mb-3">
+              <div class="card" style="width: auto !important;">
+                <div class="card-body m-3">
+                  <div class="e-profile">
+                    <div class="row">
+                      <div class="col-12 col-sm-auto mb-3">
+                        <div class="mx-auto" style="width: 140px;">
+                          <div class="d-flex justify-content-center align-items-center rounded bg-light" style="height: 140px;">
+                            <img id="profile_image" src="" alt="Profile Photo" class="img-thumbnail d-none" style="width: 100%; height: 100%; object-fit: cover;">
+                            <span class="text-muted" id="default_text">140x140</span>
                           </div>
                         </div>
-
-                        <!-- Submit Button -->
-                        <div class="text-center mt-4">
-                          <button type="submit" class="btn btn-primary">Update Profile</button>
+                      </div>
+                      <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                          <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
+                          <p class="mb-1 text-start" id="user_id" style="font-size: 1.6rem; font-weight: 600;"></p>
+                          <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
+                          <div class="mt-2">
+                            <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
+                              <i class="fa fa-fw fa-camera"></i>
+                              <span>Upload Photo</span>
+                            </button>
+                            <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)" name="profileImage">
+                          </div>
                         </div>
-                      </form>
+                        <div class="text-center text-sm-right">
+                          <span class="badge bg-secondary">Job Seeker</span>
+                          <div class="text-muted"><small>Joined 06 June 2024</small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs mt-3">
+                      <li class="nav-item"><a href="" class="active nav-link">Edit Profile</a></li>
+                    </ul>
+                    <div class="tab-content pt-3">
+                      <div class="tab-pane active">
+                          <!-- Full Name -->
+                          <div class="mb-3">
+                            <label for="fullName" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="fullName" name="full_name" required>
+                          </div>
+  
+                          <!-- Home Address -->
+                          <div class="mb-3">
+                            <label for="homeAddress" class="form-label">Company Address</label>
+                            <input type="text" class="form-control" id="homeAddress" name="home_address" required>
+                          </div>
+  
+                          <!-- Email -->
+                          <div class="mb-3">
+                            <label for="email" class="form-label">Company Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                          </div>
+  
+                          <!-- Phone -->
+                          <div class="mb-3">
+                            <label for="phone" class="form-label">Company Contact No</label>
+                            <div class="input-group has-validation">
+                              <div class="input-group-prepend">
+                                <select class="form-select" id="phone_code" name="phone_code" required>
+                                  <option value="MY" selected>MY(+60)</option>
+                                  <option value="BN">BN(+673)</option>
+                                  <option value="KH">KH(+855)</option>
+                                  <option value="ID">ID(+62)</option>
+                                  <option value="LA">LA(+856)</option>
+                                  <option value="MM">MM(+95)</option>
+                                  <option value="PH">PH(+63)</option>
+                                  <option value="SG">SG(+65)</option>
+                                </select>
+                              </div>
+                              <input type="tel" id="phone" name="phone" class="form-control" required>
+                            </div>
+                          </div>
+  
+                          <!-- Submit Button -->
+                          <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Update Profile</button>
+                          </div>
+                          
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title font-weight-bold">Support</h6>
-                <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                <button type="button" class="btn btn-primary">Contact Us</button>
+              
+              <div class="col-12 col-md-3 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title font-weight-bold">Support</h6>
+                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                    <button type="button" class="btn btn-primary">Contact Us</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
-  
-  <footer class="footer mt-auto py-3 d-xxl-block d-none">
+  </form>
+    <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 1rem !important; padding-bottom: 1rem !important;">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="text-muted">&copy; 2024 JobBridge</span>
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item"><a href="#" class="text-muted">User Agreement</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Privacy Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Community Guidelines</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Cookie Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Copyright Policy</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Send Feedback</a></li>
-                <li class="list-inline-item"><a href="#" class="text-muted">Language</a></li>
-            </ul>
-        </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 JobBridge</span>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="footer-link">User Agreement</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Community Guidelines</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Cookie Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Copyright Policy</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Send Feedback</a></li>
+          <li class="list-inline-item"><a href="#" class="footer-link">Language</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
+</div>
 
   <script>
-    // Test storage (to test a session storage)
-    // const formData = {
-    //   full_name: "MrEmployer",
-    //   company_address: "123,Taman Banana",
-    //   company_email: "employer@hotmail.com",
-    //   company_phone: 1128291811,
-    //   profile_image: ""
-    // };
-    // sessionStorage.setItem('employerData', JSON.stringify(formData));
-
-    // Actual start from here
     document.addEventListener('DOMContentLoaded', function() {
-      // Retrieve user profile data from session storage
-      const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
-
-      if (userProfile) {
-        document.getElementById('fullName').value = userProfile.full_name;
-        document.getElementById('companyAddress').value = userProfile.company_address;
-        document.getElementById('email').value = userProfile.company_email;
-        document.getElementById('phone').value = userProfile.company_phone;
-        document.getElementById('profile_name').innerHTML = userProfile.full_name;
-        document.getElementById('user_id').innerHTML = `@${userProfile.full_name}03`;
-        if (userProfile.profile_image) {
-          document.getElementById('profile_image').src = userProfile.profile_image;
-          document.getElementById('profile_image').classList.remove('d-none');
-          document.getElementById('default_text').classList.add('d-none');
-        }
-      }
+      fetchUserDetails();
+  
+      checkFormValidity(); // Initial check
+  
+      // Add event listeners to form fields to check validity on input/change
+      document.getElementById('fullName').addEventListener('input', checkFormValidity);
+      document.getElementById('homeAddress').addEventListener('input', checkFormValidity);
+      document.getElementById('email').addEventListener('input', checkFormValidity);
+      document.getElementById('phone').addEventListener('input', checkFormValidity);
     });
-
+  
     function validateMinLength(input, minLength) {
       if (input.value.length >= minLength) {
         input.classList.remove('is-invalid');
@@ -197,7 +207,7 @@
         input.classList.add('is-invalid');
       }
     }
-
+  
     function validateEmail(input) {
       var emailPattern = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
       if (emailPattern.test(input.value)) {
@@ -208,9 +218,9 @@
         input.classList.add('is-invalid');
       }
     }
-
+  
     function validatePhone(input) {
-      var phonePattern = /^[0-9]{10}$/;
+      var phonePattern = /^[0-9]{9,12}$/;
       if (phonePattern.test(input.value)) {
         input.classList.remove('is-invalid');
         input.classList.add('is-valid');
@@ -219,73 +229,104 @@
         input.classList.add('is-invalid');
       }
     }
-
-    // Add event listeners
-    document.getElementById('fullName').addEventListener('input', function() {
-      validateMinLength(this, 5);
-    });
-
-    document.getElementById('companyAddress').addEventListener('input', function() {
-      validateMinLength(this, 5);
-    });
-
-    document.getElementById('email').addEventListener('input', function() {
-      validateEmail(this);
-    });
-
-    document.getElementById('phone').addEventListener('input', function() {
-      validatePhone(this);
-    });
-
+  
+    function checkFormValidity() {
+      const form = document.getElementById('updateProfileForm');
+      const fullName = document.getElementById('fullName');
+      const homeAddress = document.getElementById('homeAddress');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone');
+      const submitBtn = document.getElementById('submitBtn');
+  
+      const isFormValid = fullName.value.length >= 5 &&
+                          homeAddress.value.length >= 5 &&
+                          /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(email.value) &&
+                          /^[0-9]{10}$/.test(phone.value);
+  
+      submitBtn.disabled = !isFormValid;
+    }
+  
     var form = document.getElementById('updateProfileForm');
     form.addEventListener('submit', function(event) {
-      event.preventDefault();
       var inputs = form.querySelectorAll('input[required], select[required]');
+      var isFormValid = true;
+  
       inputs.forEach(function(input) {
         if (input.value === '' || input.classList.contains('is-invalid')) {
-          input.classList.add('is-invalid');
-          event.preventDefault();
-          event.stopPropagation();
+          if (input.value !== "file") {
+            input.classList.add('is-invalid');
+            isFormValid = false;
+          }
         }
       });
-
-      if (form.checkValidity() === false) {
+  
+      if (!isFormValid) {
         event.preventDefault();
         event.stopPropagation();
       }
-
+  
       form.classList.add('was-validated');
-
-      // Save updated data to session storage
-      const updatedProfile = {
-        full_name: document.getElementById('fullName').value,
-        company_address: document.getElementById('companyAddress').value,
-        company_email: document.getElementById('email').value,
-        company_phone: document.getElementById('phone').value,
-        profile_image: document.getElementById('profile_image').src
-      };
-      
-      sessionStorage.setItem('employerData', JSON.stringify(updatedProfile));
-      alert('Your change has been successfully made, click "Ok" to redirect to home ');
-      window.location.href='employer_homepage.html';
-
-      // Update the displayed values on the page
-      document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
-      document.getElementById('user_id').innerHTML = `@${updatedProfile.full_name}03`;
+  
+      if (isFormValid) {
+        alert('Your change has been successfully made, click OK to redirect to Home');
+      }
     }, false);
-
+  
     function loadFile(event) {
       const image = document.getElementById('profile_image');
       const defaultText = document.getElementById('default_text');
       image.src = URL.createObjectURL(event.target.files[0]);
       image.classList.remove('d-none');
       defaultText.classList.add('d-none');
-
-      // Update session storage
-      const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
-      userProfile.profile_image = image.src;
-      sessionStorage.setItem('employerData', JSON.stringify(userProfile));
+  
+      checkFormValidity(); // Check form validity after loading file
     }
+  
+    const fetchUserDetails = async () => {
+      try {
+        const response = await fetch('./Backend/employer_homepage.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const userDetails = await response.json();
+        renderUserDetails(userDetails);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+  
+    const renderUserDetails = (user) => {
+      console.log(user[0]);
+      const userProfilename = document.getElementById('username');
+      const username = document.getElementById('user_id');
+      const profileImage = document.getElementById('myImage');
+      const defaultImage = document.getElementById('profile_image');
+      const userFullName = document.getElementById('fullName');
+      const userHomeAddress = document.getElementById('homeAddress');
+      const userEmail = document.getElementById('email');
+      const userPhone = document.getElementById('phone');
+  
+      if (user) {
+        userProfilename.innerText = user[0].company_name;
+        username.innerText = user[0].company_name;
+        profileImage.src = user[0].profileImage;
+        if(user[0].profileImage != "data:image/jpeg;base64,") {
+          const defaultText = document.getElementById('default_text');
+          defaultImage.classList.remove('d-none');
+          defaultText.classList.add('d-none');
+          defaultImage.src = user[0].profileImage;
+        } 
+        userFullName.value = user[0].company_name;
+        userHomeAddress.value = user[0].company_address;
+        userEmail.value = user[0].email;
+        userPhone.value = user[0].phone;
+      }
+    };
   </script>
 </body>
 </html>

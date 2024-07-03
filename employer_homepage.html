@@ -110,14 +110,38 @@
   </div>
 
       <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        // Retrieve user profile data from session storage
-        const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
-
-        if (userProfile) {
-          document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
+        const fetchUserDetails = async () => {
+            try {
+                const response = await fetch('./Backend/employer_homepage.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const userDetails = await response.json();
+                console.log(userDetails);
+                renderUserDetails(userDetails);
+            } 
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         }
-    });
+  
+        const renderUserDetails = (user) => {
+          console.log(user[0]);
+            // const userProfile = document.getElementById('myName');
+            const username = document.getElementById('username')
+            const profileImage = document.getElementById('myImage')
+
+            if(user){
+              username.innerText = user[0].company_name;
+              profileImage.src = user[0].profileImage
+            }
+        }
+       document.addEventListener('DOMContentLoaded', fetchUserDetails())
       </script>
 </body>
 </html>

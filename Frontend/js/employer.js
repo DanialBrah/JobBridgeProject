@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function validatePhone(input) {
-    var phonePattern = /^[0-9]{8,15}$/;
-    if (phonePattern.test(input.value)) {
-      input.classList.remove('is-invalid');
-      input.classList.add('is-valid');
-    } else {
-      input.classList.remove('is-valid');
-      input.classList.add('is-invalid');
-    }
+    var phonePattern = /^[0-9]{9,12}$/;
+      if (phonePattern.test(input.value)) {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+      } else {
+        input.classList.remove('is-valid');
+        input.classList.add('is-invalid');
+      }
   }
 
   function validateCheckbox(input) {

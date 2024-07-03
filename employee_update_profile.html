@@ -80,7 +80,7 @@
                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div class="text-center text-sm-left mb-2 mb-sm-0">
                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap text-start" id="profile_name"></h4>
-                            <p class="mb-1 text-start" id="user_id"></p>
+                            <p class="mb-1 text-start" id="user_id" style="font-size: 1.6rem; font-weight: 600;"></p>
                             <div class="text-muted text-start"><small>Last seen 2 hours ago</small></div>
                             <div class="mt-2">
                               <button class="btn btn-primary" type="button" onclick="document.getElementById('upload_photo').click();">
@@ -219,7 +219,7 @@
     }
   
     function validatePhone(input) {
-      var phonePattern = /^[0-9]{10}$/;
+      var phonePattern = /^[0-9]{9,12}$/;
       if (phonePattern.test(input.value)) {
         input.classList.remove('is-invalid');
         input.classList.add('is-valid');
