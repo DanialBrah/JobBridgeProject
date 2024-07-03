@@ -286,6 +286,7 @@
 
     function rejectCandidate(fullName) {
         employees = employees.filter(emp => emp.full_name !== fullName);
+        alert(`${fullName} has been deleted from the candidate list`)
         renderEmployeeDetails(employees);
         if (employees.length > 0) {
             showCandidateDetails(employees[0].full_name);
