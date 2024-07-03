@@ -15,6 +15,7 @@ $expected_salary = $_POST['expected_salary'];
 $job_title = $_POST['job_title'];
 $job_city = $_POST['job_city'];
 $has_resume = 0;
+$username = $_SESSION['username'];
 
 // Check if a file is uploaded
 if (!empty($_FILES['resume']['name'])) {
@@ -43,9 +44,9 @@ if (!empty($_FILES['resume']['name'])) {
 }
 
 // Use prepared statements to avoid SQL injection
-$stmt = $conn->prepare("INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, has_resume)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssisss", $full_name, $home_address, $email, $phone, $expected_salary, $job_title, $job_city, $has_resume);
+$stmt = $conn->prepare("INSERT INTO employee (full_name, home_address, email, phone, expected_salary, job_title, job_city, has_resume, username)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssissss", $full_name, $home_address, $email, $phone, $expected_salary, $job_title, $job_city, $has_resume, $username);
 
 if ($stmt->execute()) {
   // Update uploadPersonalDetails status

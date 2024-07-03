@@ -64,11 +64,22 @@ nav ul li {
     display: inline;
 }
 
+
 nav ul li a {
     text-decoration: none;
-    color: #333;
-    font-size: 16px;
     color: white;
+    font-size: 16px;
+    transition: color 0.5s ease, font-size 0.5s ease, padding 0.5s ease, background-color 0.5s ease, border-radius 0.5s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    color: #00bfff;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 10px;
 }
 
 .btn-get-started {
@@ -78,7 +89,7 @@ nav ul li a {
     border-radius: 20px;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -95,7 +106,9 @@ nav ul li a {
 }
 
 .btn-get-started:hover {
-    background: linear-gradient(90deg, #ffd700 0%, #00ffff 100%);
+    background-color: #e07b00;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card {

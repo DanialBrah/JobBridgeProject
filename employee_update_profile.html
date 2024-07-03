@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
   <link rel="stylesheet" href="./Frontend/css/update_profile.css">
+  <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
   <title>Profile Page</title>
   <style>
     
@@ -23,7 +24,7 @@
                 <li><a href="employer_homepage.html">Home</a></li>
                 <li><a href="postjob.html">Post a Job</a></li>
                 <li><a href="employee_list.html">Candidate List</a></li>
-                <li><a href="index.html">Register</a></li>
+                <li><a href="index.html" style="color: red;">Log Out</a></li>
             </ul>
             <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
         </nav>
@@ -33,6 +34,7 @@
         <h1>Profile Page</h1>
       </div>
     
+    <form id="updateProfileForm" class="needs-validation" action="./Backend/employee_update_profile.php" method="post" enctype="multipart/form-data" novalidate>
       <div class="container mt-2">
         <div class="row flex-lg-nowrap">
           <div class="col">
@@ -60,7 +62,7 @@
                                 <i class="fa fa-fw fa-camera"></i>
                                 <span>Upload Photo</span>
                               </button>
-                              <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)">
+                              <input type="file" id="upload_photo" class="d-none" accept="image/*" onchange="loadFile(event)" name="profileImage">
                             </div>
                           </div>
                           <div class="text-center text-sm-right">
@@ -74,7 +76,6 @@
                       </ul>
                       <div class="tab-content pt-3">
                         <div class="tab-pane active">
-                          <form id="updateProfileForm" class="needs-validation" novalidate>
                             <!-- Full Name -->
                             <div class="mb-3">
                               <label for="fullName" class="form-label">Full Name</label>
@@ -112,37 +113,30 @@
                                     <option value="SG">SG(+65)</option>
                                   </select>
                                 </div>
-                                <input type="tel" id="phone" name="phone" class="form-control"required>
+                                <input type="tel" id="phone" name="phone" class="form-control" required>
                                 <div class="invalid-feedback">Please enter a valid phone number!</div>
                               </div>
                             </div>
-    
-                            <!-- Upload Resume
-                            <div class="mb-3">
-                              <label for="resume" class="form-label">Resume</label>
-                              <input type="file" class="form-control" id="resume" name="resume">
-                              <div class="invalid-feedback">Please upload a valid resume (PDF, DOC, DOCX).</div>
-                            </div> -->
     
                             <!-- Submit Button -->
                             <div class="text-center mt-4">
                               <button type="submit" class="btn btn-primary">Update Profile</button>
                             </div>
-                          </form>
-    
+                            
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-    
-              <div class="col-12 col-md-3 mb-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h6 class="card-title font-weight-bold">Support</h6>
-                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
-                    <button type="button" class="btn btn-primary">Contact Us</button>
+                
+                <div class="col-12 col-md-3 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title font-weight-bold">Support</h6>
+                      <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                      <button type="button" class="btn btn-primary">Contact Us</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -150,8 +144,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 1rem !important; padding-bottom: 1rem !important;">
+    </form>
+      <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 1rem !important; padding-bottom: 1rem !important;">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-muted">&copy; 2024 JobBridge</span>
@@ -247,43 +241,34 @@
 
     document.getElementById('phone').addEventListener('input', function() {
       validatePhone(this);
-    });
+    }); 
 
     var form = document.getElementById('updateProfileForm');
     form.addEventListener('submit', function(event) {
-      event.preventDefault();
       var inputs = form.querySelectorAll('input[required], select[required]');
+      var isFormValid = true;
+
       inputs.forEach(function(input) {
         if (input.value === '' || input.classList.contains('is-invalid')) {
           input.classList.add('is-invalid');
-          event.preventDefault();
-          event.stopPropagation();
+          isFormValid = false;
         }
       });
 
-      if (form.checkValidity() === false) {
+      if (!isFormValid) {
         event.preventDefault();
         event.stopPropagation();
       }
 
       form.classList.add('was-validated');
 
-      // Save updated data to session storage
-      const updatedProfile = {
-        full_name: document.getElementById('fullName').value,
-        home_address: document.getElementById('homeAddress').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        profile_image: document.getElementById('profile_image').src
-      };
-
-      sessionStorage.setItem('employeeData', JSON.stringify(updatedProfile));
-      alert('Your change has been successfully made, click OK to redirect to Home');
-      window.location.href = 'employee_homepage.html';
-
-      // Update the displayed values on the page
-      document.getElementById('profile_name').innerHTML = updatedProfile.full_name;
-      document.getElementById('user_id').innerHTML = `@${updatedProfile.full_name}03`;
+      if (isFormValid) {
+        // If the form is valid, allow the form to be submitted
+        alert('Your change has been successfully made, click OK to redirect to Home');
+        // Remove these lines to allow form submission
+        // event.preventDefault();
+        // window.location.href = 'employee_homepage.html';
+      }
     }, false);
 
     function loadFile(event) {
@@ -293,10 +278,10 @@
       image.classList.remove('d-none');
       defaultText.classList.add('d-none');
 
-      // Update session storage
+      /* // Update session storage
       const userProfile = JSON.parse(sessionStorage.getItem('employeeData'));
       userProfile.profile_image = image.src;
-      sessionStorage.setItem('employeeData', JSON.stringify(userProfile));
+      sessionStorage.setItem('employeeData', JSON.stringify(userProfile)); */
     }
   </script>
 </body>

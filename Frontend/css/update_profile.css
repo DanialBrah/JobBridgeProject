@@ -70,31 +70,34 @@ nav ul li a {
 }
 
 .btn-get-started {
-    background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
-    color: #fff;
-    padding: 10px 40px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
+  background: linear-gradient(90deg, #ff8c00 0%, #ff00ff 100%);
+  color: #fff;
+  padding: 10px 40px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
 }
 
 .btn-get-started img {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
 }
 
 .btn-get-started:hover {
-    background-color: #e07b00;
+  background-color: #e07b00;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
   nav {
     z-index: 1;
     max-height: 22rem;
