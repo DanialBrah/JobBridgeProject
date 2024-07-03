@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="Frontend/css/postjob.css">
     <link rel="stylesheet" href="./Frontend/js/bootstrap.bundle.min.js">
     <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
+    <style>
+        
+    .small-image {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+      border-radius: 100%;
+  }
+    </style>
     <script>
         function saveJob() {
             var title = document.getElementById('title').value;
@@ -111,7 +120,10 @@
                     <li><a href="index.html" style="color: gold;">Log Out</a></li>
                 </ul>
                 
-                <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName"><img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">User</a>
+                <a href="employer_update_profile.html" class="btn-get-started text-end" id="myName">
+                    <img src="profilepic.jpg" alt="Small image" class="small-image" id="myImage">
+                    <span id="username">User</span>
+                  </a>   
             </nav>
         </header>
             
@@ -195,9 +207,42 @@
 
 
 <script>
+    const fetchUserDetails = async () => {
+            try {
+                const response = await fetch('./Backend/employer_homepage.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const userDetails = await response.json();
+                console.log(userDetails);
+                renderUserDetails(userDetails);
+            } 
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+  
+        const renderUserDetails = (user) => {
+          console.log(user[0]);
+            // const userProfile = document.getElementById('myName');
+            const username = document.getElementById('username')
+            const profileImage = document.getElementById('myImage')
+
+            if(user){
+              username.innerText = user[0].company_name;
+              profileImage.src = user[0].profileImage
+            }
+        }
     document.addEventListener('DOMContentLoaded', function() {
+        fetchUserDetails()
         // Retrieve user profile data from session storage
         const userProfile = JSON.parse(sessionStorage.getItem('employerData'));
+        
 
         if (userProfile) {
             document.getElementById('myName').innerHTML = `<img src=${userProfile.profile_image} alt="Small image" class="small-image">${userProfile.full_name}`;
