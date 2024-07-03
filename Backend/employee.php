@@ -29,7 +29,7 @@ if (!empty($_FILES['resume']['name'])) {
   $allowed_types = array('pdf', 'doc', 'docx');
   if (in_array($file_type, $allowed_types)) {
     // Check file size (5MB limit)
-    if ($_FILES['resume']['size'] <= 5242880) { // 5MB is 5242880 bytes, not 524288000
+    if ($_FILES['resume']['size'] <= 5242880) { 
       if (move_uploaded_file($_FILES['resume']['tmp_name'], $target_file)) {
         echo "The file " . htmlspecialchars($file_name) . " has been uploaded.";
       } else {

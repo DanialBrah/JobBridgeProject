@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($validity) {
     if($row['uploadPersonalDetails'] != 0) {
-      echo "<script>alert('Login successful!'); window.location.href='../employee_homepage.html';</script>";
+      echo "<script>alert('Login successful!'); window.location.href='../{$role}_homepage.html';</script>";
     }
     echo "<script>alert('Login successful!'); window.location.href='../{$role}.html';</script>";
   } else {
