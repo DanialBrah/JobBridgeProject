@@ -41,8 +41,9 @@
                     <h2>Available Jobs</h2>
                     <!-- Job listings will be loaded here -->
                 </section>
-                <div class="job-listings" id="jobList">
-                
+
+                    <div class="job-listings" id="jobList"></div>
+                    
                 <!-- Keep this as a comment, i already store it in Database and display it in function below-->
         
                   <!-- Job 1 -->
@@ -178,7 +179,6 @@
                     <p>Los Gatos, CA</p>
                     <a href="ApplyJob.html"><button class="apply-btn">Apply now</button></a>
                   </div> -->
-                </div>
             </main>
         </div>
         <footer class="footer mt-auto py-3 d-none d-xxl-block" style="padding: 0px !important; padding-top: 0.6rem !important; padding-bottom: 0.6rem !important;">
@@ -223,12 +223,14 @@
 
         function renderJobDetails(jobs) {
             const jobListingDiv = document.getElementById('jobList');
+            console.log(jobs)
             if (jobs.error) {
                 jobListingDiv.innerHTML = `<div class="alert alert-danger">${jobs.error}</div>`;
             } else {
                 let html = '';
                 jobs.reverse().forEach(job => {
                     html += `
+                    <form action="./Backend/applyjob.php" method="post">
                         <div class="job-card">
                             <div class="job-header">
                                 <div class="job-logo">
@@ -246,8 +248,12 @@
                             </div>
                             <p>RM${job.salary} per month</p>
                             <p>${job.location}</p>
-                            <a href="ApplyJob.html"><button class="apply-btn">Apply now</button></a>
+                            <a href="employee_homepage.html">
+                                <input type='submit' class="apply-btn" value="Apply Now" />
+                                <input type="hidden" name="jobID" value=${job.jobID}/>
+                            </a>
                         </div>
+                    </form>
                     `;
                 });
                 jobListingDiv.innerHTML = html;

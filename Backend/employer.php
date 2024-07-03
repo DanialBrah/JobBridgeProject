@@ -35,7 +35,7 @@ if ($stmt->execute()) {
     $stmt_update->execute();
     $stmt_update->close();
 
-    header("Location: ../thank2.html");
+    header("Location: ../employer_homepage.html");
     exit();
 } else {
     echo "Error: " . $stmt->error;

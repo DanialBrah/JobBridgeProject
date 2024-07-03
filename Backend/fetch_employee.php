@@ -1,21 +1,26 @@
 <?php
 header('Content-Type: application/json');
 
-require_once("config.php");
+    require_once("config.php");
 
-$sql = "SELECT * FROM employee";
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM employee";
 
-$employees = [];
+    $stmt = $conn->prepare($sql);
+    // $result = $conn->query($sql);
+    $stmt->execute();
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $employees[] = $row;
+    $result = $stmt->get_result();
+
+    $data = $result->fetch_all(MYSQLI_ASSOC);
+
+    foreach ($data as $key => $value){
+        if(isset($value['profileImage'])){
+            $data[$key]['profileImage'] = base64_encode($value['profileImage']);
+        }
     }
-    echo json_encode($employees);
-} else {
-    echo json_encode(['error' => 'No employees found']);
-}
 
-$conn->close();
+    $stmt->close();
+    $conn->close();
+
+    echo json_encode($data);
 ?>

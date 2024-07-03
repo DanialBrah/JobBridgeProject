@@ -72,7 +72,7 @@
             </div>
             
             <!-- Candidate Details -->
-            <div class="container col-md-7 col-sm-8 px-3 ml-3">
+            <div class="container col-md-7 col-sm-8 px-3 ml-3 d-none" id="candidateList">
                 <h2 class='text-light'>Candidate details</h2>
                 <hr>
                 <!-- Candidate Profile -->
@@ -117,12 +117,12 @@
                             <p><strong>Email Address:</strong> <span id="candidateEmail">batman@gmail.com</span></p>
                             <p><strong>Contact No:</strong> <span id="candidatePhone">+91 12345678</span></p>
                             <p><strong>Home Address:</strong> <span id="candidateAddress">+91 12345678</span></p>
-                            <hr><h3 class="mb-3">Job Details</h3>
+                            <!-- <hr><h3 class="mb-3">Job Details</h3>
                             <p><strong>Highest Qualification:</strong> <span id="candidateQualification">B.TECH</span></p>
                             <p><strong>Current Company:</strong> <span id="candidateCompany">Accenture</span></p>
                             <p><strong>Total Experience:</strong> <span id="candidateExperience">5 Years</span></p>
-                            <p><strong>Current Salary:</strong> <span id="candidateSalary">RM5000</span></p>
-                            <p><strong>Expected Salary:</strong> <span id="candidateExpectedSalary">RM10000</span></p>
+                            <p><strong>Current Salary:</strong> <span id="candidateSalary">RM5000</span></p> -->
+                            <strong>Expected Salary: </strong><p id="candidateExpectedSalary" style="display: inline-block;"> <span >RM10000</span></p>
                         </div>
                         <div class="tab-pane fade" id="resume" role="tabpanel" aria-labelledby="resume-tab">
                             <p id="candidateResume">Resume content goes here...</p>
@@ -189,21 +189,21 @@
     </div>
 
     <script>
-        let employees = [];
+        // let employees = [];  
 
-        async function fetchEmployeeDetails() {
+        const fetchEmployeeDetails = async() => {
             try {
                 const response = await fetch('./Backend/fetch_employee.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: ""
+                    }
                 });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 employees = await response.json();
+                console.log(employees)
                 renderEmployeeDetails(employees);
                 if (employees.length > 0) {
                     showCandidateDetails(employees[0].full_name);
@@ -221,7 +221,7 @@
             let html = '';
             employees.reverse().forEach(employee => {
                 html += `
-                    <div class="row ">
+                    <div class="row " id="candidateBox">
                         <div class="employee-card bg-light p-4" onclick="showCandidateDetails('${employee.full_name}')">
                             <h5 class="card-title">${employee.full_name}</h5>
                             <p class="card-text"><strong>Expected Salary:</strong> RM${employee.expected_salary}</p>
@@ -239,7 +239,14 @@
     }
 
     function showCandidateDetails(fullName) {
+        console.log(employees)
         const candidate = employees.find(emp => emp.full_name === fullName);
+
+        const candidateBox = document.getElementById('candidateBox');
+        candidateBox.addEventListener('click', () => {
+            document.getElementById('candidateList').classList.remove('d-none');
+        })
+
         if (candidate) {
             document.getElementById('candidateName').textContent = candidate.full_name;
             document.getElementById('candidateStatus').textContent = candidate.job_title; // Update as per the actual status
@@ -248,10 +255,9 @@
             document.getElementById('candidateEmail').textContent = candidate.email;
             document.getElementById('candidatePhone').textContent = `+60${candidate.phone}`;
             document.getElementById('candidateAddress').textContent = candidate.home_address;
-            document.getElementById('candidateQualification').textContent = candidate.qualification || "Not specified";
-            document.getElementById('candidateCompany').textContent = candidate.current_company || "Not specified";
-            document.getElementById('candidateExperience').textContent = `${candidate.experience} Years` || "Not specified";
-            document.getElementById('candidateSalary').textContent = `RM${candidate.current_salary}` || "Not specified";
+            // document.getElementById('candidateCompany').textContent = candidate.current_company || "Not specified";
+            // document.getElementById('candidateExperience').textContent = `${candidate.experience} Years` || "Not specified";
+            // document.getElementById('candidateSalary').textContent = `RM${candidate.current_salary}` || "Not specified";
             document.getElementById('candidateExpectedSalary').textContent = `RM${candidate.expected_salary}` || "Not specified";
             document.getElementById('candidateResume').textContent = candidate.resume || "Resume content not available.";
             document.getElementById('candidateAdditionalInfo').textContent = candidate.additional_info || "Additional information not available.";
