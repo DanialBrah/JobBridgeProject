@@ -10,6 +10,25 @@
   <link rel="stylesheet" href="Frontend/css/index.css">
   <link rel="shortcut icon" href="Frontend/images/favicon.ico" type="image/x-icon">
   <title>JobBridge Login, Sign in | JobBridge</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7.5em;
+    }
+    .form {
+      flex: 1;
+      margin-left: 35em;
+    }
+    .summary {
+      flex: 1;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-light text-bg-light navigation" style="background-color: white;">
@@ -20,62 +39,80 @@
       </a>
     </div>
   </nav>
-  <div class="form">
-    <form action="./Backend/index.php" method="post" class="signIn p-4 pb-0" id="signInForm" style="background-color: white;">
-      <div class="row mb-3">
-        <h2 class="text-danger">Sign in</h2>
-        <h6 class="mb-4">Stay informed about your professional sphere</h6>
-        
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
-          <label for="floatingInput">Email address</label>
-          <div class="valid-feedback-email d-none text-success">
-            Sounds good!
+  <div class="container">
+    <div class="form">
+      <form action="./Backend/index.php" method="post" class="signIn p-4 pb-0" id="signInForm" style="background-color: white;">
+        <div class="row mb-3">
+          <h2 class="text-danger">Sign in</h2>
+          <h6 class="mb-4">Stay informed about your professional sphere</h6>
+          
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
+            <label for="floatingInput">Email address</label>
+            <div class="valid-feedback-email d-none text-success">
+              Sounds good!
+            </div>
+            <div class="invalid-feedback-email d-none text-danger">
+              Please enter a valid email account!
+            </div>
           </div>
-          <div class="invalid-feedback-email d-none text-danger">
-            Please enter a valid email account!
+          <div class="form-floating password-container mb-1">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
+            <label for="floatingPassword">Password</label>
+            <i class="toggle-password fa fa-eye text-danger" id="togglePassword" onclick="togglePassword()"></i>
           </div>
-        </div>
-        <div class="form-floating password-container mb-1">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
-          <label for="floatingPassword">Password</label>
-          <i class="toggle-password fa fa-eye text-danger" id="togglePassword" onclick="togglePassword()"></i>
-        </div>
 
-        <span class="forgot-pw p-1 ps-0 mb-1"><a href="mailto:limboyuanlby@gmail.com" target="_blank">Forgot password?</a></span>
+          <span class="forgot-pw p-1 ps-0 mb-1"><a href="mailto:limboyuanlby@gmail.com" target="_blank">Forgot password?</a></span>
 
-        <fieldset class="row mb-3">
-          <legend class="col-form-label col-sm-2 pt-0 text-decoration-underline">Please select your role:</legend>
-          <div class="col-sm-10 pt-4 g-2 radio-log">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="employee" required>
-              <label class="form-check-label" for="gridRadios1">
-                Employee
-              </label>  
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0 text-decoration-underline">Please select your role:</legend>
+            <div class="col-sm-10 pt-4 g-2 radio-log">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="employee" required>
+                <label class="form-check-label" for="gridRadios1">
+                  Employee
+                </label>  
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer">
+                <label class="form-check-label" for="gridRadios2">
+                  Employer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="admin">
+                <label class="form-check-label" for="gridRadios3">
+                  Admin
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="employer">
-              <label class="form-check-label" for="gridRadios2">
-                Employer
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="admin">
-              <label class="form-check-label" for="gridRadios3">
-                Admin
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      <button type="submit" class="btn btn-danger">Sign in</button>
-      <div class="form-check my-3">
-        <input class="form-check-input" type="checkbox" name="terms-conditions" id="terms-conditions" style="cursor: pointer;" required>
-        <label class="form-check-label" for="terms-conditions" style="color: black; cursor: pointer;">By continuing, you agree to <a href="#">Terms and Conditions</a></label>
-        <div class="invalid-feedback">You must agree before submitting.</div>
-      </div>
-      <div class="signUp">New to JobBridge? <a href="register.html">Join now</a></div>
-    </form>
+          </fieldset>
+        <button type="submit" class="btn btn-danger">Sign in</button>
+        <div class="form-check my-3">
+          <input class="form-check-input" type="checkbox" name="terms-conditions" id="terms-conditions" style="cursor: pointer;" required>
+          <label class="form-check-label" for="terms-conditions" style="color: black; cursor: pointer;">By continuing, you agree to <a href="#">Terms and Conditions</a></label>
+          <div class="invalid-feedback">You must agree before submitting.</div>
+        </div>
+        <div class="signUp">New to JobBridge? <a href="register.html">Join now</a></div>
+      </form>
+    </div>
+    <div class="summary">
+      <h2>About JobBridge</h2>
+      <p>Welcome to JobBridge, a leading platform dedicated to bridging the gap between job seekers and employers. Our mission is to provide an efficient, user-friendly, and comprehensive solution to all your job-searching and hiring needs.</p>
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Extensive Job Listings:</strong> Explore thousands of job opportunities across various industries and locations.</li>
+        <li><strong>Personalized Profiles:</strong> Create a detailed profile to showcase your skills, experiences, and achievements to potential employers.</li>
+        <li><strong>Advanced Search Filters:</strong> Use our advanced search filters to find jobs that match your specific criteria and preferences.</li>
+        <li><strong>Networking Opportunities:</strong> Connect with professionals in your industry, join groups, and participate in discussions to expand your professional network.</li>
+        <li><strong>Job Alerts:</strong> Set up job alerts to receive notifications about new job postings that match your criteria.</li>
+        <li><strong>Resource Center:</strong> Access a wealth of resources including resume tips, interview advice, career guidance, and more to help you succeed in your job search.</li>
+      </ul>
+      <p>At JobBridge, we are committed to helping you achieve your career goals. Whether you are a job seeker looking for your dream job or an employer seeking the perfect candidate, JobBridge is here to assist you every step of the way.</p>
+      <p>Join JobBridge today and take the next step in your professional journey. Together, we can build a bridge to your future success.</p>
+    </div>
   </div>
+
 
   <footer class="footer mt-auto py-3 d-none d-xxl-block">
     <div class="container">

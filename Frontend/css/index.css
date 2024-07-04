@@ -1,5 +1,6 @@
 body {
   background: 0;
+  background-color
 }
 
 nav {
@@ -29,7 +30,7 @@ label {
 
 .signIn {
   position: absolute;
-  left: 50%;
+  left: 30%;
   top: 47%;
   transform: translate(-50%, -42%);
   width: 20rem;
