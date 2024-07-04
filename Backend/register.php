@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Hash the password
   $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
+  
   // Insert into database
   $sql = "INSERT INTO user (username, email, password, role, admin_key) VALUES ('$username', '$email', '$hashed_password', '$role', '$admin_key')";
 
